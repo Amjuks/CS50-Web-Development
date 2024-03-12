@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="search-options">
+            <a href="index.html">Search</a><a href="images.html">Images</a>
+        </div>
+        <div class="advanced-search">
+            <h1 id="advanced-title">Advanced Search</h1>
+            <span>Find pages with...</span>
+            <div class="advanced-options">
+                <form action="https://google.com/search">
+                    <div class="ad-input">
+                        <label for="atw">all these words:</label>
+                        <input type="text" name="as_q" id="atw" placeholder="Type the important words">
+                    </div>
+                    <div class="ad-input">
+                        <label for="tewop">this exact word or phrase:</label>
+                        <input type="text" name="as_epq" id="tewop" placeholder="Put exact words in quotes">
+                    </div>
+                    <div class="ad-input">
+                        <label for="aotw">any of these words:</label>
+                        <input type="text" name="as_oq" id="aotw" placeholder="Type OR between all the words you want"jqm k,s>
+                    </div>
+                    <div class="ad-input">
+                        <label for="notw">none of these words:</label>
+                        <input type="text" name="as_eq" id="notw" placeholder="Put a minus sign just before words that you don't want">
+                    </div>
+                    <div class="ad-input">
+                        <div></div>
+                        <input id="advanced-submit" type="submit" value="Advanced Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!--
+    https://www.google.com/search
+    ?as_q=all+these+words
+    &as_epq=the+exact+phrase
+    &as_oq=any+of+these+words
+    &as_eq=none+of+these+words
+    &as_nlo=&as_nhi=&lr=&cr=&as_qdr=all&as_sitesearch=&as_occt=any&as_filetype=&tbs=
+-->
