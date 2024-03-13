@@ -1,0 +1,11 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia - Error
+{% endblock %}
+
+{% block body %}
+    {% if error == "DNE" %}
+        <h1>Entry "{{ title }}" does not exist</h1>
+    {% endif %}
+{% endblock %}
