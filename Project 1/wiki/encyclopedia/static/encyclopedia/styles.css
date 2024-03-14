@@ -36,3 +36,19 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+.create-form {
+    max-width: 50%;
+}
+
+.input-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.content-textarea {
+    resize: none;
+    height: auto;
+}

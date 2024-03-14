@@ -1,5 +1,6 @@
 import markdown2
 
+from random import choice
 from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -9,6 +10,28 @@ class SearchForm(forms.Form):
     q = forms.CharField(label="", widget=forms.TextInput({
         'class': 'search',
         'placeholder': "Search Encyclopedia"
+    }))
+
+class CreateForm(forms.Form):
+    title = forms.CharField(label="Title", widget=forms.TextInput({
+        'class': "form-control",
+        'required': True
+    }))
+
+    content = forms.CharField(label="Content", widget=forms.Textarea({
+        'class': "form-control content-textarea",
+        'required': True
+    }))
+
+class EditForm(forms.Form):
+    title = forms.CharField(label="Title", widget=forms.TextInput({
+        'class': "form-control",
+        'readonly': True
+    }))
+
+    content = forms.CharField(label="Content", widget=forms.Textarea({
+        'class': "form-control content-textarea",
+        'required': True
     }))
 
 def index(request):
@@ -53,3 +76,80 @@ def search(request):
             })
         
     return redirect(reverse('index'))
+
+def new(request):
+
+    if request.method == "POST":
+        form = CreateForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data["title"].capitalize()
+            entries = [entry.lower() for entry in util.list_entries()]
+
+            title_exists = title.lower() in entries
+
+            if title_exists:
+                form.add_error('title', "This title already exists!")
+                print(f'{form.errors = }')
+                return render(request, "encyclopedia/new.html", {
+                    'form': form
+                })
+            
+            content = f'#{title}\n\n' + form.cleaned_data["content"]
+            util.save_entry(title, content)
+
+            return redirect(reverse('entry', args=[title]))
+        
+        else:
+            return render(request, "encyclopedia/new.html", {
+                'form': form
+            })    
+
+    return render(request, "encyclopedia/new.html", {
+        'form': CreateForm()
+    })
+
+def ps(s):
+    _ = '_'*20
+    print(f'{_}\n{s}\n{_}')
+
+def edit(request, title):
+
+    if request.method == "POST":
+        form = EditForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"].replace('\r', '') # remove unnecessary "\r" added by browser
+
+            util.save_entry(title, content)
+
+            return redirect(reverse('entry', args=[title]))
+
+        else:
+            return render(request, 'encyclopedia/edit.html', {
+                'form': form
+            })
+    
+    else:
+        content = util.get_entry(title)
+
+        if content:
+            form = EditForm({
+                'title': title,
+                'content': content
+            })
+
+            return render(request, "encyclopedia/edit.html", {
+                'form': form
+            })
+        
+        return render(request, "encyclopedia/error.html", {
+            "title": title,
+            "error": "DNE" # Does Not Exist
+        })
+    
+def random(request):
+
+    title = choice(util.list_entries())
+    return redirect(reverse('entry', args=[title]))
