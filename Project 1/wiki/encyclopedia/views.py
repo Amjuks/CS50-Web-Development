@@ -109,10 +109,6 @@ def new(request):
         'form': CreateForm()
     })
 
-def ps(s):
-    _ = '_'*20
-    print(f'{_}\n{s}\n{_}')
-
 def edit(request, title):
 
     if request.method == "POST":
