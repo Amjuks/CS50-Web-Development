@@ -17,6 +17,10 @@ body {
     justify-content: center;
 }
 
+.search-submit input {
+    color: black;
+}
+
 .search-form input {
     margin: 10px;
 }
