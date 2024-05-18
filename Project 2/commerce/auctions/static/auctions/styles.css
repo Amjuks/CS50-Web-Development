@@ -5,7 +5,7 @@ body {
 
     /* background-image: url("https://wallpapers.com/images/featured/pattern-4u7ed6koskqhcez1.jpg"); */
     background-image: url("https://i.pinimg.com/originals/19/87/c8/1987c8851b996bf6b22148d2504edaf1.jpg");
-    background-size: cover;
+    background-size: fill;
 }
 
 #auction-title, #auction-user-status {
@@ -104,6 +104,7 @@ body {
     text-align: center;
     color: rgba(50, 50, 50, 0.8);
     font-size: medium;
+    overflow: hidden;
 }
 
 
