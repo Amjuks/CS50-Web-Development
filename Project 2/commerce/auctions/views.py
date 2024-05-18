@@ -39,6 +39,21 @@ class BidForm(BootStrapForm):
         else:
             self.fields['amount'].widget.attrs['min'] = min_bid
 
+
+class CloseAuctionForm(BootStrapForm):
+
+    def __init__(self, listing: Listings, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.listing = listing
+
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        if not self.listing.get_highest_bid():
+            raise forms.ValidationError("Auction cannot be closed as there are no bids placed")
+
+        return cleaned_data
+
 def index(request):
 
     return render(request, "auctions/index.html", {
@@ -128,15 +143,46 @@ def create_view(request):
         })
     
 def listing_view(request, listing_id):
-    
-    listing = Listings.objects.get(id=listing_id)
-    min_bid = listing.highest_bid or listing.starting_price
 
-    return render(request, "auctions/listing.html", {
-        "listing": listing,
-        "form": BidForm(min_bid=min_bid),
-        "user_in_wishlist": listing.users_wishlist.filter(pk=request.user.pk).exists()
-    })
+    listing = Listings.objects.get(id=listing_id)
+    
+    if request.method == 'POST':
+        form = CloseAuctionForm(listing, request.POST)
+
+        if form.is_valid():
+            listing.open = False
+            listing.save()
+
+            return redirect(reverse('listing', args=(listing_id,)))
+        else:
+            error = form.non_field_errors()
+            error = error[0] if error else None
+            
+            min_bid = listing.highest_bid or listing.starting_price
+            bid_form = BidForm(min_bid=min_bid)
+
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "bid_form": bid_form,
+                "error": error,
+                "highest_bid": listing.get_highest_bid()
+            })
+
+    else:
+        min_bid = listing.highest_bid or listing.starting_price
+
+        if listing.open:
+            highest_bid = None
+        
+        else:
+            highest_bid = listing.get_highest_bid()
+
+        return render(request, "auctions/listing.html", {
+            "listing": listing,
+            "bid_form": BidForm(min_bid=min_bid),
+            "user_in_wishlist": listing.users_wishlist.filter(pk=request.user.pk).exists(),
+            "highest_bid": highest_bid
+        })
 
 def wishlist_view(request, listing_id=None):
 
@@ -180,7 +226,7 @@ def bid_view(request, listing_id):
 
             else:
                 form.add_error('amount', 'Your bid must be higher than the current bid.')
-                return render(request, 'auctions/listing.html', {'listing': listing, 'form': form})
+                return render(request, 'auctions/listing.html', {'listing': listing, 'bid_form': form})
 
         else:
             return redirect(reverse('listing', args=[listing_id]))

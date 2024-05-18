@@ -14,6 +14,7 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f'{self.name} - ID: {self.id}'
 
+
 class Listings(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=32)
@@ -26,9 +27,8 @@ class Listings(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     users_wishlist = models.ManyToManyField(User, related_name="wishlist_items", blank=True)
 
-    # def get_highest_bid(self) -> int:
-    #     highest_bid = self.bids.aggregate(models.Max('amount'))['amount__max']
-    #     return highest_bid or self.starting_price
+    def get_highest_bid(self):
+         return self.bids.order_by('-amount').first()
 
     def __str__(self) -> str:
         open = 'Open' if self.open else 'Closed'
@@ -49,7 +49,7 @@ class Bids(models.Model):
 
     def __str__(self) -> str:
         return f'{self.user} bid ${self.amount} on "{self.listing}"'
-
+    
 
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

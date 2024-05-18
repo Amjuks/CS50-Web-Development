@@ -22,23 +22,44 @@
             <h5 id="listing-page-desc" class="semi-white-background">
             {{ listing.description }}
             </h5>
-            <div class="listing-page-btns semi-white-background">
-                <form class="input-group" action="{% url 'bid' listing_id=listing.id %}" method="post">
-                    {% csrf_token %}
-                    {{ form.amount }}
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-success">Bid</button>
-                    </div>
-                </form>
-                <form action="{% url 'wishlist' listing_id=listing.id %}" method="post" class="wishlist-form">
-                    {% csrf_token %}
-                    {% if not user_in_wishlist %}
-                        <button class="btn btn-primary">Add to Wishlist</button>
-                    {% else %}
-                        <button class="btn btn-primary">Remove from Wishlist</button>
-                    {% endif %}
-                </form>
-            </div>
+            {% if listing.open %}
+                <div class="listing-page-btns">
+                    <form class="input-group" action="{% url 'bid' listing_id=listing.id %}" method="post">
+                        {% csrf_token %}
+                        {{ bid_form.amount }}
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-success">Bid</button>
+                        </div>
+                    </form>
+                    <form action="{% url 'wishlist' listing_id=listing.id %}" method="post" class="wishlist-form">
+                        {% csrf_token %}
+                        {% if not user_in_wishlist %}
+                            <button class="btn btn-primary">Add to Wishlist</button>
+                        {% else %}
+                            <button class="btn btn-primary">Remove from Wishlist</button>
+                        {% endif %}
+                    </form>
+                </div>
+                {% if request.user == listing.owner %}
+                    <form action="{% url 'listing' listing_id=listing.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Close Auction</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <div class="semi-white-background">
+                    Auction over! Won by {{ highest_bid.user }}!
+                </div>
+            {% endif %}
         </div>
     </div>
+    {% if error %}
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                alert("{{ error }}");
+            })
+        </script>
+    {% endif %}
 {% endblock %}
+ 
+
