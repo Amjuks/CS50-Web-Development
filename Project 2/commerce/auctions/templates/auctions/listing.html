@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div class="listing-page-view">
+        <div class="listing-page-item">
+            <h1>{{ listing.title }}</h1>
+            <div id="listing-page-img">
+                <img src="{{ listing.image }}">
+            </div>
+        </div>
+        <div class="listing-page-info">
+            <div class="listing-page-bid semi-white-background">
+                <h3>
+                    {% if listing.highest_bid %}
+                        Current Bid: ${{ listing.highest_bid}}
+                    {% else %}
+                        No bids (Starting price: ${{ listing.starting_price }})
+                    {% endif %}
+                </h3>
+            </div>
+            <h5 id="listing-page-desc" class="semi-white-background">
+            {{ listing.description }}
+            </h5>
+            <div class="listing-page-btns semi-white-background">
+                <form class="input-group" action="{% url 'bid' listing_id=listing.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.amount }}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success">Bid</button>
+                    </div>
+                </form>
+                <form action="{% url 'wishlist' listing_id=listing.id %}" method="post" class="wishlist-form">
+                    {% csrf_token %}
+                    {% if not user_in_wishlist %}
+                        <button class="btn btn-primary">Add to Wishlist</button>
+                    {% else %}
+                        <button class="btn btn-primary">Remove from Wishlist</button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

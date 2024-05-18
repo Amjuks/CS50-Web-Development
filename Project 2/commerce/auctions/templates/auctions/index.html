@@ -3,5 +3,34 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    <div class="listings">
+        {% for listing in listings %}
+        <a href="{% url 'listing' listing_id=listing.id %}">
+        <div class="listing">
+            <div class="listing-image">
+                {% if listing.image %}
+                    <img  src="{{ listing.image }}" alt="{{ listing.title }}">
+                {% endif %}
+            </div>
+            <div class="listing-title">
+                <h1>{{ listing.title }}</h1>
+            </div>
+
+            <div class="listing-description">
+                {{ listing.description }}
+            </div>         
+            <div class="listing-footer">
+                <div class="listing-bid">
+                    {% if listing.highest_bid %}
+                        Current Bid: ${{ listing.highest_bid }}
+                    {% else %}
+                        No bids
+                    {% endif %}
+                </div>
+                <!-- <button class="btn btn-success">Place a bid</button> -->
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}
