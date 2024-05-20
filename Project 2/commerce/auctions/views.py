@@ -60,6 +60,15 @@ def index(request):
         'listings': Listings.objects.all()
     })
 
+def personal_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect(reverse('index'))
+    
+    return render(request, "auctions/index.html", {
+        'listings': Listings.objects.filter(owner=request.user)
+    })
+    
 
 def login_view(request):
     if request.method == "POST":
@@ -187,7 +196,9 @@ def listing_view(request, listing_id):
 def wishlist_view(request, listing_id=None):
 
     if not listing_id:
-        return render(request, "auctions/wishlist.html")
+        return render(request, "auctions/index.html", {
+            'listings': request.user.wishlist_items.all()
+        })
 
     if request.method == "POST":
         listing = Listings.objects.get(id=listing_id)
@@ -230,3 +241,9 @@ def bid_view(request, listing_id):
 
         else:
             return redirect(reverse('listing', args=[listing_id]))
+        
+def category_view(request, category_id):
+    
+    return render(request, "auctions/index.html", {
+        'listings': Listings.objects.filter(category__id=category_id)
+    })

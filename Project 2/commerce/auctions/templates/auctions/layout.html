@@ -4,11 +4,11 @@
 <html lang="en">
     <head>
         <title>{% block title %}Auctions{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1 id="auction-title">Auctions</h1>
+        <!-- <h1 id="auction-title">Auctions</h1>
         <div id="auction-user-status">
             {% if user.is_authenticated %}
                 Signed in as <strong>{{ user.username }}</strong>.
@@ -37,8 +37,63 @@
 
             {% endif %}
         </ul>
-        <hr>
+        <hr> -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a href="{% url 'index' %}" class="navbar-brand">Auctions</a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#AuctionNavbar" aria-controls="AuctionNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="AuctionNavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="{% url 'index' %}" class="nav-link">Home</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'create' %}" class="nav-link">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'wishlist' %}" class="nav-link">Wishlist</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item dropdown" data-bs-theme="dark">
+                            <a href="#" class="nav-link dropdown-toggle" id="CategoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="CategoryDropdown">
+                                {% for category in categories %}
+                                    <li><a href="{% url 'category' category.id%}" class="dropdown-item">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown" data-bs-theme="dark">
+                            <a href="#" class="nav-link dropdown-toggle" id="AuthDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if user.is_authenticated %}
+                                    Signed in as {{ user.username }}
+                                {% else %}
+                                    Not signed in
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="AuthDropdown">
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a href="{% url 'personal' %}" class="dropdown-item">My Auctions</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}" class="dropdown-item">Log in</a></li>
+                                    <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         {% block body %}
         {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>
