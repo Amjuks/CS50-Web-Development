@@ -45,9 +45,7 @@ body {
 .listing {
     display: grid;
     grid-template-rows: 55% 15% 15% 15%;
-    /* grid-template-rows: 1.5fr 5.5fr 3fr; */
     justify-content: center;
-    /* border: 3px solid lightblue; */
     border-radius: 25px;
 
     background-color: rgba(255, 255, 255, 0.8);
@@ -62,16 +60,12 @@ body {
 }
 
 .listing:hover {
-    /* box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
     box-shadow: 0 15px 25px rgba(0,0,0,0.8) inset;
     transform: scale(1.05);
 }
 
 .listings > a {
     color: inherit;
-}
-
-.listings > a:hover {
     text-decoration: none;
 }
 
