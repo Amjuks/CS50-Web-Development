@@ -52,18 +52,10 @@ class Bids(models.Model):
     
 
 class Comments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    listing = models.ForeignKey(Listings, on_delete=models.CASCADE)
-    content = models.CharField(max_length=200)
+    user: User = models.ForeignKey(User, on_delete=models.CASCADE)
+    listing: Listings = models.ForeignKey(Listings, on_delete=models.CASCADE)
+    content: str = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f'{self.user} {self.listing}: {self.content}'
-    
-
-# class Wishlist(models.Model):
-#     user = models.ManyToManyField(User, related_name="user_wishlist")
-#     listing = models.ForeignKey(Listings, on_delete=models.CASCADE)
-
-#     def __str__(self) -> str:
-#         return f'{self.user}: {self.listing}'

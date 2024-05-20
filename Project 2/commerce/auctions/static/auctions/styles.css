@@ -195,12 +195,6 @@ body {
     border-radius: 10px;
 }
 
-.listing-page-bid {
-}
-
-#listing-page-desc {
-}
-
 .listing-page-btns {
     display: inline-flex;
     gap: 1em;
@@ -208,4 +202,46 @@ body {
 
 .listing-page-btns button{
     white-space: nowrap;
+}
+
+.listing-divider {
+    margin: 0 2em;
+    border: none;
+    height: 1px;
+    border-radius: 10px;
+
+    /* opacity: 1; */
+    background-color: white;
+    /* background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), white, rgba(255, 255, 255, 0.5)); Define the gradient */
+}
+
+.comments {
+    margin: 1em 2em;
+    max-width: 50em;
+}
+
+.comments h2 {
+    color: aliceblue;
+}
+
+.comments form {
+    padding: 1em;
+
+    background-color: gray;
+    border-radius: 5px;
+}
+
+#user-comments {
+    list-style: none;
+    padding: 0;
+    border-radius: 20px;
+
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.user-comment {
+    margin: 1em 1em;
+    padding: 1em 1em;
+
+    background-color: beige;
 }

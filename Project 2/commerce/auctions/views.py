@@ -1,58 +1,14 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django import forms
 
 from .models import *
+from .forms import *
 
 from pprint import pprint as p
 
-class BootStrapForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})
-
-class CreateListingForm(BootStrapForm):
-    title = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'autofocus': True}))
-    description = forms.CharField(max_length=256, widget=forms.Textarea(attrs={'rows': 3}))
-    starting_price = forms.IntegerField(min_value=0)
-    image = forms.URLField(required=False)
-    category = forms.ModelChoiceField(queryset=Category.objects.all())
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['category'].choices = [(category.id, category.name) for category in Category.objects.all()]
-        
-
-class BidForm(BootStrapForm):
-    amount = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': "Place a bid!"}))
-
-    def __init__(self, *args, **kwargs):
-        min_bid = kwargs.pop('min_bid', None)
-        super().__init__(*args, **kwargs)
-
-        if min_bid is None:
-            self.fields['amount'].widget.attrs['min'] = 1
-        else:
-            self.fields['amount'].widget.attrs['min'] = min_bid
-
-
-class CloseAuctionForm(BootStrapForm):
-
-    def __init__(self, listing: Listings, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.listing = listing
-
-    def clean(self):
-        cleaned_data = super().clean()
-        
-        if not self.listing.get_highest_bid():
-            raise forms.ValidationError("Auction cannot be closed as there are no bids placed")
-
-        return cleaned_data
 
 def index(request):
 
@@ -179,6 +135,7 @@ def listing_view(request, listing_id):
 
     else:
         min_bid = listing.highest_bid or listing.starting_price
+        comments = Comments.objects.filter(listing_id=listing_id)
 
         if listing.open:
             highest_bid = None
@@ -190,7 +147,8 @@ def listing_view(request, listing_id):
             "listing": listing,
             "bid_form": BidForm(min_bid=min_bid),
             "user_in_wishlist": listing.users_wishlist.filter(pk=request.user.pk).exists(),
-            "highest_bid": highest_bid
+            "highest_bid": highest_bid,
+            "comments": comments
         })
 
 def wishlist_view(request, listing_id=None):
@@ -210,7 +168,7 @@ def wishlist_view(request, listing_id=None):
         else:
             user.wishlist_items.add(listing)
 
-        return redirect(reverse('listing', args=[listing_id]))
+        return redirect(reverse('listing', args=(listing_id,)))
     
 
 def bid_view(request, listing_id):
@@ -233,17 +191,31 @@ def bid_view(request, listing_id):
                 listing.highest_bid = amount
                 listing.save()
 
-                return redirect(reverse('listing', args=[listing_id]))
+                return redirect(reverse('listing', args=(listing_id,)))
 
             else:
                 form.add_error('amount', 'Your bid must be higher than the current bid.')
                 return render(request, 'auctions/listing.html', {'listing': listing, 'bid_form': form})
 
         else:
-            return redirect(reverse('listing', args=[listing_id]))
+            return redirect(reverse('listing', args=(listing_id,)))
         
 def category_view(request, category_id):
     
     return render(request, "auctions/index.html", {
         'listings': Listings.objects.filter(category__id=category_id)
     })
+
+def comment_view(request, listing_id):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            user_comment: str = form.cleaned_data["user_comment"]
+            Comments(
+                user=request.user,
+                listing=Listings.objects.get(id=listing_id),
+                content=user_comment
+            ).save()
+
+            return redirect(reverse('listing', args=(listing_id,)))
