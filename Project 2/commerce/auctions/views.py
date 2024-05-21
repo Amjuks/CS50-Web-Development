@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import *
 from .forms import *
+from humanize import naturaltime
 
 from pprint import pprint as p
 
@@ -137,17 +138,13 @@ def listing_view(request, listing_id):
         min_bid = listing.highest_bid or listing.starting_price
         comments = Comments.objects.filter(listing_id=listing_id)
 
-        if listing.open:
-            highest_bid = None
-        
-        else:
-            highest_bid = listing.get_highest_bid()
+        bids = Bids.objects.filter(listing_id=listing_id).order_by('-created')
 
         return render(request, "auctions/listing.html", {
             "listing": listing,
             "bid_form": BidForm(min_bid=min_bid),
             "user_in_watchlist": listing.users_watchlist.filter(pk=request.user.pk).exists(),
-            "highest_bid": highest_bid,
+            "bids": bids,
             "comments": comments
         })
 
@@ -171,34 +168,38 @@ def watchlist_view(request, listing_id=None):
         return redirect(reverse('listing', args=(listing_id,)))
     
 
-def bid_view(request, listing_id):
-    listing = Listings.objects.get(id=listing_id)
+def bid_view(request):
 
     if request.method == "POST":
-        form = BidForm(request.POST, min_bid=listing.highest_bid)
-        
-        if form.is_valid():
-            amount = form.cleaned_data['amount']
-            highest_bid = listing.highest_bid or listing.starting_price
+        bid_amount = int(request.POST.get('bid_amount'))
+        listing_id = request.POST.get('listing_id')
+        listing = Listings.objects.get(id=listing_id)
 
-            if amount > highest_bid:
-                Bids(
-                    user=request.user,
-                    listing=listing,
-                    amount=amount
-                ).save()
+        for i in (bid_amount, listing.get_highest_bid().amount):
+            print(f'{type(i) = }')
 
-                listing.highest_bid = amount
-                listing.save()
+        if listing.get_highest_bid().amount >= bid_amount:
+            return JsonResponse({
+                'success': False,
+                'message': "Your bid must be greater than highest bid"
+            })
 
-                return redirect(reverse('listing', args=(listing_id,)))
+        bid = Bids(
+            user=request.user,
+            listing=listing,
+            amount=bid_amount
+        )
 
-            else:
-                form.add_error('amount', 'Your bid must be higher than the current bid.')
-                return render(request, 'auctions/listing.html', {'listing': listing, 'bid_form': form})
+        bid.save()
+        listing.highest_bid = bid.amount
 
-        else:
-            return redirect(reverse('listing', args=(listing_id,)))
+        return JsonResponse({
+            'success': True,
+            'bid': {'user': request.user.username, 'amount': bid.amount},
+            'time': naturaltime(bid.created)
+        })
+    
+    return JsonResponse({'success': False, 'message': "Invalid request"})
         
 def category_view(request, category_id):
     

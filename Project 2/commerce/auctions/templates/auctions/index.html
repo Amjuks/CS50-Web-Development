@@ -5,7 +5,14 @@
     <h2>Active Listings</h2>
 
     <div class="listings">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-0 gy-4">
+
+    {% with listings|length as num %}
+        <div class="row row-cols-1
+                row-cols-md-{% if num < 4 %}{{ num }}{% else %}4{% endif %}
+                row-cols-lg-{% if num < 4 %}{{ num }}{% else %}4{% endif %}
+                gx-4 gy-4">
+    {% endwith %}
+
         {% for listing in listings %}
             <div class="col">
                 <div class="card border-dark" style="width: 15rem;">
@@ -26,7 +33,6 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <!-- <span class="badge text-bg-success">{{ listing.category }}</span> -->
                                 <a href="{% url 'category' listing.category.id%}" class="btn btn-sm btn-success">{{ listing.category }}</a>
                             </li>
                         </ul>

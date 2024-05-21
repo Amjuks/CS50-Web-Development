@@ -63,9 +63,24 @@ body {
     background-color: rgba(245, 245, 220, 0.3);
 }
 
-.listing-card {
-    max-width: 45em;
+.listing-page-cards {
     margin: 2em 5em;
+}
+
+.list-group-item {
+    padding: 0.5rem 1rem;
+}
+
+.list-group-item h5 {
+    margin-bottom: 0;
+}
+
+.list-group-item p {
+    margin-bottom: 0;
+}
+
+.list-group-item small {
+    margin-top: 0.25rem;
 }
 
 .listing-title {
