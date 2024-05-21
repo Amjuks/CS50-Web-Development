@@ -1,36 +1,42 @@
 {% extends "auctions/layout.html" %}
+{% load humanize %}
 
 {% block body %}
     <h2>Active Listings</h2>
 
     <div class="listings">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-0 gy-4">
         {% for listing in listings %}
-        <a href="{% url 'listing' listing_id=listing.id %}">
-        <div class="listing">
-            <div class="listing-image">
-                {% if listing.image %}
-                    <img  src="{{ listing.image }}" alt="{{ listing.title }}">
-                {% endif %}
-            </div>
-            <div class="listing-title">
-                <h1>{{ listing.title }}</h1>
-            </div>
-
-            <div class="listing-description">
-                {{ listing.description }}
-            </div>         
-            <div class="listing-footer">
-                <div class="listing-bid">
-                    {% if listing.highest_bid %}
-                        Current Bid: ${{ listing.highest_bid }}
-                    {% else %}
-                        No bids
-                    {% endif %}
+            <div class="col">
+                <div class="card border-dark" style="width: 15rem;">
+                    <a href="{% url 'listing' listing_id=listing.id %}">
+                        {% if listing.image %}
+                            <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title text-dark">{{ listing.title }}</h4>
+                            <h6 class="card-subtitle text-body-secondary mb-2">
+                                {% if listing.highest_bid %}
+                                    Highest Bid: ${{ listing.highest_bid }}
+                                {% else %}
+                                    Starting Price: ${{ listing.starting_price }}
+                                {% endif %}
+                            </h6>
+                            <p class="card-text">{{ listing.description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <!-- <span class="badge text-bg-success">{{ listing.category }}</span> -->
+                                <a href="{% url 'category' listing.category.id%}" class="btn btn-sm btn-success">{{ listing.category }}</a>
+                            </li>
+                        </ul>
+                        <div class="card-footer">
+                            <small>{{ listing.created|naturaltime }}</small>
+                        </div>
+                    </a>
                 </div>
-                <!-- <button class="btn btn-success">Place a bid</button> -->
             </div>
-        </div>
-        </a>
         {% endfor %}
+    </div>
     </div>
 {% endblock %}

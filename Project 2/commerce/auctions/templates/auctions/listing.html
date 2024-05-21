@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div class="listing-page-view">
+    <!-- <div class="listing-page-view">
         <div class="listing-page-item">
             <h1>{{ listing.title }}</h1>
             <div id="listing-page-img">
@@ -31,12 +31,12 @@
                             <button type="submit" class="btn btn-success">Bid</button>
                         </div>
                     </form>
-                    <form action="{% url 'wishlist' listing_id=listing.id %}" method="post" class="wishlist-form">
+                    <form action="{% url 'watchlist' listing_id=listing.id %}" method="post" class="watchlist-form">
                         {% csrf_token %}
-                        {% if not user_in_wishlist %}
-                            <button class="btn btn-primary">Add to Wishlist</button>
+                        {% if not user_in_watchlist %}
+                            <button class="btn btn-primary">Add to Watchlist</button>
                         {% else %}
-                            <button class="btn btn-primary">Remove from Wishlist</button>
+                            <button class="btn btn-primary">Remove from Watchlist</button>
                         {% endif %}
                     </form>
                 </div>
@@ -52,7 +52,26 @@
                 </div>
             {% endif %}
         </div>
+    </div> -->
+
+    <div class="card listing-card border-dark">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ listing.image }}" alt="{{ listing.title }}" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ listing.title }}</h3>
+                    <p class="card-text">{{ listing.description }}</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+
     <hr class="listing-divider">
     <div class="comments">
         <h2>Comments</h2>

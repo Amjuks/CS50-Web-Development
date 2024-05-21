@@ -146,27 +146,27 @@ def listing_view(request, listing_id):
         return render(request, "auctions/listing.html", {
             "listing": listing,
             "bid_form": BidForm(min_bid=min_bid),
-            "user_in_wishlist": listing.users_wishlist.filter(pk=request.user.pk).exists(),
+            "user_in_watchlist": listing.users_watchlist.filter(pk=request.user.pk).exists(),
             "highest_bid": highest_bid,
             "comments": comments
         })
 
-def wishlist_view(request, listing_id=None):
+def watchlist_view(request, listing_id=None):
 
     if not listing_id:
         return render(request, "auctions/index.html", {
-            'listings': request.user.wishlist_items.all()
+            'listings': request.user.watchlist_items.all()
         })
 
     if request.method == "POST":
         listing = Listings.objects.get(id=listing_id)
         user = request.user
 
-        if request.user.wishlist_items.filter(id=listing_id).exists():
-            user.wishlist_items.remove(listing)
+        if request.user.watchlist_items.filter(id=listing_id).exists():
+            user.watchlist_items.remove(listing)
         
         else:
-            user.wishlist_items.add(listing)
+            user.watchlist_items.add(listing)
 
         return redirect(reverse('listing', args=(listing_id,)))
     

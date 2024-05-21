@@ -11,10 +11,10 @@ class ListingsAdminForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 6, 'cols': 50, 'style': 'resize: vertical; height:auto;'})
         }
 
-class WishlistInline(admin.TabularInline):
-    model = Listings.users_wishlist.through
-    verbose_name = "Wishlist User"
-    verbose_name_plural = "Wishlist Users"
+class WatchlistInline(admin.TabularInline):
+    model = Listings.users_watchlist.through
+    verbose_name = "Watchlist User"
+    verbose_name_plural = "Watchlist Users"
     extra = 0
 
 @admin.register(Bids)
@@ -90,7 +90,7 @@ class ListingsAdmin(admin.ModelAdmin):
         }),
     )
     
-    inlines = [WishlistInline]
+    inlines = [WatchlistInline]
     
 
 @admin.register(Category)
@@ -112,4 +112,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Comments)
-# admin.site.register(Wishlist)
+# admin.site.register(Watchlist)

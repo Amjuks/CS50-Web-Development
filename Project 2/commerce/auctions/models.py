@@ -12,7 +12,7 @@ class Category(models.Model):
     color = models.SmallIntegerField(default=0x000000)   
 
     def __str__(self) -> str:
-        return f'{self.name} - ID: {self.id}'
+        return f'{self.name}'
 
 
 class Listings(models.Model):
@@ -25,7 +25,7 @@ class Listings(models.Model):
     image = models.URLField(blank=True, null=True)
     open = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    users_wishlist = models.ManyToManyField(User, related_name="wishlist_items", blank=True)
+    users_watchlist = models.ManyToManyField(User, related_name="watchlist_items", blank=True)
 
     def get_highest_bid(self):
          return self.bids.order_by('-amount').first()
