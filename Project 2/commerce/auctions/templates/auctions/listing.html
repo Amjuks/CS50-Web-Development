@@ -5,7 +5,7 @@
 
     {% if listing.open %}
         {% with columns=listing.image|yesno:"3,2" %}
-        <div class="row row-cols-1 row-cols-md-{{ columns }} gy-4 listing-page-cards">
+        <div class="row row-cols-1 row-cols-md-{{ columns }} gy-4 listing-details">
 
             {% if listing.image %}
             <div class="col">
