@@ -15,7 +15,7 @@
 
         {% for listing in listings %}
             <div class="col">
-                <div class="card border-dark" style="width: 15rem;">
+                <div class="card border-dark h-100" style="width: 15rem;">
                     <a href="{% url 'listing' listing_id=listing.id %}">
                         {% if listing.image %}
                             <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top">
@@ -29,13 +29,15 @@
                                     Starting Price: ${{ listing.starting_price }}
                                 {% endif %}
                             </h6>
-                            <p class="card-text">{{ listing.description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <a href="{% url 'category' listing.category.id%}" class="btn btn-sm btn-success">{{ listing.category }}</a>
                             </li>
                         </ul>
+                        <div class="card-body">
+                            <p class="card-text">{{ listing.description }}</p>
+                        </div>
                         <div class="card-footer">
                             <small>{{ listing.created|naturaltime }}</small>
                         </div>

@@ -140,7 +140,7 @@ def listing_view(request, listing_id):
             "listing": listing,
             "user_in_watchlist": listing.users_watchlist.filter(pk=request.user.pk).exists(),
             "bids": Bids.objects.filter(listing_id=listing_id).order_by('-created'),
-            "comments": Comments.objects.filter(listing_id=listing_id)
+            "comments": Comments.objects.filter(listing_id=listing_id).order_by('-created')
         })
 
 def watchlist_view(request):

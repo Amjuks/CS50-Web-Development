@@ -227,14 +227,18 @@ body {
 }
 
 .comments h2 {
-    color: aliceblue;
+    color: black;
 }
 
 .comments form {
     padding: 1em;
 
-    background-color: gray;
+    background-color: gainsboro;
     border-radius: 5px;
+}
+
+.comments li {
+    background-color: aliceblue;
 }
 
 #user-comments {

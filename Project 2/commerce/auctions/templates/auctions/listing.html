@@ -91,7 +91,7 @@
 
         </div>
     {% else %}
-        <div class="card">
+        <div class="card text-center text-bg-light border-dark" style="width: 50%; margin: 2em auto;">
             <div class="card-body">
                 <h1 class="card-title">
                     {% with bid=bids.0 %}
@@ -110,24 +110,43 @@
     <hr class="listing-divider">
     <div class="comments">
         <h2>Comments</h2>
-        <form action="{% url 'comment' listing.id %}" method="post">
-            {% csrf_token %}
-            <div class="form-floating mb-3">
-                {{ comment_form.user_comment }}
-                <label for="{{ comment_form.user_comment.id_for_label }}">{{ comment_form.user_comment.label }}</label>
-            </div>
-            <button class="btn btn-dark" type="submit">Post</button>
-        </form>
 
-        {% if comments %}
-            <ul id="user-comments">
-                {% for comment in comments %}
-                <li class="user-comment">
-                    {{ comment.user }}: {{ comment.content }}
-                </li>
-                {% endfor %}
-            </ul>
+        {% if listing.open %}
+            <form class="mb-3" action="{% url 'comment' listing.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    {{ comment_form.user_comment }}
+                    <label for="{{ comment_form.user_comment.id_for_label }}">{{ comment_form.user_comment.label }}</label>
+                </div>
+                <button class="btn btn-dark" type="submit">Post</button>
+            </form>
         {% endif %}
+
+        <ul class="list-group">
+            {% if comments %}
+                {% for comment in comments %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold mb-2">{{ comment.user }}</div>
+                            {{ comment.content }}
+                        </div>
+                        {{ comment.created|naturaltime }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item d-flex justify-content-between border-dark">
+                    <div class="ms-2 me-auto">
+                        <h3 class="m-2">
+                            {% if listing.open %}
+                                No comments yet, be the first to comment!
+                            {% else %}
+                                No comments
+                            {% endif %}
+                        </h3>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
     </div>
 
 
