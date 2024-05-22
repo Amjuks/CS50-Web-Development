@@ -2,20 +2,20 @@
 {% load humanize %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <h1 class="page-title">
+        {% if category %}
+            {{ category }} Listings
+        {% else %}
+            Active Listings
+        {% endif %}
+    </h1>
 
     <div class="listings">
 
-    {% with listings|length as num %}
-        <div class="row row-cols-1
-                row-cols-md-{% if num < 4 %}{{ num }}{% else %}4{% endif %}
-                row-cols-lg-{% if num < 4 %}{{ num }}{% else %}4{% endif %}
-                gx-4 gy-4">
-    {% endwith %}
-
+        <div class="d-flex flex-wrap justify-content-evenly index-flex">
         {% for listing in listings %}
-            <div class="col">
-                <div class="card border-dark h-100" style="width: 15rem;">
+            <div class="">
+                <div class="index-card card border-dark" style="width: 15rem;">
                     <a href="{% url 'listing' listing_id=listing.id %}">
                         {% if listing.image %}
                             <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top">
@@ -36,7 +36,13 @@
                             </li>
                         </ul>
                         <div class="card-body">
-                            <p class="card-text">{{ listing.description }}</p>
+                            <p class="card-text">
+                                {% if listing.description|length > 20 %}
+                                    {{ listing.description|slice:":20" }} ...
+                                {% else %}
+                                    {{ listing.description }}
+                                {% endif %}
+                            </p>
                         </div>
                         <div class="card-footer">
                             <small>{{ listing.created|naturaltime }}</small>

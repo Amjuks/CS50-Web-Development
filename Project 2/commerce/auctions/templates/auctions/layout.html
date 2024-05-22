@@ -8,7 +8,7 @@
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg bg-warning mb-4">
             <div class="container-fluid">
                 <a href="{% url 'index' %}" class="navbar-brand">Auctions</a>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#AuctionNavbar" aria-controls="AuctionNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
                                 <a href="{% url 'watchlist' %}" class="nav-link">Watchlist</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item dropdown" data-bs-theme="dark">
+                        <li class="nav-item dropdown" data-bs-theme="">
                             <a href="#" class="nav-link dropdown-toggle" id="CategoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Category
                             </a>
@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown" data-bs-theme="dark">
+                        <li class="nav-item dropdown" data-bs-theme="">
                             <a href="#" class="nav-link dropdown-toggle" id="AuthDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {% if user.is_authenticated %}
                                     Signed in as {{ user.username }}

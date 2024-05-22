@@ -212,7 +212,10 @@ def bid_view(request):
         
 def category_view(request, category_id):
     
+    category = Category.objects.get(id=category_id)
+
     return render(request, "auctions/index.html", {
+        'category': category.name.capitalize(),
         'listings': Listings.objects.filter(category__id=category_id)
     })
 

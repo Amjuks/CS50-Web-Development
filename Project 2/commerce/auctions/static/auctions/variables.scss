@@ -1,6 +1,13 @@
-$primary-fonts: Arial, Helvetica, sans-serif;
-$background-color: #6e7f80;
+$accent-color-1: #FFF2D7;
+$accent-color-2: #FFE0B5;
+$accent-color-3: #F8C794;
+$accent-color-4: #D8AE7E;
 
-$comment-form-background: gainsboro;
-$comment-background-color: aliceblue;
+$primary-fonts: Arial, Helvetica, sans-serif;
+$background-color: $accent-color-1;
+
+$comment-form-background: $accent-color-3;
+$comment-background-color: $accent-color-2;
+
 $comment-title-color: black;
+$comment-border-color: #654321;
