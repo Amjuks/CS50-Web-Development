@@ -3,89 +3,109 @@
 
 {% block body %}
 
-    {% with columns=listing.image|yesno:"3,2" %}
-    <div class="row row-cols-1 row-cols-md-{{ columns }} gy-4 listing-page-cards">
+    {% if listing.open %}
+        {% with columns=listing.image|yesno:"3,2" %}
+        <div class="row row-cols-1 row-cols-md-{{ columns }} gy-4 listing-page-cards">
 
-        {% if listing.image %}
-        <div class="col">
-            <div class="card border-dark">
-                <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top card-img-bottom">
+            {% if listing.image %}
+            <div class="col">
+                <div class="card border-dark">
+                    <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top card-img-bottom">
 
-            </div>
-        </div>
-        {% endif %}
-
-    {% endwith %}
-
-        <div class="col">
-            <div class="card border-dark" >
-                <div class="card-body">
-                    <h3 class="card-title">{{ listing.title }}</h3>
-                    <p class="card-text">{{ listing.description }}</p>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <strong>Category</strong> <a href="{% url 'category' listing.category.id%}" class="btn btn-success">{{ listing.category }}</a>
-                    </li>
-                    <li class="list-group-item text-body-secondary" id="HighestBid">
-                        {% if bids %}
-                            <strong>Highest Bid: ${{ listing.highest_bid }}</strong> by {{ bids.0.user }}
-                        {% else %}
-                            Starting Price: ${{ listing.starting_price }}
-                        {% endif %}
-                    </li>
-                    <li class="list-group-item">
-                        <form class="input-group" id="bid-form" data-listing-id={{ listing.id }}>
-                            {% csrf_token %}
-                            <span class="input-group-text">$</span>
-                            <div class="form-floating">
-                                <input type="number" class="form-control" name="bid_amount" id="BidAmount" placeholder="Place a Bid">
-                                <label for="BidAmount">Place a Bid</label>
-                            </div>
-                            <button class="btn btn-dark" type="submit">Bid</button>
-                        </form>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">
-                            {% if user_in_watchlist %}
-                                Remove from Watchlist
+            </div>
+            {% endif %}
+
+        {% endwith %}
+
+            <div class="col">
+                <div class="card border-dark" >
+                    <div class="card-body">
+                        <h3 class="card-title">{{ listing.title }}</h3>
+                        <p class="card-text">{{ listing.description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Category</strong> <a href="{% url 'category' listing.category.id%}" class="btn btn-success">{{ listing.category }}</a>
+                        </li>
+                        <li class="list-group-item text-body-secondary" id="HighestBid">
+                            {% if bids %}
+                                <strong>Highest Bid: ${{ listing.highest_bid }}</strong> by {{ bids.0.user }}
                             {% else %}
-                                Add to Watchlist
+                                Starting Price: ${{ listing.starting_price }}
                             {% endif %}
-                        </button>
-                        {% if user == listing.owner %}
-                            <button type="submit" class="btn btn-danger">Delete Auction</button>
-                        {% endif %}
-                    </li>
-                </ul>
-                <div class="card-footer">
-                    <small>Started {{ listing.created|naturaltime }}</small>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card border-dark" style="max-width: 20em;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h3>Bid History</h3>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="input-group" id="bid-form" data-listing-id="{{ listing.id }}">
+                                {% csrf_token %}
+                                <span class="input-group-text">$</span>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="bid_amount" id="BidAmount" placeholder="Place a Bid">
+                                    <label for="BidAmount">Place a Bid</label>
+                                </div>
+                                <button class="btn btn-dark" type="submit">Bid</button>
+                            </form>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="d-flex flex-wrap justify-content-between" id="listingOptionsForm" data-listing-id="{{ listing.id }}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary mb-1"  id="watchlistButton" data-action="watchlist">
+                                    {% if user_in_watchlist %}
+                                        Remove Watchlist
+                                    {% else %}
+                                        Add to Watchlist
+                                    {% endif %}
+                                </button>
+                                {% if user == listing.owner %}
+                                    <button type="submit" class="btn btn-danger mb-1" data-action="close">Close Auction</button>
+                                {% endif %}
+                            </form>
+                        </li>
+                    </ul>
+                    <div class="card-footer">
+                        <small>Started {{ listing.created|naturaltime }}</small>
                     </div>
                 </div>
-                <ul class="list-group list-group-flush" style="max-height: 15em; overflow-y: auto;" id="BidHistory">
-                    {% for bid in bids %}
-                    <li class="list-group-item">
-                        <div class="d-flex justify-content-between">
-                            <h6><strong>{{ bid.user }}</strong> bid ${{ bid.amount }}</h6>
-                            <small>{{ bid.created|naturaltime }}</small>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
-        </div>
 
-    </div>
+
+            <div class="col">
+                <div class="card border-dark" style="max-width: 20em;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Bid History</h3>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush" style="max-height: 15em; overflow-y: auto;" id="BidHistory">
+                        {% for bid in bids %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <h6><strong>{{ bid.user }}</strong> bid ${{ bid.amount }}</h6>
+                                <small>{{ bid.created|naturaltime }}</small>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">
+                    {% with bid=bids.0 %}
+                        {% if user == bid.user %}
+                            Congrats! You have won this auction for ${{ bid.amount }}! 
+                        {% else %}
+                            Auction won by {{ bid.user.username }} for ${{ bid.amount }}!
+                        {% endif %}
+                    {% endwith %}
+                </h1>
+            </div>
+            <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-bottom">
+        </div>
+    {% endif %}
 
     <hr class="listing-divider">
     <div class="comments">
@@ -120,49 +140,112 @@
     {% endif %}
 
     <script>
-        document.getElementById("bid-form").addEventListener('submit', function (event) {
-            event.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
+            // Bid form submission
+            document.getElementById("bid-form").addEventListener('submit', function (event) {
+                event.preventDefault();
 
-            const formData = new FormData(this);
-            formData.append('listing_id', this.getAttribute('data-listing-id'));
-            const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+                const formData = new FormData(this);
+                formData.set('listing_id', this.getAttribute('data-listing-id'));
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 
+                fetch("{% url 'bid' %}", {
+                    method: "POST",
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const bid = data.bid;
 
-            fetch("{% url 'bid' %}", {
-                method: "POST",
-                headers: {
-                    'X-CSRFToken': csrfToken
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const bid = data.bid
+                    if (data.success) {
 
-                    // update the highest bid shown
-                    HighestBidText = `<strong>Highest Bid: $${bid.amount}</strong> by ${bid.user}`;
-                    document.getElementById('HighestBid').innerHTML = HighestBidText;
+                        // update the highest bid shown
+                        HighestBidText = `<strong>Highest Bid: $${bid.amount}</strong> by ${bid.user}`;
+                        document.getElementById('HighestBid').innerHTML = HighestBidText;
 
-                    bidHistory = document.getElementById('BidHistory');
-                    const newHistory = document.createElement('li');
+                        bidHistory = document.getElementById('BidHistory');
+                        const newHistory = document.createElement('li');
 
-                    newHistory.classList.add('list-group-item');
-                    newHistory.innerHTML = `<div class="d-flex justify-content-between">
-                            <h6><strong>${bid.user}</strong> bid $${bid.amount}</h6>
-                            <small>${data.time}</small>
-                        </div>`;
-                    
-                    bidHistory.insertBefore(newHistory, bidHistory.firstChild);
+                        newHistory.classList.add('list-group-item');
+                        newHistory.innerHTML = `<div class="d-flex justify-content-between">
+                                <h6><strong>${bid.user}</strong> bid $${bid.amount}</h6>
+                                <small>${data.time}</small>
+                            </div>`;
+                        
+                        bidHistory.insertBefore(newHistory, bidHistory.firstChild);
 
-                    this.reset();
-                } else {
-                    alert(data.message);
+                        this.reset();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error: ', error));
+            });
+
+            // watchlist and close auction
+            const listingOptionsForm = document.getElementById('listingOptionsForm');
+
+            listingOptionsForm.addEventListener('click', function(event) {
+                const action = event.target.getAttribute('data-action');
+                const listingId = this.getAttribute('data-listing-id');
+
+                if (action) {
+                    event.preventDefault();
+
+                    const formData = new FormData(this);
+                    formData.set('action', action);
+                    formData.set('listing_id', listingId);
+
+                    let url;
+                    if (action === 'watchlist') {
+                        url = "{% url 'watchlist' %}";
+                    } else if (action === 'close') {
+                        url = "{% url 'close' %}";
+                    }
+
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('data: ', data)
+                        if (data.success) {
+                            console.log(data.action);
+                            switch (data.action){
+                                case 'watchlist': {
+                                    const watchlistButton = document.getElementById('watchlistButton')
+
+                                    if (watchlistButton.textContent.trim() === "Add to Watchlist") {
+                                        watchlistButton.textContent = "Remove Watchlist";
+                                    } else {
+                                        watchlistButton.textContent = "Add to Watchlist";
+                                    }
+
+                                    break;
+                                }
+                                case 'close': {
+                                    window.location.href = "{% url 'index' %}";
+                                    break;
+                                }
+                            }
+                        } else {
+                            console.log('not success:', data);
+                        }
+                    })
+                    .catch(error => {
+                        console.log("Error: ", error);
+                    })
                 }
-            })
-            .catch(error => console.error('Error: ', error));
+            });
         })
+        
+
     </script>
 {% endblock %}
- 
-

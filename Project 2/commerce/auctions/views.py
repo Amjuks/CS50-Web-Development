@@ -135,53 +135,61 @@ def listing_view(request, listing_id):
             })
 
     else:
-        min_bid = listing.highest_bid or listing.starting_price
-        comments = Comments.objects.filter(listing_id=listing_id)
-
-        bids = Bids.objects.filter(listing_id=listing_id).order_by('-created')
 
         return render(request, "auctions/listing.html", {
             "listing": listing,
-            "bid_form": BidForm(min_bid=min_bid),
             "user_in_watchlist": listing.users_watchlist.filter(pk=request.user.pk).exists(),
-            "bids": bids,
-            "comments": comments
+            "bids": Bids.objects.filter(listing_id=listing_id).order_by('-created'),
+            "comments": Comments.objects.filter(listing_id=listing_id)
         })
 
-def watchlist_view(request, listing_id=None):
-
-    if not listing_id:
-        return render(request, "auctions/index.html", {
-            'listings': request.user.watchlist_items.all()
-        })
+def watchlist_view(request):
 
     if request.method == "POST":
+        listing_id = request.POST.get('listing_id')
         listing = Listings.objects.get(id=listing_id)
         user = request.user
 
-        if request.user.watchlist_items.filter(id=listing_id).exists():
+        if user.watchlist_items.filter(id=listing_id).exists():
             user.watchlist_items.remove(listing)
         
         else:
             user.watchlist_items.add(listing)
 
-        return redirect(reverse('listing', args=(listing_id,)))
+        return JsonResponse({'success': True, 'action': 'watchlist'})
     
+    return render(request, "auctions/index.html", {
+        'listings': request.user.watchlist_items.all()
+    })
+    
+
+def close_view(request):
+    if request.method == "POST":
+        listing_id = request.POST.get('listing_id')
+        listing = Listings.objects.get(id=listing_id)
+
+        listing.open = False
+        listing.save()
+
+        return JsonResponse({'success': True})
 
 def bid_view(request):
 
     if request.method == "POST":
         bid_amount = int(request.POST.get('bid_amount'))
-        listing_id = request.POST.get('listing_id')
-        listing = Listings.objects.get(id=listing_id)
+        listing = Listings.objects.get(id=request.POST.get('listing_id'))
+        highest_bid = listing.get_highest_bid()
 
-        for i in (bid_amount, listing.get_highest_bid().amount):
-            print(f'{type(i) = }')
-
-        if listing.get_highest_bid().amount >= bid_amount:
+        if not listing.open:
             return JsonResponse({
                 'success': False,
-                'message': "Your bid must be greater than highest bid"
+                'message': "Auction is closed"
+            })
+        
+        if highest_bid.amount >= bid_amount:
+            return JsonResponse({
+                'success': False,
+                'message': f"Your bid must be greater than ${highest_bid.amount}",
             })
 
         bid = Bids(
@@ -189,9 +197,10 @@ def bid_view(request):
             listing=listing,
             amount=bid_amount
         )
+        listing.highest_bid = bid.amount
 
         bid.save()
-        listing.highest_bid = bid.amount
+        listing.save()
 
         return JsonResponse({
             'success': True,
