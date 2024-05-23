@@ -7241,7 +7241,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow {
+.shadow, .create-form {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
@@ -8685,7 +8685,7 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
 
-.bg-light {
+.bg-light, .create-form {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
@@ -11851,11 +11851,21 @@ body {
 
 .create-form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin: 2rem;
+  padding: 1rem;
+  width: 35rem;
+  border-radius: 10px;
+}
+.create-form .form-title {
+  text-align: center;
 }
 .create-form form {
-  padding: 20px;
-  width: 20em;
+  padding: 1rem;
+}
+.create-form form select {
+  padding: 1rem !important;
 }
 
 .page-title {

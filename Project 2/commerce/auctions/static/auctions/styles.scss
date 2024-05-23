@@ -7,12 +7,32 @@ body {
 }
 
 .create-form {
+    @extend .shadow;
+    @extend .bg-light;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    
+    margin: 2rem;
+    padding: 1rem;
+
+    width: 35rem;
+
+    // background-color: white;
+    // border: 1px solid black;
+    border-radius: 10px;
+
+    .form-title {
+        text-align: center;
+    }
 
     form {
-        padding: 20px;
-        width: 20em;
+        padding: 1rem;
+
+        select {
+            padding: 1rem !important;
+        }
     }
 }
 
@@ -87,6 +107,7 @@ body {
         object-fit: cover;
         height: 10em;
     }
+
 }
 
 .listing-divider {
