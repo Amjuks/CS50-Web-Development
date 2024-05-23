@@ -11,10 +11,9 @@ class BootStrapForm(forms.Form):
 class CreateListingForm(BootStrapForm):
     title = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'placeholder': 'Title'}))
     description = forms.CharField(max_length=256, widget=forms.Textarea(attrs={'style': 'height: 7rem', 'placeholder': 'Description'}))
-    starting_price = forms.IntegerField(min_value=0, widget=forms.TextInput(attrs={'placeholder': 'Starting Price'}))
+    starting_price = forms.IntegerField(min_value=10, max_value=10**6, widget=forms.NumberInput(attrs={'placeholder': 'Starting Price'}))
     image = forms.URLField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Image URL'}))
     category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label="Category", widget=forms.Select(attrs={'class': 'form-select'}))
-
 
 class BidForm(BootStrapForm):
     amount = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': "Place a bid!"}))

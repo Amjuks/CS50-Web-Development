@@ -7241,7 +7241,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow, .create-form {
+.shadow, #create-form {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
@@ -8685,7 +8685,7 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
 
-.bg-light, .create-form {
+.bg-light, #create-form {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
@@ -11849,23 +11849,32 @@ body {
   background-color: #FFF2D7;
 }
 
-.create-form {
+#create-form {
+  margin: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 2rem;
   padding: 1rem;
   width: 35rem;
   border-radius: 10px;
 }
-.create-form .form-title {
+#create-form .form-title {
   text-align: center;
 }
-.create-form form {
+#create-form form {
   padding: 1rem;
 }
-.create-form form select {
+#create-form form select {
   padding: 1rem !important;
+}
+
+#preview-card {
+  margin: 2rem;
+  width: 25rem;
+}
+#preview-card #preview-image {
+  height: 15rem;
+  object-fit: cover;
 }
 
 .page-title {

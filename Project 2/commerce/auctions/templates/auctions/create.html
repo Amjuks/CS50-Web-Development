@@ -1,48 +1,193 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block body %}
     <div class="page-title">
         <h2>Create Listings</h2>
     </div>
 
-    <div class="create-form">
-        <div class="form-title">
-            <h3>Create your auction!</h3>
+    <div class="d-flex flex-wrap justify-content-around">
+        <div id="create-form">
+            <div class="form-title">
+                <h3>Create your auction!</h3>
+            </div>
+            <form class="row gy-2 gx-3" action="{% url 'create' %}" method="post">
+                {% csrf_token %}
+                <div class="col-md-8 col-12">
+                    <div class="form-floating">
+                        {{ form.title }}
+                        <label for="id_title" class="form-label">Item Title</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-floating">
+                        {{ form.starting_price }}
+                        <label for="id_starting_price" class="form-label">Starting Price $</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        {{ form.description }}
+                        <label for="id_description" class="form-label">Item Description</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-floating d-flex align-items-center">
+                        {{ form.category }}
+                    </div>
+                </div>
+                <div class="col-md-8 col-12">
+                    <div class="form-floating">
+                        {{ form.image }}
+                        <label for="id_image" class="form-label">Image URL</label>
+                    </div>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-dark">Create Your Auction</button>
+                </div>
+            </form>
         </div>
-        <form class="row gy-2 gx-3" action="{% url 'create' %}" method="post">
-            {% csrf_token %}
-            <div class="col-md-8 col-12">
-                <div class="form-floating">
-                    {{ form.title }}
-                    <label for="id_title" class="form-label">Item Title</label>
-                </div>
+
+        <div class="card" id="preview-card" style="border: 1px solid black;">
+            <div class="card-header">Preview</div>
+            <img alt="No Image" class="card-img-top" id="preview-image" src="https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png">
+            <div class="card-body">
+                <h2 class="card-title text-dark" id="preview-title">
+                    Title
+                </h2>
+                <h4 class="card-subtitle text-body-secondary mb-2" id="preview-starting_price">
+                        Starting Price: $10
+                </h4>
+                <a style="color: black; border: 1px solid black;" class="btn category-btn mb-2" id="preview-category">
+                    Category
+                </a>
+                <p class="fs-5" id="preview-description">
+                    Description
+                </p>
             </div>
-            <div class="col-md-4 col-12">
-                <div class="form-floating">
-                    {{ form.starting_price }}
-                    <label for="id_starting_price" class="form-label">Starting Price $</label>
-                </div>
+            <div class="card-footer">
+                Just now
             </div>
-            <div class="col-12">
-                <div class="form-floating">
-                    {{ form.description }}
-                    <label for="id_description" class="form-label">Item Description</label>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="form-floating d-flex align-items-center">
-                    {{ form.category }}
-                </div>
-            </div>
-            <div class="col-md-8 col-12">
-                <div class="form-floating">
-                    {{ form.image }}
-                    <label for="id_image" class="form-label">Image URL</label>
-                </div>
-            </div>
-            <div class="col-12 text-end">
-                <button type="submit" class="btn btn-dark">Create Your Auction</button>
-            </div>
-        </form>
+        </div>
     </div>
+    
+    <script src="{% static 'auctions/utils.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const previewCard = document.getElementById('preview-card');
+            const createForm = document.getElementById('create-form');
+
+            // scroll to form
+            createForm.scrollIntoView({behavior:"smooth", block:"center"});
+
+            const previewFields = {
+                title: {
+                    element: document.getElementById("preview-title"),
+                },
+                description: {
+                    element: document.getElementById("preview-description"),
+                },
+                image: {
+                    element: document.getElementById("preview-image"),
+                    default: document.getElementById("preview-image").getAttribute("src")
+                }
+            };
+
+            const textFields = ['title', 'description'];
+
+            textFields.forEach(field => {
+                previewFields[field].default = previewFields[field].element.textContent.trim();
+            });
+
+            createForm.addEventListener('input', event => {
+                const field = event.target.id.substring(3);
+
+                if (textFields.indexOf(field) === -1) {
+                    return;
+                }
+
+                const target = event.target;
+                const previewElement = previewFields[field];
+                
+                console.log('preview element', previewElement);
+                console.log(`input value = "${target.value}"`);
+
+                // update the preview
+                if (target.value.trim() === ''){
+                    previewElement.element.textContent = previewElement.default;
+                } else {
+                    let previewValue = field !== 'title' ? target.value : toTitle(target.value);
+
+                    previewElement.element.textContent = target.value = previewValue;
+                }
+            });
+
+
+            // Starting Price Preview
+            const StartingPriceInput = document.getElementById('id_starting_price');
+            const StartingPricePreview = document.getElementById("preview-starting_price");
+
+            StartingPriceInput.addEventListener('input', event => {
+                const StartingPrice = StartingPriceInput.value.trim();
+                let previewValue;
+
+                if (StartingPrice === '') {
+                    previewValue = "Starting Price: $0";
+                } else {
+                    previewValue = `Starting Price: $${StartingPrice}`
+                }
+
+                StartingPricePreview.textContent = previewValue;
+            })
+
+            // Category Preview
+            const categoryElement = document.getElementById('id_category');
+            const previewElement = document.getElementById('preview-category');
+
+            categoryElement.addEventListener('change', event => {
+                console.log("category changed");
+                console.log(categoryColors)
+
+                const category = event.target.options[categoryElement.selectedIndex].text;
+                const color = categoryColors[category];
+
+                console.log("category = ", category);
+                console.log("color = ", color);
+
+                if (category && color) {
+                    previewElement.textContent = category;
+                    previewElement.style.borderColor = previewCard.style.borderColor = color;
+                } else {
+                    previewElement.textContent = "Category";
+                    previewElement.style.borderColor = previewCard.style.borderColor = "black";
+                }
+            });
+
+
+            // image Preview
+            const ImageInput = document.getElementById('id_image');
+            ImageInput.addEventListener('input', async event => {
+                const imageURL = ImageInput.value;
+                let previewImage;
+
+                console.log('image input received');
+                console.log(imageURL, isImageURL(imageURL));
+
+                if (imageURL === '' || !isImageURL(imageURL)) {
+                    previewImage = previewFields.image.default;
+                } else {
+                    const isValid = await isValidImage(imageURL);
+
+                    if (isValid) {
+                        previewImage = imageURL;
+                    } else {
+                        previewImage = previewFields.image.default;
+                    }
+                }
+
+                previewFields.image.element.setAttribute('src', previewImage);
+            })
+
+        });
+    </script>
 {% endblock %}

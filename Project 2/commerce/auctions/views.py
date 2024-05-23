@@ -186,11 +186,12 @@ def bid_view(request):
                 'message': "Auction is closed"
             })
         
-        if highest_bid.amount >= bid_amount:
-            return JsonResponse({
-                'success': False,
-                'message': f"Your bid must be greater than ${highest_bid.amount}",
-            })
+        if highest_bid:
+            if highest_bid.amount >= bid_amount:
+                return JsonResponse({
+                    'success': False,
+                    'message': f"Your bid must be greater than ${highest_bid.amount}",
+                })
 
         bid = Bids(
             user=request.user,

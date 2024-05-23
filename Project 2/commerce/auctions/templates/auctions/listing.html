@@ -80,14 +80,23 @@
                         </div>
                     </div>
                     <ul class="list-group list-group-flush" style="max-height: 15em; overflow-y: auto;" id="BidHistory">
-                        {% for bid in bids %}
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <h6><strong>{{ bid.user }}</strong> bid ${{ bid.amount }}</h6>
-                                <small>{{ bid.created|naturaltime }}</small>
-                            </div>
-                        </li>
-                        {% endfor %}
+                        {% if bids %}
+                            {% for bid in bids %}
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6><strong>{{ bid.user }}</strong> bid ${{ bid.amount }}</h6>
+                                    <small>{{ bid.created|naturaltime }}</small>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <h6><strong>{{ bid.user }}</strong> No bids yet. Be the first to place yours!</h6>
+                                    <small>{{ bid.created|naturaltime }}</small>
+                                </div>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

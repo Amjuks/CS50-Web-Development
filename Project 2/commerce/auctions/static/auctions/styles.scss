@@ -6,7 +6,12 @@ body {
     background-color: $background-color;
 }
 
-.create-form {
+@mixin create-page-common {
+    margin: 2rem;
+}
+
+#create-form {
+    @include create-page-common;
     @extend .shadow;
     @extend .bg-light;
 
@@ -14,13 +19,11 @@ body {
     flex-direction: column;
     justify-content: center;
     
-    margin: 2rem;
     padding: 1rem;
 
     width: 35rem;
 
     // background-color: white;
-    // border: 1px solid black;
     border-radius: 10px;
 
     .form-title {
@@ -33,6 +36,17 @@ body {
         select {
             padding: 1rem !important;
         }
+    }
+}
+
+#preview-card {
+    @include create-page-common;
+
+    width: 25rem;
+
+    #preview-image {
+        height: 15rem;
+        object-fit: cover;
     }
 }
 
