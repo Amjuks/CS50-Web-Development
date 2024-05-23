@@ -7245,11 +7245,11 @@ textarea.form-control-lg {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
-.shadow-sm {
+.shadow-sm, .index-card, .category-btn:hover, .index-card .btn:hover {
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
-.shadow-lg {
+.shadow-lg, .index-card:hover, .card {
   box-shadow: var(--bs-box-shadow-lg) !important;
 }
 
@@ -11852,17 +11852,10 @@ body {
 .create-form {
   display: flex;
   justify-content: center;
-  color: white;
 }
 .create-form form {
   padding: 20px;
   width: 20em;
-}
-
-.create-heading {
-  display: flex;
-  justify-content: center;
-  color: white;
 }
 
 .page-title {
@@ -11875,7 +11868,7 @@ body {
   padding: 3em;
   border-radius: 15px;
   background-color: #FFE0B5;
-  box-shadow: 1rem 0 3rem 3rem rgba(0, 0, 0, 0.175);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.175);
 }
 .listings a {
   color: inherit;
@@ -11899,8 +11892,19 @@ body {
   margin-top: 0.25rem;
 }
 
+.category-btn, .index-card .btn {
+  transition: 0.1s;
+}
+.category-btn:hover, .index-card .btn:hover {
+  transform: scale(1.05);
+}
+
 .index-card {
-  height: 25rem;
+  height: 20rem;
+  transition: 0.3s ease;
+}
+.index-card:hover {
+  transform: scale(1.05);
 }
 .index-card img {
   object-fit: cover;

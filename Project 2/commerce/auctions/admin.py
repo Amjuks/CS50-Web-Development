@@ -3,14 +3,6 @@ from django.utils.html import format_html
 from django import forms
 from .models import *
 
-class ListingsAdminForm(forms.ModelForm):
-    class Meta:
-        model = Listings
-        fields = '__all__'
-        widgets = {
-            'description': forms.Textarea(attrs={'rows': 6, 'cols': 50, 'style': 'resize: vertical; height:auto;'})
-        }
-
 class WatchlistInline(admin.TabularInline):
     model = Listings.users_watchlist.through
     verbose_name = "Watchlist User"
@@ -64,6 +56,13 @@ class UsersAdmin(admin.ModelAdmin):
 
     filter_horizontal = ()
 
+class ListingsAdminForm(forms.ModelForm):
+    class Meta:
+        model = Listings
+        fields = '__all__'
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 6, 'cols': 50, 'style': 'resize: vertical; height:auto;'})
+        }
 
 @admin.register(Listings)
 class ListingsAdmin(admin.ModelAdmin):
@@ -91,25 +90,63 @@ class ListingsAdmin(admin.ModelAdmin):
     )
     
     inlines = [WatchlistInline]
-    
+  
+class CategoryAdminForm(forms.ModelForm):
+    color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def clean_color(self):
+        hex_color = self.cleaned_data['color']
+        return int(hex_color.lstrip('#'), 16)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 
+    form = CategoryAdminForm
+
     # main interface
-    list_display = ['id', 'name', 'color_display']
+    list_display = ('id', 'name', 'color_display')
+    search_fields = ('id', 'name')
     ordering = ['id']
 
     # individual interface
     readonly_fields = ('id', )
 
+    fieldsets = (
+        (
+            'Category Details', {
+                'fields': ('name', 'color', 'id')
+            }
+        ),
+    )
+
     def color_display(self, obj):
-        color_hex = "#{:06x}".format(obj.color)  # Convert color to hex format
-        return format_html('<div style="width: 20px; height: 20px; background-color: {};"></div>', color_hex)
+
+        color = obj.color
+
+        style = f"""
+        width: 20px;
+        height: 20px;
+        background-color: {color};
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-right: 10px;
+        """
+
+        html = f"""
+        <div style="display: flex; align-items: center;">
+            <div style="{style}"></div>
+            <span>{color}</span>
+        </div>
+        """
+
+        return format_html(html)
     
     color_display.short_description = 'Color'
     color_display.allow_tags = True
 
 # Register your models here.
 admin.site.register(Comments)
-# admin.site.register(Watchlist)

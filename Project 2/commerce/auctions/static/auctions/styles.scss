@@ -9,18 +9,11 @@ body {
 .create-form {
     display: flex;
     justify-content: center;
-    color: white;
 
     form {
         padding: 20px;
         width: 20em;
     }
-}
-
-.create-heading {
-    display: flex;
-    justify-content: center;
-    color: white;
 }
 
 .page-title {
@@ -35,7 +28,7 @@ body {
     border-radius: 15px;
 
     background-color: $accent-color-2;
-    box-shadow: 1rem 0 3rem 3rem rgba(0, 0, 0, 0.175);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.175);
 
     a {
         color: inherit;
@@ -63,8 +56,32 @@ body {
     }
 }
 
-.index-card{
-    height: 25rem;
+.category-btn {
+    transition: 0.1s;
+
+    &:hover {
+        @extend .shadow-sm;
+        transform: scale(1.05);
+    }
+}
+
+.card {
+    @extend .shadow-lg;
+}
+
+.index-card {
+    @extend .shadow-sm;
+    height: 20rem;
+    transition: 0.3s ease;
+
+    &:hover {
+        @extend .shadow-lg;
+        transform: scale(1.05);
+    }
+
+    .btn {
+        @extend .category-btn;
+    }
 
     img {
         object-fit: cover;

@@ -15,7 +15,7 @@
         <div class="d-flex flex-wrap justify-content-evenly index-flex">
         {% for listing in listings %}
             <div class="">
-                <div class="index-card card border-dark" style="width: 15rem;">
+                <div class="index-card card" style="width: 15rem; border: 1px solid {{ listing.category.color }};">
                     <a href="{% url 'listing' listing_id=listing.id %}">
                         {% if listing.image %}
                             <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top">
@@ -29,20 +29,11 @@
                                     Starting Price: ${{ listing.starting_price }}
                                 {% endif %}
                             </h6>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="{% url 'category' listing.category.id%}" class="btn btn-sm btn-success">{{ listing.category }}</a>
-                            </li>
-                        </ul>
-                        <div class="card-body">
-                            <p class="card-text">
-                                {% if listing.description|length > 20 %}
-                                    {{ listing.description|slice:":20" }} ...
-                                {% else %}
-                                    {{ listing.description }}
-                                {% endif %}
-                            </p>
+                            {% with color=listing.category.color %}
+                                <a style="color: black; border: 1px solid {{ color }};" class="btn btn-sm ms-1" href="{% url 'category' listing.category.id%}">
+                                    {{ listing.category }}
+                                </a>
+                            {% endwith %}
                         </div>
                         <div class="card-footer">
                             <small>{{ listing.created|naturaltime }}</small>

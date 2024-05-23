@@ -26,7 +26,10 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>Category</strong> <a href="{% url 'category' listing.category.id%}" class="btn btn-success">{{ listing.category }}</a>
+                            <strong>Category</strong>
+                            <a class="btn btn-success category-btn ms-2" style="background-color: {{ listing.category.color }};" href="{% url 'category' listing.category.id%}">
+                                {{ listing.category }}
+                            </a>
                         </li>
                         <li class="list-group-item text-body-secondary" id="HighestBid">
                             {% if bids %}

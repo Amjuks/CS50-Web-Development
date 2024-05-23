@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=32)
-    color = models.SmallIntegerField(default=0x000000)   
+    color = models.CharField(max_length=7, default='#000000')   
 
     def __str__(self) -> str:
         return f'{self.name}'
