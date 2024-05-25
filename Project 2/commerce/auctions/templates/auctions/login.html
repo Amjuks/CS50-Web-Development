@@ -12,13 +12,13 @@
                 {% csrf_token %}
                 <div class="col-12">
                     <div class="form-floating">
-                        <input autofocus class="form-control" type="text" name="username" placeholder="Username" id="username">
+                        <input autofocus class="form-control" type="text" name="username" placeholder="Username" id="username" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                        <input class="form-control" type="password" name="password" placeholder="Password" id="password">
+                        <input class="form-control" type="password" name="password" placeholder="Password" id="password" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
     <script>
         const form = document.getElementById('create-form');
         form.scrollIntoView({behavior:"smooth", block:"center"});
-        
+
         {% if message %}
             document.addEventListener('DOMContentLoaded', () => {
                 alert('{{ message }}')
