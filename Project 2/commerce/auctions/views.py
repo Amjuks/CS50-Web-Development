@@ -167,18 +167,24 @@ def close_view(request):
     if request.method == "POST":
         listing_id = request.POST.get('listing_id')
         listing = Listings.objects.get(id=listing_id)
+        response = {'success': True, 'action': 'close'}
+
+        if not listing.highest_bid:
+            response['success'] = False
+            response['message'] = "You can't close an auction with no bids"
+            return JsonResponse(response)
 
         listing.open = False
         listing.save()
 
-        return JsonResponse({'success': True})
+        return JsonResponse(response)
 
 def bid_view(request):
 
     if request.method == "POST":
         bid_amount = int(request.POST.get('bid_amount'))
         listing = Listings.objects.get(id=request.POST.get('listing_id'))
-        highest_bid = listing.get_highest_bid()
+        highest_bid = listing.highest_bid
 
         if not listing.open:
             return JsonResponse({
@@ -186,12 +192,14 @@ def bid_view(request):
                 'message': "Auction is closed"
             })
         
-        if highest_bid:
-            if highest_bid.amount >= bid_amount:
-                return JsonResponse({
-                    'success': False,
-                    'message': f"Your bid must be greater than ${highest_bid.amount}",
-                })
+        if not highest_bid:
+            highest_bid = listing.starting_price - 1
+
+        if highest_bid >= bid_amount:
+            return JsonResponse({
+                'success': False,
+                'message': f"Your bid must be greater than ${highest_bid}",
+            })
 
         bid = Bids(
             user=request.user,

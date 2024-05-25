@@ -90,7 +90,7 @@
                             </li>
                             {% endfor %}
                         {% else %}
-                            <li class="list-group-item">
+                            <li class="list-group-item" id="no-bids-history">
                                 <div class="d-flex justify-content-between">
                                     <h6><strong>{{ bid.user }}</strong> No bids yet. Be the first to place yours!</h6>
                                     <small>{{ bid.created|naturaltime }}</small>
@@ -208,6 +208,11 @@
                         
                         bidHistory.insertBefore(newHistory, bidHistory.firstChild);
 
+                        noBidsHistory = document.getElementById('no-bids-history');
+                        if (noBidsHistory) {
+                            noBidsHistory.remove();
+                        }
+
                         this.reset();
                     } else {
                         alert(data.message);
@@ -236,6 +241,7 @@
                     } else if (action === 'close') {
                         url = "{% url 'close' %}";
                     }
+                    console.log('url', url)
 
                     fetch(url, {
                         method: 'POST',
@@ -262,12 +268,15 @@
                                     break;
                                 }
                                 case 'close': {
-                                    window.location.href = "{% url 'index' %}";
+                                    console.log('case closed');
+                                    location.reload();
                                     break;
                                 }
                             }
                         } else {
-                            console.log('not success:', data);
+                            if (data.action === 'close') {
+                                alert(data.message);
+                            }
                         }
                     })
                     .catch(error => {
