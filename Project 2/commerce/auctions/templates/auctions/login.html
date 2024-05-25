@@ -2,23 +2,48 @@
 
 {% block body %}
 
-    <h2>Login</h2>
+    <div class="page-title">
+        <h2>Login</h2>
+    </div>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+    <div class="d-flex justify-content-center">
+        <div class="auctions-form" style="width: 25rem;">
+            <form class="row gy-4 justify-content-center" action="{% url 'login' %}" method="post" id="login-form">
+                {% csrf_token %}
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input autofocus class="form-control" type="text" name="username" placeholder="Username" id="username">
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input class="form-control" type="password" name="password" placeholder="Password" id="password">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </div>
+                <div class="col-12 text-center">
+                    <div class="form-text">
+                        Don't have an account?
+                        <a href="{% url 'register' %}">Register here.</a>
+                    </div>
+                </div>
+            </form>     
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+    </div>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+    <script>
+        const form = document.getElementById('create-form');
+        form.scrollIntoView({behavior:"smooth", block:"center"});
+        
+        {% if message %}
+            document.addEventListener('DOMContentLoaded', () => {
+                alert('{{ message }}')
+            })
+        {% endif %}
+    </script>
 
 {% endblock %}

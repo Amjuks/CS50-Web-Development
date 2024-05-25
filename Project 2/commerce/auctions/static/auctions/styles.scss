@@ -10,7 +10,7 @@ body {
     margin: 2rem;
 }
 
-#create-form {
+.auctions-form {
     @include create-page-common;
     @extend .shadow;
     @extend .bg-light;
@@ -20,8 +20,6 @@ body {
     justify-content: center;
     
     padding: 1rem;
-
-    width: 35rem;
 
     // background-color: white;
     border-radius: 10px;

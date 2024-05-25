@@ -14,7 +14,7 @@ from pprint import pprint as p
 def index(request):
 
     return render(request, "auctions/index.html", {
-        'listings': Listings.objects.all()
+        'listings': Listings.objects.filter(open=True)
     })
 
 def personal_view(request):
@@ -225,7 +225,7 @@ def category_view(request, category_id):
 
     return render(request, "auctions/index.html", {
         'category': category.name.capitalize(),
-        'listings': Listings.objects.filter(category__id=category_id)
+        'listings': Listings.objects.filter(category__id=category_id, open=True)
     })
 
 def comment_view(request, listing_id):

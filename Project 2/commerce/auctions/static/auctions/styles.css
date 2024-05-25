@@ -7241,7 +7241,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow, #create-form {
+.shadow, .auctions-form {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
@@ -8685,7 +8685,7 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
 
-.bg-light, #create-form {
+.bg-light, .auctions-form {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
@@ -11849,22 +11849,21 @@ body {
   background-color: #FFF2D7;
 }
 
-#create-form {
+.auctions-form {
   margin: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  width: 35rem;
   border-radius: 10px;
 }
-#create-form .form-title {
+.auctions-form .form-title {
   text-align: center;
 }
-#create-form form {
+.auctions-form form {
   padding: 1rem;
 }
-#create-form form select {
+.auctions-form form select {
   padding: 1rem !important;
 }
 
