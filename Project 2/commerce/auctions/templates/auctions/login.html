@@ -36,12 +36,13 @@
     </div>
 
     <script>
-        const form = document.getElementById('create-form');
+        const form = document.getElementById('login-form');
         form.scrollIntoView({behavior:"smooth", block:"center"});
 
         {% if message %}
+            console.log('message through javascript');
             document.addEventListener('DOMContentLoaded', () => {
-                alert('{{ message }}')
+                alert('{{ message }}');
             })
         {% endif %}
     </script>

@@ -50,7 +50,8 @@
         
         {% if message %}
             document.addEventListener('DOMContentLoaded', () => {
-                alert('{{ message }}')
+                console.log('message');
+                alert('{{ message }}');
             })
         {% endif %}
     </script>

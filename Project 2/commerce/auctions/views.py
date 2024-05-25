@@ -40,6 +40,7 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
+            print(f'message given')
             return render(request, "auctions/login.html", {
                 "message": "Invalid username and/or password."
             })
