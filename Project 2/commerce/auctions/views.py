@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
@@ -6,10 +7,6 @@ from django.urls import reverse
 
 from .models import *
 from .forms import *
-from humanize import naturaltime
-
-from pprint import pprint as p
-
 
 def index(request):
 
@@ -17,6 +14,7 @@ def index(request):
         'listings': Listings.objects.filter(open=True)
     })
 
+@login_required
 def personal_view(request):
 
     if not request.user.is_authenticated:
@@ -28,6 +26,7 @@ def personal_view(request):
     
 
 def login_view(request):
+
     if request.method == "POST":
 
         # Attempt to sign user in
@@ -49,11 +48,13 @@ def login_view(request):
 
 
 def logout_view(request):
+
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
 def register(request):
+
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -79,6 +80,7 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+@login_required
 def create_view(request):
 
     if request.method == "POST":
@@ -144,6 +146,7 @@ def listing_view(request, listing_id):
             "comments": Comments.objects.filter(listing_id=listing_id).order_by('-created')
         })
 
+@login_required
 def watchlist_view(request):
 
     if request.method == "POST":
@@ -163,7 +166,7 @@ def watchlist_view(request):
         'listings': request.user.watchlist_items.all()
     })
     
-
+@login_required
 def close_view(request):
     if request.method == "POST":
         listing_id = request.POST.get('listing_id')
@@ -180,8 +183,8 @@ def close_view(request):
 
         return JsonResponse(response)
 
+@login_required
 def bid_view(request):
-
     if request.method == "POST":
         bid_amount = int(request.POST.get('bid_amount'))
         listing = Listings.objects.get(id=request.POST.get('listing_id'))
@@ -229,6 +232,7 @@ def category_view(request, category_id):
         'listings': Listings.objects.filter(category__id=category_id, open=True)
     })
 
+@login_required
 def comment_view(request, listing_id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
