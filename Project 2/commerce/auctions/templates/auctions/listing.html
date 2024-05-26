@@ -11,7 +11,6 @@
             <div class="col">
                 <div class="card border-dark">
                     <img src="{{ listing.image }}" alt="{{ listing.title }}" class="card-img-top card-img-bottom">
-
                 </div>
             </div>
             {% endif %}
@@ -42,23 +41,37 @@
                             <form class="input-group" id="bid-form" data-listing-id="{{ listing.id }}">
                                 {% csrf_token %}
                                 <span class="input-group-text">$</span>
-                                <div class="form-floating">
-                                    <input type="number" class="form-control" name="bid_amount" id="BidAmount" placeholder="Place a Bid">
-                                    <label for="BidAmount">Place a Bid</label>
-                                </div>
-                                <button class="btn btn-dark" type="submit">Bid</button>
+                                {% if user.is_authenticated %}
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" name="bid_amount" id="BidAmount" placeholder="">
+                                        <label for="BidAmount">Place a Bid</label>
+                                    </div>
+                                    <button class="btn btn-dark" type="submit">Bid</button>
+                                {% else %}
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" name="bid_amount" id="BidAmount" placeholder="">
+                                        <label for="BidAmount">Log in to bid</label>
+                                    </div>
+                                    <button class="btn btn-dark" type="submit" disabled>Bid</button>
+                                {% endif %}
                             </form>
                         </li>
                         <li class="list-group-item">
                             <form class="d-flex flex-wrap justify-content-between" id="listingOptionsForm" data-listing-id="{{ listing.id }}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-primary mb-1"  id="watchlistButton" data-action="watchlist">
-                                    {% if user_in_watchlist %}
-                                        Remove Watchlist
-                                    {% else %}
-                                        Add to Watchlist
-                                    {% endif %}
-                                </button>
+                                {% if user.is_authenticated %}
+                                    <button type="submit" class="btn btn-primary mb-1"  id="watchlistButton" data-action="watchlist">
+                                        {% if user_in_watchlist %}
+                                            Remove Watchlist
+                                        {% else %}
+                                            Add to Watchlist
+                                        {% endif %}
+                                    </button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-primary mb-1"  id="watchlistButton" data-action="watchlist" disabled>
+                                        Log in to watchlist
+                                    </button>
+                                {% endif %}
                                 {% if user == listing.owner %}
                                     <button type="submit" class="btn btn-danger mb-1" data-action="close">Close Auction</button>
                                 {% endif %}
@@ -126,11 +139,19 @@
         {% if listing.open %}
             <form class="mb-3" action="{% url 'comment' listing.id %}" method="post">
                 {% csrf_token %}
-                <div class="form-floating mb-3">
-                    {{ comment_form.user_comment }}
-                    <label for="{{ comment_form.user_comment.id_for_label }}">{{ comment_form.user_comment.label }}</label>
-                </div>
-                <button class="btn btn-dark" type="submit">Post</button>
+                {% if user.is_authenticated %}
+                    <div class="form-floating mb-3">
+                        {{ comment_form.user_comment }}
+                        <label for="{{ comment_form.user_comment.id_for_label }}">{{ comment_form.user_comment.label }}</label>
+                    </div>
+                    <button class="btn btn-dark" type="submit">Post</button>
+                {% else %}
+                    <div class="form-floating mb-3">
+                        {{ comment_form.user_comment }}
+                        <label for="{{ comment_form.user_comment.id_for_label }}">Log in to comment</label>
+                    </div>
+                    <button class="btn btn-dark" type="submit" disabled>Post</button>
+                {% endif %}
             </form>
         {% endif %}
 

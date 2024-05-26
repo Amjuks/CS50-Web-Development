@@ -9,14 +9,15 @@ class BootStrapForm(forms.Form):
 
 
 class CreateListingForm(BootStrapForm):
-    title = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'placeholder': 'Title'}))
-    description = forms.CharField(max_length=256, widget=forms.Textarea(attrs={'style': 'height: 7rem', 'placeholder': 'Description'}))
-    starting_price = forms.IntegerField(min_value=10, max_value=10**6, widget=forms.NumberInput(attrs={'placeholder': 'Starting Price'}))
-    image = forms.URLField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Image URL'}))
+    title = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'placeholder': ''}))
+    description = forms.CharField(max_length=256, widget=forms.Textarea(attrs={'style': 'height: 7rem', 'placeholder': ''}))
+    starting_price = forms.IntegerField(min_value=10, max_value=10**6, widget=forms.NumberInput(attrs={'placeholder': ''}))
+    image = forms.URLField(required=False, widget=forms.TextInput(attrs={'placeholder': ''}))
     category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label="Category", widget=forms.Select(attrs={'class': 'form-select'}))
 
+
 class BidForm(BootStrapForm):
-    amount = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': "Place a bid!"}))
+    amount = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': ""}))
 
     def __init__(self, *args, **kwargs):
         min_bid = kwargs.pop('min_bid', None)
@@ -47,6 +48,6 @@ class CommentForm(BootStrapForm):
         label="Leave a comment!",
         widget=forms.Textarea(attrs={
             'style': 'height:5em;',
-            'placeholder': "Leave a comment here!"
+            'placeholder': ""
         })
     )
