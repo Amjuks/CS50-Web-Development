@@ -2,14 +2,21 @@
 {% load static %}
 
 {% block body %}
-    <h2>{{ request.user.email }}</h2>
+    <nav>
+        <div class="nav-menu">
+            <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+            <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+            <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+            <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+        </div>
 
-    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
-    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
-    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
-    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+        <h6 class="logged-in-text">Logged in as <span class="email-address">{{ request.user.email }}</span></h6>
+    </nav>
     <hr>
+
+    <div id="email-content-view">
+    </div>
 
     <div id="emails-view">
     </div>
@@ -33,5 +40,8 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        const username = "{{ request.user.username }}";
+    </script>
     <script src="{% static 'mail/inbox.js' %}"></script>
 {% endblock %}
