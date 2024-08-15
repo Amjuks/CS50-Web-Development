@@ -1,3 +1,120 @@
 textarea {
     min-height: 400px;
+    margin-bottom: 20px;
+}
+
+nav {
+    padding-top: 20px;
+    /* padding: 20px 20px 0 20px; */
+    display: grid;
+    grid-template-columns: auto auto;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logged-in-text {
+    margin: 0;
+}
+
+body:has(form.auth) {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+}
+
+.container:has(form.auth) {
+    display: grid;
+    place-items: center;
+    margin: auto;
+    gap: 10px;
+}
+
+form {
+    display: grid;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    /* height: 200px; */
+}
+
+#emails-view > .email-inline {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+
+    padding: 10px 10px;
+    border-bottom: 1px solid gray;
+    border-radius: 3px;
+    transition: all .1s;
+
+    white-space: nowrap;
+}
+
+#emails-view > .email-inline > span {
+    text-overflow: ellipsis;
+}
+
+#emails-view > .email-inline.read {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+#emails-view > .email-inline:hover {
+    box-shadow: 0 0 2px rgba(0, 0, 0, .9);
+}
+
+.email-inline-subject {
+    font-weight: 600;
+    font-size: large;
+}
+
+.email-inline-timestamp {
+    justify-self: end;
+}
+
+.email-content-container {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    width: 100%;
+}
+
+.email-content-subject {
+    margin-bottom: 20px;
+}
+
+.email-content-header {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+
+    margin-bottom: 5px;
+}
+
+.email-content-header,
+.email-content-recipients {
+    /* font-size: small; */
+    font-weight: lighter;
+}
+
+.email-content-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.email-content-body {
+    white-space: pre-wrap;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.email-address {
+    border-radius: 50rem;
+    padding: 2px 7px;
+    margin-right: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-size: smaller;
+    font-weight: normal;
 }
