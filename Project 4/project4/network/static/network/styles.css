@@ -1,0 +1,386 @@
+:root {
+    --create-bg: #6e9df5;
+    --create-bg-hover: #a66ef5;
+
+    --primary-bg: #16325B;
+
+    --navigate-color: #55679C;
+    --navigate-disabled-color: gray;
+    --navigate-hover-color: #7C93C3;
+}
+
+body {
+    color: white;
+    background-color: var(--primary-bg);
+}
+
+.body {
+    padding-top: 1rem;
+}
+
+.network-navbar {
+    color: white;
+    background-color: #021526;
+}
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2rem;
+
+    max-width: 300px;
+    margin: 2rem 0;
+
+    background-color: rgba(255,255,255, 0.2);
+    color: white;
+}
+
+.auth-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    margin: 1rem 0;
+}
+
+.auth-content a {
+    margin-top: .5rem;
+    /* color: white; */
+    /* text-decoration: underline; */
+}
+
+.fa-heart {
+    font-size: 1.5rem;
+}
+
+.fa-solid.fa-heart {
+    color: red;
+}
+
+.fa-regular.fa-heart {
+    color: red;
+}
+
+.header {
+    padding: 0 1rem;
+}
+
+.header .header-text {
+    text-align: start;
+}
+
+.create-page .header-text {
+    text-align: center;
+}
+
+.posts-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    gap: 1rem;
+
+    padding: 1rem;
+}
+
+.post {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+    padding: 1rem;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    color: black;
+    /* background-color: white; */
+    background-color: rgba(255,255,255, 0.85);
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-username {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.post-username:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.post-content {
+    user-select: none;
+    margin-bottom: 1rem;
+}
+
+.post-created {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    user-select: none;
+    height: 100%;
+}
+
+.like-info {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+
+    align-items: center;
+}
+
+.like-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 50%;
+
+    height: 2.5rem;
+    width: 2.5rem;
+
+    outline: none;
+    background: transparent;
+
+    transition: background-color .5s;
+}
+
+.like-button:focus,
+textarea.post-content:focus,
+button.create-post:focus,
+.follow-btn:focus,
+.edit-button:focus {
+    outline: none;
+}
+
+.like-button:hover {
+    background-color: rgba(0,0,0, 0.09);
+}
+
+.create-page {
+    padding-top: 3rem;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem;
+}
+
+.create-form .post {
+    max-width: 400px;
+}
+
+input.post-content,
+textarea.post-content {
+    margin: 1rem 0;
+    padding: 1rem;
+
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}
+
+button.create-post {
+    position: relative;
+    padding: 0 2rem;
+
+    border: none;
+    border-radius: 50rem;
+
+    color: white;
+    background-color: var(--create-bg);
+
+    font-size: 2rem;
+    font-weight: 600;
+    transition: background-color .3s, color .3s;
+}
+
+button.create-post:hover {
+    color: white;
+    background-color: var(--create-bg-hover);
+}
+
+button.create-post::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translate(50%, 0);
+
+    height: 5px;
+    width: 0px;
+    border-radius: 50rem;
+    background-color: var(--create-bg);
+
+    transition: width .3s, background-color .3s;
+}
+
+button.create-post:hover::before {
+    width: 80%;
+    background-color: var(--create-bg-hover);
+}
+
+.error-message {
+    color: red;
+}
+
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.profile-username {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile-stats > h3:not(:last-child) {
+    padding-right: 1rem;
+    border-right: 2px solid white;
+}
+
+.profile-stats > h3 {
+    font-weight: 300;
+}
+
+.profile-posts {
+    width: 100%;
+    max-width: 800px;
+}
+
+.follow-btn {
+    border: none;
+    border-radius: 50rem;
+    outline: none;
+
+    padding: 0.3rem 1rem;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+
+    color: white;
+    background-color: #6e9df5;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    transition: background-color .3s;
+}
+
+.follow-btn:hover {
+    background-color: #547cc6;
+}
+
+.edit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-decoration: none;
+
+    margin: 0 .5rem .5rem 0;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    background-color: transparent;
+    opacity: 0;
+
+    height: 2.5rem;
+    width: 2.5rem;
+
+    transition: background-color .5s, opacity .5s;
+}
+
+.edit-button:hover {
+    color: inherit;
+    background-color: rgba(0,0,0, 0.09);
+    text-decoration: none;
+}
+
+.post:hover .edit-button {
+    opacity: 1;
+}
+
+.nav-posts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5rem;
+
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.nav-post-link {
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.nav-post-link[href] {
+    background-color: var(--navigate-color);
+    color: white;
+}
+
+.nav-post-link:not([href]) {
+    background-color: var(--navigate-disabled-color);
+    color: white;
+}
+
+.nav-post-link[href]:hover {
+    color: white;
+    text-decoration: none;
+    background-color: var(--navigate-hover-color);
+
+    transition: background-color .3s;
+}
+
+.nav-post-link:not([href]):hover {
+    color: white;
+    user-select: none;
+}

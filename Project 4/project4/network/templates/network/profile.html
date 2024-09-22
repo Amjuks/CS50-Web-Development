@@ -1,0 +1,76 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <main class="profile-page">
+        <section class="profile-info">
+            <input type="hidden" id="userName" value="{{ request.user.username }}">
+            <h1 class="profile-username">{{ profile_user.username }}</h1>
+
+            <div class="profile-stats">
+            <h3>
+            {% if follower_count == 0 %}
+                <span class="follower-count"></span>
+                <span class="followers-text">No Followers</span>
+            {% elif follower_count == 1 %}
+                <span class="follower-count">{{ follower_count }}</span>
+                <span class="followers-text">Follower</span>
+            {% else %}
+                <span class="follower-count">{{ follower_count }}</span>
+                <span class="followers-text">Followers</span>
+            {% endif %}
+            </h3>
+            <h3>
+                {% if post_count == 0 %}
+                No Posts
+                {% elif post_count == 1 %}
+                {{ post_count }} Post
+                {% else %}
+                {{ post_count }} Posts
+                {% endif %} 
+            </h3>
+            <h3>
+            {% if following_count == 0 %}
+                <span class="followers-text">Not Following Anyone</span>
+            {% else %}
+                <span class="followers-text">Following {{ following_count }}</span>
+            {% endif %}
+            </h3>
+            </div>
+            <div class="profile-actions"
+            data-profile-user-id="{{ profile_user.id }}"
+            data-follows="{% if follows %}1{% else %}0{% endif %}">
+            {% if request.user.id != profile_user.id %}
+                <button class="follow-btn" id="followButton">
+                    {% if follows %}
+                    Unfollow
+                    {% else %}
+                    Follow
+                    {% endif %}
+                </button>
+            {% endif %}
+            </div>
+        </section>
+
+        <section class="profile-posts posts-body">
+            
+        </section>
+
+        <section class="nav-posts">
+
+        </section>
+    </main>
+
+    <script>
+        const csrf_token = "{{ csrf_token }}";
+        const URLs = {
+            'index': "{% url 'index' %}",
+            'like': "{% url 'like' %}",
+            'follow': "{% url 'follow' %}",
+            'posts': "{% url 'api-posts' %}",
+            'profile': "{% url 'profile' user=0 %}".slice(0, -2),
+        };
+    </script>
+    <script type="module" src="{% static 'network/js/profile.js' %}"></script>
+    <script type="module" src="{% static 'network/js/follow.js' %}"></script>
+{% endblock %}

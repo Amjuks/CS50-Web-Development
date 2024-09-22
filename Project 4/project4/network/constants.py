@@ -1,0 +1,22 @@
+POST_CREATION_PROMPTS = (
+    ("Write Your Words", "What thoughts or stories would you like to share today?"),
+    ("Compose Your Thoughts", "What insights or ideas are on your mind?"),
+    ("Start Your Post", "What message or story are you ready to create?"),
+    ("Craft Your Message", "How would you like to express your message or story?"),
+    ("Type Out Your Ideas", "What ideas do you want to explore and develop?"),
+    ("Set Your Words Free", "What narrative or message will you set free?"),
+    ("Create Your Written Piece", "How will you shape your thoughts into a compelling post?"),
+    ("Draft Your Content", "What will you craft with your creativity today?"),
+    ("Share Your Story", "What story or viewpoint would you like to share?"),
+    ("Put Your Thoughts into Words", "What ideas do you want to turn into words?"),
+    ("Draft Your Ideas", "What ideas or thoughts will you start drafting today?"),
+    ("Frame Your Message", "What message or story would you like to frame?"),
+    ("Develop Your Text", "How will you develop and refine your text?"),
+    ("Formulate Your Post", "What post will you formulate and shape today?"),
+    ("Write and Refine", "How will you express and refine your thoughts?"),
+    ("Create Your Content", "What content will you create to engage your audience?"),
+    ("Express Your Thoughts", "What thoughts and ideas are you ready to express?"),
+    ("Outline Your Story", "What story or narrative will you outline today?"),
+    ("Generate Your Text", "What text will you generate and bring to life?"),
+    ("Compose and Share", "What will you compose and share with your audience?")
+)

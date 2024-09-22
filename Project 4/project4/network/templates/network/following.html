@@ -4,7 +4,8 @@
 {% block body %}
     <main>
         <div class="header">
-            <h1 class="header-text">All Posts</h1>
+            <h1 class="header-text">Latest Posts from People You Follow</h1>
+            <input type="hidden" id="userId" value="{{ request.user.id }}">
             <input type="hidden" id="userName" value="{{ request.user.username }}">
         </div>
         <section class="posts-body">
@@ -21,8 +22,7 @@
             'posts': "{% url 'api-posts' %}",
             'like': "{% url 'like' %}",
             'profile': "{% url 'profile' user=0 %}".slice(0, -2),
-            'edit': "{% url 'post-edit' post_id=0 %}".slice(0, -2),
         };
     </script>
-    <script type="module" src="{% static 'network/js/index.js' %}"></script>
+    <script type="module" src="{% static 'network/js/following.js' %}"></script>
 {% endblock %}

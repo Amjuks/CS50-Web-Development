@@ -1,0 +1,39 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <main class="create-page">
+        <div class="header">
+            <h1 class="header-text">What would you like to change?</h1>
+        </div>
+        <section class="create-form">
+            <div class="post">
+                <span class="post-header">
+                    <b>{{ post.creator.username }}</b>
+
+                    <span class="like-info">
+                            <i class="fa-solid fa-heart"></i>
+                    </span>
+                </span>
+                 
+                <textarea class="post-content" id="postContent" rows="4" autofocus>{{ post.content }}</textarea>
+
+                <span class="post-created">
+                    <small>{{ post.created_at }}</small>
+                </span>
+            </div>
+            <div class="error-message">
+            </div>
+            <button class="create-post" id="editButton" data-post-id="{{ post.id }}">Edit Post</button>
+        </section>
+    </main>
+
+    <script>
+        const csrf_token = "{{ csrf_token }}";
+        const URLs = {
+            'index': "{% url 'index' %}",
+            'create': "{% url 'create' %}",
+        };
+    </script>
+    <script type="module" src="{% static 'network/js/edit_post.js' %}"></script>
+{% endblock %}

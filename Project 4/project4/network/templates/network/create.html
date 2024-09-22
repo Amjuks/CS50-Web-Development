@@ -1,0 +1,39 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <main class="create-page">
+        <div class="header">
+            <h1 class="header-text">{{ header }}</h1>
+        </div>
+        <section class="create-form">
+            <div class="post">
+                <span class="post-header">
+                    <b>{{ request.user.username }}</b>
+
+                    <span class="like-info">
+                            <i class="fa-solid fa-heart"></i>
+                    </span>
+                </span>
+                 
+                <textarea class="post-content" id="postContent" placeholder="{{ placeholder }}" rows="4" autofocus></textarea>
+
+                <span class="post-created">
+                    <small>{% now "DATETIME_FORMAT" %}</small>
+                </span>
+            </div>
+            <div class="error-message">
+            </div>
+            <button class="create-post" id="createButton">Create Post</button>
+        </section>
+    </main>
+
+    <script>
+        const csrf_token = "{{ csrf_token }}";
+        const URLs = {
+            'index': "{% url 'index' %}",
+            'create': "{% url 'create' %}",
+        };
+    </script>
+    <script type="module" src="{% static 'network/js/create.js' %}"></script>
+{% endblock %}
