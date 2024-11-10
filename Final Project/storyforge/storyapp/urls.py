@@ -6,6 +6,11 @@ app_name = 'storyapp'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
+
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+
     path('create/', views.CreateStoryView.as_view(), name='create-story'),
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
     path('storyboard/<int:world_id>/', views.StoryboardView.as_view(), name='storyboard'),

@@ -54,14 +54,14 @@
                                 <a class="nav-link" href="{% url 'storyapp:dashboard' %}">Dashboard</a>
                             </li>
                             </li>
-                                <a class="nav-link" href="#">Logout</a>
+                                <a class="nav-link" href="{% url 'storyapp:logout' %}">Logout</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="{% url 'storyapp:login' %}">Login</a>
                             </li>
                             </li>
-                                <a class="nav-link" href="#">Signup</a>
+                                <a class="nav-link" href="{% url 'storyapp:register' %}">Signup</a>
                             </li>
                             {% endif %}
                         </ul>

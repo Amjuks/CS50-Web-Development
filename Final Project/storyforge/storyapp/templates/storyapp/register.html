@@ -1,0 +1,28 @@
+{% extends "storyapp/base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'storyapp/css/auth.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="auth-body">
+    <form class="auth-form" action="{% url 'storyapp:login' %}" method="post">
+        {% csrf_token %}
+        <label class="form-label" for="username">Username</label>
+        <input class="form-control" type="text" name="username" id="username" autofocus>
+        <label class="form-label" for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password">
+        <label class="form-label" for="password">Confirm Password</label>
+        <input class="form-control" type="password" name="confirmPassword" id="confirmPassword">
+
+        {% if message %}
+        <small class="error-message">{{ message }}</small>
+        {% endif %}
+
+        <div class="submit-container">
+            <button class="btn btn-olive auth-btn">Register</button>
+        </div>
+    </form>
+</main>
+{% endblock %}

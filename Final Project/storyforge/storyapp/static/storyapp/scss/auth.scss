@@ -1,0 +1,39 @@
+@import 'variables';
+
+.auth-body {
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    color: $color-light-blue;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-purple;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+
+    input {
+        margin-bottom: .5rem;
+    }
+
+    .submit-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        
+        .auth-btn {
+
+        }
+    }
+
+    .error-message {
+        color: whitesmoke;
+        background-color: red;
+        padding: .3rem .5rem;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: .3rem;
+    }
+}
