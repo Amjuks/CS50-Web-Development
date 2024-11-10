@@ -1,0 +1,29 @@
+@import 'variables.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    min-height: 100vh;
+
+    background-color: $color-dark-green;
+}
+
+.base-navbar {
+    background-color: black;
+
+    a {
+        color: $color-olive;
+
+        &.navbar-brand,
+        &:hover {
+            color: #c2b44c;
+        }
+    }
+
+    button {
+        @extend .btn-olive;
+    }
+}

@@ -1,0 +1,46 @@
+{% extends "storyapp/base.html" %}
+{% load static %}
+
+{% block title %}Storyboard{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'storyapp/css/base_storyboard.css' %}">
+{% endblock %}
+
+{% block body %}
+<aside class="storyboard-sidebar">
+    <h3 class="world-name">{{ world.description }}</h3>
+    <ul class="sidebar-menu">
+        {% with current_page=request.path|slice:"25:" %}
+            <li class="menu-item {% if current_page == '' %}active{% endif %}">
+                <a href="{% url 'storyapp:storyboard' world_id=world.id %}">
+                    <i class="fa-solid fa-book"></i>
+                    Story
+                </a>
+            </li>
+            <li class="menu-item {% if current_page == 'characters' %}active{% endif %}">
+                <a href="{% url 'storyapp:storyboard-characters' world_id=world.id %}">
+                    <i class="fa-solid fa-users"></i>
+                    Characters
+                </a>
+            </li>
+            <li class="menu-item {% if current_page == 'locations' %}active{% endif %}">
+                <a href="{% url 'storyapp:storyboard-locations' world_id=world.id %}">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Locations
+                </a>
+            </li>
+            <li class="menu-item {% if current_page == 'scenes' %}active{% endif %}">
+                <a href="{% url 'storyapp:storyboard-scenes' world_id=world.id %}">
+                    <i class="fa-solid fa-film"></i>
+                    Scenes
+                </a>
+            </li>
+        {% endwith %}
+    </ul>
+</aside>
+<div class="storyboard-body">
+    {% block storyboard %}
+    {% endblock %}
+</div>
+{% endblock %}

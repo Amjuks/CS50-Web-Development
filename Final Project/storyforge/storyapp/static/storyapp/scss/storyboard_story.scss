@@ -1,0 +1,41 @@
+@import 'variables.scss';
+
+.storyboard-body {
+
+    #storyboard-story-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        max-width: 500px;
+
+        label {
+            font-size: 2rem;
+        }
+
+        input,
+        textarea {
+            padding: .5rem 1rem;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            resize: none;
+            color: white;
+            background-color: lighten($color: $color-dark-green, $amount: 10%);
+        }
+
+        .world-cover-container {
+            height: 300px;
+            width: 500px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+
+                border: 3px solid $color-olive;
+                border-radius: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{% extends "storyapp/base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'storyapp/css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="index-body">
+    <section class="index-header">
+        <h1>Welcome to StoryForge</h1>
+        <p class="hero-tagline">Unleash your imagination and craft your own epic tales!</p>
+    </section>
+    <section class="index-section section-write">
+        <div class="section-write-container">
+            <h1 class="index-write-intro">
+               Once upon a time ... 
+            </h1>
+        </div>
+        <div class="section-write-container">
+            <h3 class="index-section-text">Write a New Story!</h3>
+            <div class="write-button-container">
+                <a href="{% url 'storyapp:create-story' %}" class="btn-olive">Start Writing</a>
+            </div>
+            <p class="section-description">
+                Start your adventure today! Click the button above to begin your storytelling 
+                journey. Choose from a variety of genres, characters, and settings to weave 
+                your narrative. Remember, every great story starts with a single word.
+            </p>
+        </div>
+    </section>
+</main>
+{% endblock %}

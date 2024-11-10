@@ -1,0 +1,16 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block title %}Storyboard - Characters{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/storyboard_characters.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+<h1>Characters board</h1>
+{% for character in world.characters.all %}
+    {{ character.name }}
+{% endfor %}
+{% endblock %}

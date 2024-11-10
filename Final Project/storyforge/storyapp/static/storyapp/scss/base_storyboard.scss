@@ -1,0 +1,66 @@
+@import 'variables.scss';
+
+.body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+.storyboard-sidebar {
+    padding: 1rem;
+    background-color: $color-light-blue;
+
+    .world-name {
+        font-family: garamond;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+            transition: white-space .3s;
+            white-space: normal;
+        }
+    }
+
+    .sidebar-menu {
+        padding: 0;
+        margin: 0rem;
+        list-style: none;
+
+        .menu-item {
+            a {
+                display: grid;
+                grid-template-columns: 30px 1fr;
+                gap: 1rem;
+                align-items: center;
+
+                color: $color-dark-green;
+                text-decoration: none;
+                padding: .5rem;
+                margin: .5rem 0;
+                border-radius: 10px;
+                transition: background-color .3s;
+
+                .fa-solid {
+                    text-align: center;
+                }
+    
+                &:hover {
+                    background-color: lighten($color: $color-light-blue, $amount: 5%);
+                }
+            }
+
+            &.active {
+                a {
+                    color: $color-coral;
+                    background-color: lighten($color: $color-light-blue, $amount: 5%);    
+                }
+            }
+        }
+    }
+}
+
+.storyboard-body {
+    padding: 1rem;
+    color: $color-coral;
+    background-color: $color-dark-green;
+}

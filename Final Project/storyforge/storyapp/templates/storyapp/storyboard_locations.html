@@ -1,0 +1,16 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block title %}Storyboard - Locations{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/storyboard_locations.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+<h1>Locations board</h1>
+{% for location in world.locations.all %}
+    {{ location.name }}
+{% endfor %}
+{% endblock %}

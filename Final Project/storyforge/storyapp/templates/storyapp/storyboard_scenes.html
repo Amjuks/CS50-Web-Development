@@ -1,0 +1,16 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block title %}Storyboard - Scenes{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/storyboard_scenes.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+<h1>Scenes board</h1>
+{% for scene in world.scenes.all %}
+    {{ scene.title }}
+{% endfor %}
+{% endblock %}

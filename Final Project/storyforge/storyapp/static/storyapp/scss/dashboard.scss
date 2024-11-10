@@ -1,0 +1,120 @@
+@import 'variables.scss';
+
+$profile-width: 250px;
+
+.dashboard-body {
+    display: grid;
+    grid-template-columns: $profile-width 1fr;
+    gap: 2rem;
+    padding: 1rem 2rem;
+
+    .dashboard-profile {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+
+        .dashboard-profile-image-container {
+            display: block;
+            width: $profile-width;
+            height: $profile-width;
+            margin-bottom: 1rem;
+    
+            .dashboard-profile-image {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                border: 5px solid $color-coral;
+            }
+        }
+
+        .dashboard-username {
+            margin-bottom: 1rem;
+            .username {
+                color: $color-light-blue;
+            }
+        }
+
+        .dashboard-profile-stats {
+            .stats-item {
+                display: grid;
+                grid-template-columns: 30px 1fr;
+                align-items: center;
+                gap: .5rem;
+                margin-bottom: 10px;
+
+                font-weight: 300;
+                color: $color-light-blue;
+
+                .fa-solid {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .dashboard-info {
+        width: 100%;
+
+        .header {
+            color: $color-coral;
+        }
+
+        .user-stories {
+            display: grid;
+            grid-template-columns: minmax(300px, 300px);
+
+            .story-info {
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: $color-dark-green;
+                text-decoration: none;
+                background-color: $color-light-blue;
+
+                &:hover {
+                    transition: filter .3s;
+                    filter: brightness(1.1);
+                }
+
+                .story-name {
+                    text-align: center;
+                }
+
+                .story-image-container {
+                    background-color: $color-olive;
+                    border-radius: 10px;
+                    padding: 5px;
+
+                    .story-image-text {
+                        color: $color-dark-green;
+                        font-size: 100px;
+                        text-align: center;
+                    }
+                }
+                
+                .info-container {
+                    display: flex;
+                    justify-content: center;
+
+                    .story-stats {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        justify-items: space-between;
+                        list-style: none;
+                        margin: 10px 0 0 0;
+                        padding: 0;
+
+                        li {
+                            &:not(:last-child){
+                                padding-right: 1rem;
+                                border-right: 1px solid black;
+                            }
+                        }
+                        .stat-icon {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

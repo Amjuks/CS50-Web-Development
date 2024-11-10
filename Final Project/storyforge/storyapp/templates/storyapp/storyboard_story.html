@@ -1,0 +1,30 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/storyboard_story.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+    <form id="storyboard-story-form" action="{% url 'storyapp:storyboard' world_id=world.id %}" method="post">
+        {% csrf_token %}
+        <label for="worldName">Story Title</label>
+        <input type="text" name="world_name" id="worldName" value="{{ world.name }}">
+
+        <label for="worldDescription">Description</label>
+        <textarea name="world_description" id="worldDescription">{{ world.description }}</textarea>
+
+        <label for="worldCover">Cover</label>
+        <input type="file" name="world_cover" id="worldCover">
+        <div class="world-cover-container" id="world_cover">
+            {% if world_world_cover == False %}
+                <img src="{{ world.world_cover.url }}" alt="Story Cover">
+            {% else %}
+                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder">
+            {% endif %}
+        </div>
+
+        <button class="btn-olive" type="submit">Update</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "storyapp/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'storyapp/css/dashboard.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="dashboard-body">
+    <div class="dashboard-profile">
+        <div class="dashboard-profile-image-container">
+            <img src="{{ request.user.profile_image.url }}" alt="Profile Image" class="dashboard-profile-image">
+        </div>
+        <div class="dashboard-username">
+            <h1 class="username">{{ request.user.username }}</h1>
+        </div>
+        <div class="dashboard-profile-stats">
+            <h5 class="stats-item">
+                <i class="fa-solid fa-book"></i>
+                {{ worlds_count }}
+                {% if worlds_count == 1 %}Story{% else %}Stories{% endif %}
+            </h5>
+            <h5 class="stats-item">
+                <i class="fa-solid fa-users"></i>
+                {{ characters }}
+                {% if characters == 1 %}Character{% else %}Characters{% endif %}
+            </h5>
+            <h5 class="stats-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                {{ locations }}
+                {% if locations == 1 %}Location{% else %}Locations{% endif %}
+            </h5>
+            <h5 class="stats-item">
+                <i class="fa-solid fa-film"></i>
+                {{ scenes }}
+                {% if scenes == 1 %}Scene{% else %}Scenes{% endif %}
+            </h5>
+        </div>
+    </div>
+    <div class="dashboard-info">
+        <h1 class="header">Stories</h1>
+        <div class="user-stories">
+            {% for world in worlds %}
+            <a class="story-info" href="{% url 'storyapp:storyboard' world_id=world.id %}">
+                <h1 class="story-name">{{ world.name }}</h1>
+                <div class="story-image-container">
+                    <h3 class="story-image-text">{{ world.name.0 }}</h3>
+                </div>
+                <div class="info-container">
+                    <ul class="story-stats">
+                        <li>
+                            {{ world.location_count }}
+                            <span class="stat-icon">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </span>
+                        </li>
+                        <li>
+                            {{ world.character_count }}
+                            <span class="stat-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </span>
+                        </li>
+                        <li>
+                            {{ world.scene_count }}
+                            <span class="stat-icon">
+                                <i class="fa-solid fa-film"></i>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
