@@ -82,12 +82,18 @@ $profile-width: 250px;
                 .story-image-container {
                     background-color: $color-olive;
                     border-radius: 10px;
-                    padding: 5px;
+                    overflow: hidden;
+                    max-height: 12rem;
 
                     .story-image-text {
                         color: $color-dark-green;
                         font-size: 100px;
                         text-align: center;
+                    }
+
+                    .story-image {
+                        width: 100%;
+                        object-fit: cover;
                     }
                 }
                 

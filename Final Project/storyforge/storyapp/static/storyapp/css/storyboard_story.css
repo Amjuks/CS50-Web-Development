@@ -2435,7 +2435,7 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check[disabled] + .btn-olive, .btn-check:disabled + .btn, .btn-check:disabled + .btn-olive {
+.btn-check[disabled] + .btn, .btn-check[disabled] + .btn-light-green, .btn-check[disabled] + .btn-olive, .btn-check:disabled + .btn, .btn-check:disabled + .btn-light-green, .btn-check:disabled + .btn-olive {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2636,11 +2636,11 @@ textarea.form-control-lg {
 .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn, .input-group .btn-olive {
+.input-group .btn, .input-group .btn-light-green, .input-group .btn-olive {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus, .input-group .btn-olive:focus {
+.input-group .btn:focus, .input-group .btn-light-green:focus, .input-group .btn-olive:focus {
   z-index: 5;
 }
 
@@ -2663,6 +2663,7 @@ textarea.form-control-lg {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn,
+.input-group-lg > .btn-light-green,
 .input-group-lg > .btn-olive {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -2673,6 +2674,7 @@ textarea.form-control-lg {
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn,
+.input-group-sm > .btn-light-green,
 .input-group-sm > .btn-olive {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -2889,7 +2891,7 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
-.btn, .btn-olive {
+.btn, .btn-light-green, .btn-olive {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -2923,44 +2925,44 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn, .btn-olive {
+  .btn, .btn-light-green, .btn-olive {
     transition: none;
   }
 }
-.btn:hover, .btn-olive:hover {
+.btn:hover, .btn-light-green:hover, .btn-olive:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.btn-check + .btn:hover, .btn-check + .btn-olive:hover {
+.btn-check + .btn:hover, .btn-check + .btn-light-green:hover, .btn-check + .btn-olive:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
-.btn:focus-visible, .btn-olive:focus-visible {
+.btn:focus-visible, .btn-light-green:focus-visible, .btn-olive:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:focus-visible + .btn, .btn-check:focus-visible + .btn-olive {
+.btn-check:focus-visible + .btn, .btn-check:focus-visible + .btn-light-green, .btn-check:focus-visible + .btn-olive {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, .btn-check:checked + .btn-olive, :not(.btn-check) + .btn:active, :not(.btn-check) + .btn-olive:active, .btn:first-child:active, .btn-olive:first-child:active, .btn.active, .active.btn-olive, .btn.show, .show.btn-olive {
+.btn-check:checked + .btn, .btn-check:checked + .btn-light-green, .btn-check:checked + .btn-olive, :not(.btn-check) + .btn:active, :not(.btn-check) + .btn-light-green:active, :not(.btn-check) + .btn-olive:active, .btn:first-child:active, .btn-light-green:first-child:active, .btn-olive:first-child:active, .btn.active, .active.btn-light-green, .active.btn-olive, .btn.show, .show.btn-light-green, .show.btn-olive {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.btn-check:checked + .btn:focus-visible, .btn-check:checked + .btn-olive:focus-visible, :not(.btn-check) + .btn:active:focus-visible, :not(.btn-check) + .btn-olive:active:focus-visible, .btn:first-child:active:focus-visible, .btn-olive:first-child:active:focus-visible, .btn.active:focus-visible, .active.btn-olive:focus-visible, .btn.show:focus-visible, .show.btn-olive:focus-visible {
+.btn-check:checked + .btn:focus-visible, .btn-check:checked + .btn-light-green:focus-visible, .btn-check:checked + .btn-olive:focus-visible, :not(.btn-check) + .btn:active:focus-visible, :not(.btn-check) + .btn-light-green:active:focus-visible, :not(.btn-check) + .btn-olive:active:focus-visible, .btn:first-child:active:focus-visible, .btn-light-green:first-child:active:focus-visible, .btn-olive:first-child:active:focus-visible, .btn.active:focus-visible, .active.btn-light-green:focus-visible, .active.btn-olive:focus-visible, .btn.show:focus-visible, .show.btn-light-green:focus-visible, .show.btn-olive:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked:focus-visible + .btn, .btn-check:checked:focus-visible + .btn-olive {
+.btn-check:checked:focus-visible + .btn, .btn-check:checked:focus-visible + .btn-light-green, .btn-check:checked:focus-visible + .btn-olive {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn:disabled, .btn-olive:disabled, .btn.disabled, .disabled.btn-olive, fieldset:disabled .btn, fieldset:disabled .btn-olive {
+.btn:disabled, .btn-light-green:disabled, .btn-olive:disabled, .btn.disabled, .disabled.btn-light-green, .disabled.btn-olive, fieldset:disabled .btn, fieldset:disabled .btn-light-green, fieldset:disabled .btn-olive {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -3262,14 +3264,14 @@ textarea.form-control-lg {
   color: var(--bs-btn-hover-color);
 }
 
-.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .btn-olive {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .btn-light-green, .btn-group-lg > .btn-olive {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .btn-olive {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .btn-light-green, .btn-group-sm > .btn-olive {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -3636,34 +3638,46 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn, .btn-group > .btn-olive,
+.btn-group > .btn, .btn-group > .btn-light-green, .btn-group > .btn-olive,
 .btn-group-vertical > .btn,
+.btn-group-vertical > .btn-light-green,
 .btn-group-vertical > .btn-olive {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .btn-olive,
+.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .btn-light-green, .btn-group > .btn-check:checked + .btn-olive,
 .btn-group > .btn-check:focus + .btn,
+.btn-group > .btn-check:focus + .btn-light-green,
 .btn-group > .btn-check:focus + .btn-olive,
 .btn-group > .btn:hover,
+.btn-group > .btn-light-green:hover,
 .btn-group > .btn-olive:hover,
 .btn-group > .btn:focus,
+.btn-group > .btn-light-green:focus,
 .btn-group > .btn-olive:focus,
 .btn-group > .btn:active,
+.btn-group > .btn-light-green:active,
 .btn-group > .btn-olive:active,
 .btn-group > .btn.active,
+.btn-group > .active.btn-light-green,
 .btn-group > .active.btn-olive,
 .btn-group-vertical > .btn-check:checked + .btn,
+.btn-group-vertical > .btn-check:checked + .btn-light-green,
 .btn-group-vertical > .btn-check:checked + .btn-olive,
 .btn-group-vertical > .btn-check:focus + .btn,
+.btn-group-vertical > .btn-check:focus + .btn-light-green,
 .btn-group-vertical > .btn-check:focus + .btn-olive,
 .btn-group-vertical > .btn:hover,
+.btn-group-vertical > .btn-light-green:hover,
 .btn-group-vertical > .btn-olive:hover,
 .btn-group-vertical > .btn:focus,
+.btn-group-vertical > .btn-light-green:focus,
 .btn-group-vertical > .btn-olive:focus,
 .btn-group-vertical > .btn:active,
+.btn-group-vertical > .btn-light-green:active,
 .btn-group-vertical > .btn-olive:active,
 .btn-group-vertical > .btn.active,
+.btn-group-vertical > .active.btn-light-green,
 .btn-group-vertical > .active.btn-olive {
   z-index: 1;
 }
@@ -3680,22 +3694,26 @@ textarea.form-control-lg {
 .btn-group {
   border-radius: var(--bs-border-radius);
 }
-.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > :not(.btn-check:first-child) + .btn-olive,
+.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > :not(.btn-check:first-child) + .btn-light-green, .btn-group > :not(.btn-check:first-child) + .btn-olive,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: calc(var(--bs-border-width) * -1);
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-olive:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-olive:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
+.btn-group > .dropdown-toggle-split.btn-light-green:first-child,
 .btn-group > .dropdown-toggle-split.btn-olive:first-child,
 .btn-group > .btn-group:not(:last-child) > .btn,
+.btn-group > .btn-group:not(:last-child) > .btn-light-green,
 .btn-group > .btn-group:not(:last-child) > .btn-olive {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3), .btn-group > .btn-olive:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .btn-group > .btn-light-green:nth-child(n+3), .btn-group > .btn-olive:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
+.btn-group > :not(.btn-check) + .btn-light-green,
 .btn-group > :not(.btn-check) + .btn-olive,
 .btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn-group:not(:first-child) > .btn-light-green,
 .btn-group > .btn-group:not(:first-child) > .btn-olive {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -3712,12 +3730,12 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .btn-olive + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .btn-light-green + .dropdown-toggle-split, .btn-group-sm > .btn-olive + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .btn-olive + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .btn-light-green + .dropdown-toggle-split, .btn-group-lg > .btn-olive + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3727,22 +3745,24 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn, .btn-group-vertical > .btn-olive,
+.btn-group-vertical > .btn, .btn-group-vertical > .btn-light-green, .btn-group-vertical > .btn-olive,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .btn-olive:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .btn-light-green:not(:first-child), .btn-group-vertical > .btn-olive:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: calc(var(--bs-border-width) * -1);
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-olive:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-olive:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.btn-group-vertical > .btn-group:not(:last-child) > .btn-light-green,
 .btn-group-vertical > .btn-group:not(:last-child) > .btn-olive {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .btn-olive ~ .btn, .btn-group-vertical > .btn ~ .btn-olive, .btn-group-vertical > .btn-olive ~ .btn-olive,
+.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .btn-light-green ~ .btn, .btn-group-vertical > .btn ~ .btn-light-green, .btn-group-vertical > .btn-light-green ~ .btn-light-green, .btn-group-vertical > .btn-olive ~ .btn, .btn-group-vertical > .btn-olive ~ .btn-light-green, .btn-group-vertical > .btn ~ .btn-olive, .btn-group-vertical > .btn-light-green ~ .btn-olive, .btn-group-vertical > .btn-olive ~ .btn-olive,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn-light-green,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn-olive {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -4783,7 +4803,7 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge, .btn-olive .badge {
+.btn .badge, .btn-light-green .badge, .btn-olive .badge {
   position: relative;
   top: -1px;
 }
@@ -6723,7 +6743,7 @@ textarea.form-control-lg {
   background-color: currentcolor;
   opacity: 0.5;
 }
-.placeholder.btn::before, .placeholder.btn-olive::before {
+.placeholder.btn::before, .placeholder.btn-light-green::before, .placeholder.btn-olive::before {
   display: inline-block;
   content: "";
 }
@@ -11881,11 +11901,31 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
+.btn-light-green {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0d462c;
+  --bs-btn-border-color: #051b11;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b3c25;
+  --bs-btn-hover-border-color: #04160e;
+  --bs-btn-focus-shadow-rgb: 43, 61, 53;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a3823;
+  --bs-btn-active-border-color: #04140d;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d462c;
+  --bs-btn-disabled-border-color: #051b11;
+}
+
 .storyboard-body #storyboard-story-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 500px;
+}
+.storyboard-body #storyboard-story-form #worldCover {
+  display: none;
 }
 .storyboard-body #storyboard-story-form label {
   font-size: 2rem;

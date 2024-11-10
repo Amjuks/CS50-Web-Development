@@ -9,6 +9,10 @@
 
         max-width: 500px;
 
+        #worldCover {
+            display: none;
+        }
+
         label {
             font-size: 2rem;
         }
@@ -21,7 +25,7 @@
             border-radius: 10px;
             resize: none;
             color: white;
-            background-color: lighten($color: $color-dark-green, $amount: 10%);
+            background-color: $color-light-green;
         }
 
         .world-cover-container {

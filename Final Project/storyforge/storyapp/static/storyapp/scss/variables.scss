@@ -1,6 +1,7 @@
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
 
 $color-dark-green: #051b11;
+$color-light-green: lighten($color: $color-dark-green, $amount: 10%);
 $color-olive: #8c8237;
 $color-light-blue: #b3dcda;
 $color-coral: #af378a;
@@ -9,4 +10,9 @@ $color-purple: #6c5592;
 .btn-olive {
     @extend .btn;
     @include button-variant($color-olive, $color-dark-green);
+}
+
+.btn-light-green {
+    @extend .btn;
+    @include button-variant($color-light-green, $color-dark-green);
 }

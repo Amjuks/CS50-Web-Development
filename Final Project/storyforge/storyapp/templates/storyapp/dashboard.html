@@ -46,7 +46,12 @@
             <a class="story-info" href="{% url 'storyapp:storyboard' world_id=world.id %}">
                 <h1 class="story-name">{{ world.name }}</h1>
                 <div class="story-image-container">
-                    <h3 class="story-image-text">{{ world.name.0 }}</h3>
+                    {% if world.world_cover %}
+                        <!-- <h3 class="story-image-text">{{ world.name.0 }}</h3> -->
+                        <img class="story-image" src="{{ world.world_cover.url }}" alt="{{ world.name }} - Cover Image">
+                    {% else %}
+                        <h3 class="story-image-text">{{ world.name.0 }}</h3>
+                    {% endif %}
                 </div>
                 <div class="info-container">
                     <ul class="story-stats">

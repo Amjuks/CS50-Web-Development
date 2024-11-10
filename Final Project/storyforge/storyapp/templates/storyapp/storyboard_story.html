@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block storyboard %}
-    <form id="storyboard-story-form" action="{% url 'storyapp:storyboard' world_id=world.id %}" method="post">
+    <form id="storyboard-story-form" action="{% url 'storyapp:storyboard' world_id=world.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="worldName">Story Title</label>
         <input type="text" name="world_name" id="worldName" value="{{ world.name }}">
@@ -16,15 +16,20 @@
         <textarea name="world_description" id="worldDescription">{{ world.description }}</textarea>
 
         <label for="worldCover">Cover</label>
+        <button type="button" id="fileInputButton" class="btn-light-green">Upload Image</button>
         <input type="file" name="world_cover" id="worldCover">
         <div class="world-cover-container" id="world_cover">
-            {% if world_world_cover == False %}
-                <img src="{{ world.world_cover.url }}" alt="Story Cover">
+            {% if world.world_cover %}
+                <img src="{{ world.world_cover.url }}" alt="Story Cover" id="worldCoverPreview">
             {% else %}
-                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder">
+                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="worldCoverPreview">
             {% endif %}
         </div>
 
         <button class="btn-olive" type="submit">Update</button>
     </form>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/storyboard_story.js' %}"></script>
 {% endblock %}

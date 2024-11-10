@@ -10,7 +10,7 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    background-color: $color-purple;
+    background-color: $color-light-green;
     padding: 1rem 1rem;
     border-radius: 10px;
 
@@ -22,10 +22,6 @@
         display: flex;
         justify-content: center;
         margin-top: 1rem;
-        
-        .auth-btn {
-
-        }
     }
 
     .error-message {

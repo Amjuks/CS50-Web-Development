@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -34,8 +34,25 @@ class StoryboardView(View):
         return render(request, 'storyapp/storyboard_story.html', context)
     
     def post(self, request: HttpRequest, world_id: int) ->  HttpResponse:
-        print(request.POST)
-        
+        context = {'success': False}
+
+        try:
+            name = request.POST.get('world_name')
+            description = request.POST.get('world_description')
+            world_cover = request.FILES.get('world_cover')
+
+            world = World.objects.get(id=world_id)
+            world.name = name
+            world.description = description
+            world.world_cover = world_cover
+            world.save()
+
+        except Exception as e:
+            context['error'] = f"{type(e).__name__}: {e}"
+            print(context['error'])
+
+        return redirect(reverse('storyapp:storyboard', kwargs={'world_id': world_id}))
+
 class StoryboardCharactersView(View):
     def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
         context = {}

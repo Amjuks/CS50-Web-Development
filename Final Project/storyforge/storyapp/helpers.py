@@ -22,7 +22,8 @@ def get_user_world_stats(user):
             'name': world.name,
             'character_count': character_count,
             'scene_count': scene_count,
-            'location_count': location_count
+            'location_count': location_count,
+            'world_cover': world.world_cover
         })
 
     return {
