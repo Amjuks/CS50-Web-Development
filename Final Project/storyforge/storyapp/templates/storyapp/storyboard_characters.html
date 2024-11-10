@@ -9,8 +9,17 @@
 {% endblock %}
 
 {% block storyboard %}
-<h1>Characters board</h1>
-{% for character in world.characters.all %}
-    {{ character.name }}
-{% endfor %}
+<h1 class="storyboard-subheader">Characters</h1>
+<a class="btn-olive create-story-element" href="{% url 'storyapp:create-character' world_id=world.id %}">
+    Add Character <i class="fa-solid fa-plus"></i>
+</a>
+<div class="characters">
+    {% for character in world.characters.all %}
+    <a href="{% url 'storyapp:character' world_id=world.id name=character.name %}" class="character-card">
+        <h3 class="character-name">{{ character.name }}</h3>
+        <h6 class="character-stats">{{ character.age }} - {{ character.gender }}</h6>
+        <p class="character-backstory">{{ character.backstory }}</p>
+    </a>
+    {% endfor %}
+</div>
 {% endblock %}

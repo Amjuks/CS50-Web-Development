@@ -1,0 +1,29 @@
+@import 'variables';
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+#create-element-form {
+    background-color: $color-light-green;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    width: 500px;
+    border-radius: 10px;
+
+    label {
+        color: $color-light-blue;
+    }
+
+    input,
+    textarea {
+        margin-bottom: 1rem;
+    }
+
+    .create-btn-container {
+        display: flex;
+        justify-content: center;
+    }
+}

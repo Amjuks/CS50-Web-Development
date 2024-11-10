@@ -1,0 +1,14 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block title %}Storyboard - {{ scene.title }}{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/scene.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+<h1>{{ scene.title }}</h1>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "storyapp/base_storyboard.html" %}
+{% load static %}
+
+{% block title %}Create Scene{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'storyapp/css/create_element.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/create_scene.css' %}">
+{% endblock %}
+
+{% block storyboard %}
+<h1 class="storyboard-subheader">Set the Scene!</h1>
+
+<div class="form-container">
+    <form action="{% url 'storyapp:create-scene' world_id=world.id %}" id="create-element-form">
+        <label for="scene-title" class="form-label">Scene Title</label>
+        <input type="text" name="scene-title" id="scene-title" class="form-control" placeholder="Enter the scene's title...">
+        
+        <label for="scene-location" class="form-label">Scene Location</label>
+        <input type="text" name="scene-location" id="scene-location" class="form-control" placeholder="Specify where this scene takes place...">
+        
+        <label for="scene-description" class="form-label">Scene Description</label>
+        <textarea name="scene-description" id="scene-description" rows="3" class="form-control" placeholder="Provide a brief overview of the scene..."></textarea>
+        
+        <label for="scene-plot" class="form-label">Scene Plot</label>
+        <textarea name="scene-plot" id="scene-plot" rows="4" class="form-control" placeholder="Describe the main events of this scene..."></textarea>
+        
+        <label for="scene-objectives" class="form-label">Scene Objectives</label>
+        <textarea name="scene-objectives" id="scene-objectives" rows="4" class="form-control" placeholder="List the objectives or goals of this scene..."></textarea>
+        
+        <div class="create-btn-container">
+            <button class="btn-olive">Build the Action!</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

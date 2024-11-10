@@ -1,0 +1,31 @@
+@import 'variables';
+
+.locations {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .location-card {
+        background-color: $color-light-green;
+        width: 15rem;
+        padding: 1rem 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        text-decoration: none;
+
+        .location-name {
+            color: $color-light-blue;
+            text-align: center;
+        }
+
+        .location-description {
+            color: whitesmoke;
+        }
+
+        &:hover {
+            transition: filter .3s;
+            filter: brightness(1.3);
+        }
+    }
+}

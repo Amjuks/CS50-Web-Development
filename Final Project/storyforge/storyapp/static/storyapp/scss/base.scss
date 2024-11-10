@@ -27,3 +27,12 @@ body {
         @extend .btn-olive;
     }
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    color: $color-light-blue;
+    background-color: $color-dark-green;
+    border-top: 2px solid $color-olive;
+    padding: 1rem;
+}

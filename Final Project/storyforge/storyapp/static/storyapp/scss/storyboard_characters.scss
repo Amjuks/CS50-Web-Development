@@ -1,0 +1,32 @@
+@import 'variables';
+
+.characters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .character-card {
+        background-color: $color-light-green;
+        width: 15rem;
+        padding: 1rem 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        text-decoration: none;
+
+        .character-name,
+        .character-stats {
+            color: $color-light-blue;
+            text-align: center;
+        }
+
+        .character-backstory {
+            color: whitesmoke;
+        }
+
+        &:hover {
+            transition: filter .3s;
+            filter: brightness(1.3);
+        }
+    }
+}

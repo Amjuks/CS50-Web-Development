@@ -11918,64 +11918,35 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.body {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-}
-
-.storyboard-sidebar {
-  padding: 1rem;
-  background-color: #b3dcda;
-}
-.storyboard-sidebar .world-name {
-  font-family: garamond;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.storyboard-sidebar .world-name:hover {
-  transition: white-space 0.3s;
-  white-space: normal;
-}
-.storyboard-sidebar .sidebar-menu {
-  padding: 0;
-  margin: 0rem;
-  list-style: none;
-}
-.storyboard-sidebar .sidebar-menu .menu-item a {
-  display: grid;
-  grid-template-columns: 30px 1fr;
+.scenes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
-  align-items: center;
-  color: #051b11;
-  text-decoration: none;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
+}
+.scenes .scene-card {
+  background-color: #0d462c;
+  width: 15rem;
+  padding: 1rem 1rem;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  margin-bottom: 1rem;
+  text-decoration: none;
 }
-.storyboard-sidebar .sidebar-menu .menu-item a .fa-solid {
+.scenes .scene-card .scene-title,
+.scenes .scene-card .characters-header {
+  color: #b3dcda;
   text-align: center;
 }
-.storyboard-sidebar .sidebar-menu .menu-item a:hover {
-  background-color: #c4e4e3;
-}
-.storyboard-sidebar .sidebar-menu .menu-item.active a {
-  color: #af378a;
-  background-color: #c4e4e3;
-}
-
-.storyboard-body {
-  padding: 1rem;
-  color: #af378a;
-  background-color: #051b11;
-}
-.storyboard-body .storyboard-subheader {
-  margin-bottom: 1rem;
+.scenes .scene-card .scene-description {
+  color: whitesmoke;
   text-align: center;
 }
-.storyboard-body .create-story-element {
-  margin-bottom: 1rem;
+.scenes .scene-card .character-name {
+  color: whitesmoke;
+}
+.scenes .scene-card:hover {
+  transition: filter 0.3s;
+  filter: brightness(1.3);
 }
 
-/*# sourceMappingURL=base_storyboard.css.map */
+/*# sourceMappingURL=storyboard_scenes.css.map */

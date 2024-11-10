@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import View
 
 from .helpers import get_user_world_stats
-from .models import World, User
+from .models import World, User, Character, Location, Scene
 
 class IndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
@@ -83,6 +83,45 @@ class StoryboardScenesView(View):
 
         return render(request, 'storyapp/storyboard_scenes.html', context)
     
+class CharacterView(View):
+    def get(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['character'] = Character.objects.get(world=context['world'], name=name)
+        return render(request, 'storyapp/character.html', context=context)
+    
+class LocationView(View):
+    def get(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['location'] = Location.objects.get(world=context['world'], name=name)
+        return render(request, 'storyapp/location.html', context=context)
+    
+class SceneView(View):
+    def get(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['scene'] = Scene.objects.get(world=context['world'], title=name)
+        return render(request, 'storyapp/scene.html', context=context)
+    
+class CreateCharacterView(View):
+    def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        return render(request, 'storyapp/create_character.html', context=context)
+    
+class CreateLocationView(View):
+    def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        return render(request, 'storyapp/create_location.html', context=context)
+    
+class CreateSceneView(View):
+    def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        return render(request, 'storyapp/create_scene.html', context=context)
+
 class LoginView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         return render(request, 'storyapp/login.html')
@@ -92,7 +131,6 @@ class LoginView(View):
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
-        # Check if authentication successful
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("storyapp:dashboard"))
@@ -108,7 +146,6 @@ class RegisterView(View):
     def post(self, request: HttpRequest) -> HttpResponse:
         username = request.POST["username"]
 
-        # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
@@ -116,7 +153,6 @@ class RegisterView(View):
                 "message": "Passwords must match."
             })
 
-        # Attempt to create new user
         try:
             user = User.objects.create_user(username=username, password=password)
             user.save()

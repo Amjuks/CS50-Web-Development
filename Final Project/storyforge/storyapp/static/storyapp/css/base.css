@@ -11957,5 +11957,13 @@ body {
 .base-navbar a.navbar-brand, .base-navbar a:hover {
   color: #c2b44c;
 }
+footer {
+  display: flex;
+  justify-content: center;
+  color: #b3dcda;
+  background-color: #051b11;
+  border-top: 2px solid #8c8237;
+  padding: 1rem;
+}
 
 /*# sourceMappingURL=base.css.map */
