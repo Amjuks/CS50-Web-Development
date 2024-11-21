@@ -17,7 +17,9 @@
     {% for character in world.characters.all %}
     <a href="{% url 'storyapp:character' world_id=world.id name=character.name %}" class="character-card">
         <h3 class="character-name">{{ character.name }}</h3>
+        {% if character.age or character.gender %}
         <h6 class="character-stats">{{ character.age }} - {{ character.gender }}</h6>
+        {% endif %}
         <p class="character-backstory">{{ character.backstory }}</p>
     </a>
     {% endfor %}

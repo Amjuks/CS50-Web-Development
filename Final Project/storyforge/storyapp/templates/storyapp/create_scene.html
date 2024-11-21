@@ -12,13 +12,32 @@
 {% block storyboard %}
 <h1 class="storyboard-subheader">Set the Scene!</h1>
 
+{% if error %}
+<div class="error-msg">
+    <small class="error-text">{{ error }}</small>
+</div>
+{% endif %}
+
 <div class="form-container">
-    <form action="{% url 'storyapp:create-scene' world_id=world.id %}" id="create-element-form">
+    <form id="create-element-form" action="{% url 'storyapp:create-scene' world_id=world.id %}" method="post">
+        {% csrf_token %}
         <label for="scene-title" class="form-label">Scene Title</label>
         <input type="text" name="scene-title" id="scene-title" class="form-control" placeholder="Enter the scene's title...">
         
         <label for="scene-location" class="form-label">Scene Location</label>
-        <input type="text" name="scene-location" id="scene-location" class="form-control" placeholder="Specify where this scene takes place...">
+        <select name="scene-location" class="form-select" id="scene-location">
+            <option selected disabled>Specify where this scene takes place...</option>
+            {% for location in world.locations.all %}
+            <option value="{{ location.id }}">{{ location.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="scene-characters" class="form-label">Scene Characters</label>
+        <select name="scene-characters" class="form-select" id="scene-characters" multiple>
+            {% for character in world.characters.all %}
+            <option value="{{ character.id }}">{{ character.name }}</option>
+            {% endfor %}
+        </select>
         
         <label for="scene-description" class="form-label">Scene Description</label>
         <textarea name="scene-description" id="scene-description" rows="3" class="form-control" placeholder="Provide a brief overview of the scene..."></textarea>

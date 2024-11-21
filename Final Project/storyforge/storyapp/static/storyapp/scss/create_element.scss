@@ -18,12 +18,36 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
         margin-bottom: 1rem;
     }
 
     .create-btn-container {
         display: flex;
         justify-content: center;
+    }
+
+    .image-file-input {
+        display: none;
+    }
+
+    .image-input-btn {
+        margin: 1rem 0;
+    }
+
+    .image-preview-container {
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 1rem;
+
+        .image-preview {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border: 3px solid $color-olive;
+            border-radius: 20px;
+        }
     }
 }

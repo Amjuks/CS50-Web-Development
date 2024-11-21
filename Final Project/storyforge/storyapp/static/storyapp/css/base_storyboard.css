@@ -11978,4 +11978,12 @@ textarea.form-control-lg {
   margin-bottom: 1rem;
 }
 
+.error-msg {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.error-msg .error-text {
+  color: red;
+}
+
 /*# sourceMappingURL=base_storyboard.css.map */

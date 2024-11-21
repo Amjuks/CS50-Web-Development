@@ -12,17 +12,31 @@
 {% block storyboard %}
 <h1 class="storyboard-subheader">Craft Your Character's Story!</h1>
 
+{% if error %}
+<div class="error-msg">
+    <small class="error-text">{{ error }}</small>
+</div>
+{% endif %}
+
 <div class="form-container">
-    <form action="{% url 'storyapp:create-character' world_id=world.id %}" id="create-element-form">
+    <form id="create-element-form" action="{% url 'storyapp:create-character' world_id=world.id %}" method="post">
+        {% csrf_token %}
         <label for="name" class="form-label">Character Name</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="Enter a unique name...">
-        
-        <label for="age" class="form-label">Character Age</label>
-        <input type="number" name="age" id="age" class="form-control" placeholder="e.g., 25">
-        
+        <input type="text" name="name" id="name" class="form-control" placeholder="Enter a unique name..." required>
+    
         <label for="gender" class="form-label">Character Gender</label>
         <input type="text" name="gender" id="gender" class="form-control" placeholder="Male, Female, Other...">
-        
+    
+        <label for="age" class="form-label">Character Age</label>
+        <input type="number" name="age" id="age" class="form-control" placeholder="e.g., 25">
+    
+        <label for="charImage">Character Image</label>
+        <button type="button" id="fileInputButton" class="btn-olive image-input-btn">Upload Image</button>
+        <input type="file" name="char_image" id="charImage" class="image-file-input">
+        <div class="image-preview-container" id="char_image">
+            <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="charPreview" class="image-preview">
+        </div>
+
         <label for="backstory" class="form-label">Character Backstory</label>
         <textarea name="backstory" id="backstory" rows="5" class="form-control" placeholder="Describe the character's origin, personality, and quirks..."></textarea>
     
@@ -31,4 +45,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/create_character.js' %}"></script>
 {% endblock %}

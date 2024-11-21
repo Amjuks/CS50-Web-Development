@@ -110,17 +110,106 @@ class CreateCharacterView(View):
         context['world'] = World.objects.get(id=world_id)
         return render(request, 'storyapp/create_character.html', context=context)
     
+    def post(self, request: HttpRequest, world_id: int) -> HttpResponse:
+
+        context = {'world_id': world_id}
+
+        try:
+            name = request.POST.get('name')
+            age = request.POST.get('age', None) or None
+            gender = request.POST.get('gender', None) or None
+            backstory = request.POST.get('backstory', None) or None
+
+            Character.objects.create(
+                user=request.user,
+                world_id=world_id,
+                name=name,
+                age=age,
+                gender=gender,
+                backstory=backstory
+            ).save()
+
+            return redirect(reverse('storyapp:storyboard-characters', args=[world_id]))
+        
+        except Exception as e:
+            print(f"{type(e).__name__}: {e}")
+            context['error'] = str(e)
+            context['world'] = World.objects.get(id=world_id)
+            return render(request, 'storyapp/create_character.html', context=context)
+    
 class CreateLocationView(View):
     def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
         context = {}
         context['world'] = World.objects.get(id=world_id)
         return render(request, 'storyapp/create_location.html', context=context)
     
+    def post(self, request: HttpRequest, world_id: int) -> HttpResponse:
+
+        context = {'world_id': world_id}
+
+        try:
+            name = request.POST.get('location-name')
+            description = request.POST.get('location-description', None) or None
+            history = request.POST.get('location-history', None) or None
+            significance = request.POST.get('location-significance', None) or None
+
+            Location.objects.create(
+                user=request.user,
+                world_id=world_id,
+                name=name,
+                description=description,
+                history=history,
+                significance=significance
+            ).save()
+
+            return redirect(reverse('storyapp:storyboard-locations', args=[world_id]))
+        
+        except Exception as e:
+            print(f"{type(e).__name__}: {e}")
+            context['error'] = str(e)
+            context['world'] = World.objects.get(id=world_id)
+            return render(request, 'storyapp/create_location.html', context=context)
+        
 class CreateSceneView(View):
     def get(self, request: HttpRequest, world_id: int) -> HttpResponse:
         context = {}
         context['world'] = World.objects.get(id=world_id)
         return render(request, 'storyapp/create_scene.html', context=context)
+
+    def post(self, request: HttpRequest, world_id: int) -> HttpResponse:
+
+        context = {'world_id': world_id}
+
+        try:
+            title = request.POST.get('scene-title')
+            location = request.POST.get('scene-location', None)
+            characters = request.POST.getlist('scene-characters', None)
+            description = request.POST.get('scene-description', None) or None
+            plot = request.POST.get('scene-plot', None) or None
+            objectives = request.POST.get('scene-objectives', None) or None
+
+            location = Location.objects.get(world_id=world_id, id=location)
+            characters = Character.objects.filter(world_id=world_id, id__in=characters)
+
+            scene = Scene.objects.create(
+                world_id=world_id,
+                title=title,
+                location=location,
+                description=description,
+                plot=plot,
+                objectives=objectives,
+            )
+            scene.characters.set(characters)
+            scene.save()
+
+
+            return redirect(reverse('storyapp:storyboard-scenes', args=[world_id]))
+        
+        except Exception as e:
+            print(f"{type(e).__name__}: {e}")
+            context['error'] = str(e)
+            context['world'] = World.objects.get(id=world_id)
+            return render(request, 'storyapp/create_scene.html', context=context)
 
 class LoginView(View):
     def get(self, request: HttpRequest) -> HttpResponse:

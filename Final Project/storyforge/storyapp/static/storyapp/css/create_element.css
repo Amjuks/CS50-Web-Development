@@ -11935,12 +11935,32 @@ textarea.form-control-lg {
   color: #b3dcda;
 }
 #create-element-form input,
-#create-element-form textarea {
+#create-element-form textarea,
+#create-element-form select {
   margin-bottom: 1rem;
 }
 #create-element-form .create-btn-container {
   display: flex;
   justify-content: center;
+}
+#create-element-form .image-file-input {
+  display: none;
+}
+#create-element-form .image-input-btn {
+  margin: 1rem 0;
+}
+#create-element-form .image-preview-container {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#create-element-form .image-preview-container .image-preview {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 3px solid #8c8237;
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=create_element.css.map */

@@ -12,14 +12,28 @@
 {% block storyboard %}
 <h1 class="storyboard-subheader">Map Out a New World!</h1>
 
+{% if error %}
+<div class="error-msg">
+    <small class="error-text">{{ error }}</small>
+</div>
+{% endif %}
+
 <div class="form-container">
-    <form action="{% url 'storyapp:create-location' world_id=world.id %}" id="create-element-form">
+    <form id="create-element-form" action="{% url 'storyapp:create-location' world_id=world.id %}" method="post">
+        {% csrf_token %}
         <label for="location-name" class="form-label">Location Name</label>
         <input type="text" name="location-name" id="location-name" class="form-control" placeholder="Enter the location's name...">
         
         <label for="location-description" class="form-label">Location Description</label>
         <textarea name="location-description" id="location-description" rows="3" class="form-control" placeholder="Provide a brief description of the location..."></textarea>
         
+        <label for="locImage">Location Image</label>
+        <button type="button" id="fileInputButton" class="btn-olive image-input-btn">Upload Image</button>
+        <input type="file" name="loc_image" id="locImage" class="image-file-input">
+        <div class="image-preview-container" id="loc_image">
+            <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="locPreview" class="image-preview">
+        </div>
+
         <label for="location-history" class="form-label">Location History</label>
         <textarea name="location-history" id="location-history" rows="4" class="form-control" placeholder="Describe the historical background..."></textarea>
         
@@ -31,4 +45,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/create_location.js' %}"></script>
 {% endblock %}
