@@ -11955,35 +11955,128 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.auth-body {
-  padding-top: 10%;
-  display: flex;
-  justify-content: center;
-  color: #b3dcda;
-}
-
-.auth-form {
+.element-view-form {
   display: flex;
   flex-direction: column;
-  background-color: #0d462c;
-  padding: 1rem 1rem;
+}
+.element-view-form .input-group-normal {
+  display: flex;
+  flex-direction: column;
+}
+.element-view-form .input-group-avatar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.element-view-form .input-group-avatar .image-preview:hover {
+  filter: brightness(80%);
+  transition: all 0.3s;
+}
+.element-view-form .input-group-row {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 1rem;
+}
+.element-view-form .input-group-trait {
+  display: flex;
+  gap: 1rem;
+}
+.element-view-form .input-group-trait input {
+  color: #6c5592;
+  max-width: 150px;
+}
+.element-view-form .input-group-normal,
+.element-view-form .input-group-row,
+.element-view-form .input-group-trait,
+.element-view-form .input-group-avatar {
+  margin-bottom: 1rem;
+}
+.element-view-form .input-group-normal label,
+.element-view-form .input-group-row label,
+.element-view-form .input-group-trait label,
+.element-view-form .input-group-avatar label {
+  font-size: 2rem;
+  color: #b3dcda;
+}
+.element-view-form .input-group-normal input,
+.element-view-form .input-group-normal textarea,
+.element-view-form .input-group-row input,
+.element-view-form .input-group-row textarea,
+.element-view-form .input-group-trait input,
+.element-view-form .input-group-trait textarea,
+.element-view-form .input-group-avatar input,
+.element-view-form .input-group-avatar textarea {
+  width: 70%;
+  padding: 0.5rem 1rem;
+  color: white;
   border-radius: 10px;
+  background-color: #0d462c;
+  resize: none;
+  border: none;
+  outline: none;
 }
-.auth-form input {
-  margin-bottom: 0.5rem;
+.element-view-form .traits {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 0.5rem;
 }
-.auth-form .submit-container {
+.element-view-form .traits .trait {
+  display: grid;
+  grid-template-columns: 200px 500px 50px;
+}
+.element-view-form .traits .trait:hover button:has(.delete-trait) {
+  opacity: 1;
+  transition: all 0.3s;
+}
+.element-view-form .traits .trait button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: red;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: 1rem;
+}
+.element-view-form .traits .trait button:has(.delete-trait) {
+  opacity: 0;
+}
+.element-view-form .traits .trait button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.element-view-form .traits .trait label {
+  color: #6c5592;
+  font-size: 1.5rem;
+}
+.element-view-form .traits .trait input {
+  width: 100%;
+}
+.element-view-form .create-btn-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
 }
-.auth-form .error-message {
-  color: whitesmoke;
-  background-color: red;
-  padding: 0.3rem 0.5rem;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 0.3rem;
+.element-view-form .image-file-input {
+  display: none;
+}
+.element-view-form .image-input-btn {
+  margin: 1rem 0;
+}
+.element-view-form .image-preview-container {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 10px solid #6c5592;
+  padding: 0;
+}
+.element-view-form .image-preview-container .image-preview {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-/*# sourceMappingURL=auth.css.map */
+/*# sourceMappingURL=element_view.css.map */

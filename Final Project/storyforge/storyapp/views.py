@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
@@ -90,6 +92,28 @@ class CharacterView(View):
         context['character'] = Character.objects.get(world=context['world'], name=name)
         return render(request, 'storyapp/character.html', context=context)
     
+    def post(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+
+        traits = json.loads(request.POST.get("all-traits"))['traits']
+        age = request.POST.get('age')
+        gender = request.POST.get('gender')
+        backstory = request.POST.get('backstory')
+        image = request.FILES.get('char-image')
+
+        print(traits, age, gender, backstory, image, sep="\n")
+
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['character'] = Character.objects.get(world=context['world'], name=name)
+        context['character'].age = age
+        context['character'].gender = gender
+        context['character'].backstory = backstory
+        context['character'].traits = traits
+        context['character'].image = image
+        context['character'].save()
+    
+        return redirect(reverse('storyapp:character', args=[world_id, name]))
+
 class LocationView(View):
     def get(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
         context = {}

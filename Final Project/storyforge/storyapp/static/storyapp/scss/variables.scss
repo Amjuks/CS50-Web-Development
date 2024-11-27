@@ -16,3 +16,8 @@ $color-purple: #6c5592;
     @extend .btn;
     @include button-variant($color-light-green, $color-dark-green);
 }
+
+.btn-purple {
+    @extend .btn;
+    @include button-variant($color-purple, $color-dark-green);
+}

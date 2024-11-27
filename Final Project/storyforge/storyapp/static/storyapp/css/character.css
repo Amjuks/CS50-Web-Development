@@ -11955,35 +11955,12 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.auth-body {
-  padding-top: 10%;
-  display: flex;
-  justify-content: center;
-  color: #b3dcda;
+.character-name {
+  color: #6c5592;
 }
 
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  background-color: #0d462c;
-  padding: 1rem 1rem;
-  border-radius: 10px;
-}
-.auth-form input {
-  margin-bottom: 0.5rem;
-}
-.auth-form .submit-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-.auth-form .error-message {
-  color: whitesmoke;
-  background-color: red;
-  padding: 0.3rem 0.5rem;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 0.3rem;
+.character-info {
+  color: #8c8237;
 }
 
-/*# sourceMappingURL=auth.css.map */
+/*# sourceMappingURL=character.css.map */

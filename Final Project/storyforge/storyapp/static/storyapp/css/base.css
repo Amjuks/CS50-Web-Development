@@ -2435,7 +2435,7 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check[disabled] + .btn-light-green, .btn-check[disabled] + .btn-olive, .base-navbar .btn-check[disabled] + button, .btn-check:disabled + .btn, .btn-check:disabled + .btn-light-green, .btn-check:disabled + .btn-olive, .base-navbar .btn-check:disabled + button {
+.btn-check[disabled] + .btn, .btn-check[disabled] + .btn-purple, .btn-check[disabled] + .btn-light-green, .btn-check[disabled] + .btn-olive, .base-navbar .btn-check[disabled] + button, .btn-check:disabled + .btn, .btn-check:disabled + .btn-purple, .btn-check:disabled + .btn-light-green, .btn-check:disabled + .btn-olive, .base-navbar .btn-check:disabled + button {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2636,11 +2636,11 @@ textarea.form-control-lg {
 .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn, .input-group .btn-light-green, .input-group .btn-olive, .input-group .base-navbar button, .base-navbar .input-group button {
+.input-group .btn, .input-group .btn-purple, .input-group .btn-light-green, .input-group .btn-olive, .input-group .base-navbar button, .base-navbar .input-group button {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus, .input-group .btn-light-green:focus, .input-group .btn-olive:focus, .input-group .base-navbar button:focus, .base-navbar .input-group button:focus {
+.input-group .btn:focus, .input-group .btn-purple:focus, .input-group .btn-light-green:focus, .input-group .btn-olive:focus, .input-group .base-navbar button:focus, .base-navbar .input-group button:focus {
   z-index: 5;
 }
 
@@ -2663,6 +2663,7 @@ textarea.form-control-lg {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn,
+.input-group-lg > .btn-purple,
 .input-group-lg > .btn-light-green,
 .input-group-lg > .btn-olive,
 .base-navbar .input-group-lg > button {
@@ -2675,6 +2676,7 @@ textarea.form-control-lg {
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn,
+.input-group-sm > .btn-purple,
 .input-group-sm > .btn-light-green,
 .input-group-sm > .btn-olive,
 .base-navbar .input-group-sm > button {
@@ -2893,7 +2895,7 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
-.btn, .btn-light-green, .btn-olive, .base-navbar button {
+.btn, .btn-purple, .btn-light-green, .btn-olive, .base-navbar button {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -2927,44 +2929,44 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn, .btn-light-green, .btn-olive, .base-navbar button {
+  .btn, .btn-purple, .btn-light-green, .btn-olive, .base-navbar button {
     transition: none;
   }
 }
-.btn:hover, .btn-light-green:hover, .btn-olive:hover, .base-navbar button:hover {
+.btn:hover, .btn-purple:hover, .btn-light-green:hover, .btn-olive:hover, .base-navbar button:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.btn-check + .btn:hover, .btn-check + .btn-light-green:hover, .btn-check + .btn-olive:hover, .base-navbar .btn-check + button:hover {
+.btn-check + .btn:hover, .btn-check + .btn-purple:hover, .btn-check + .btn-light-green:hover, .btn-check + .btn-olive:hover, .base-navbar .btn-check + button:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
-.btn:focus-visible, .btn-light-green:focus-visible, .btn-olive:focus-visible, .base-navbar button:focus-visible {
+.btn:focus-visible, .btn-purple:focus-visible, .btn-light-green:focus-visible, .btn-olive:focus-visible, .base-navbar button:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:focus-visible + .btn, .btn-check:focus-visible + .btn-light-green, .btn-check:focus-visible + .btn-olive, .base-navbar .btn-check:focus-visible + button {
+.btn-check:focus-visible + .btn, .btn-check:focus-visible + .btn-purple, .btn-check:focus-visible + .btn-light-green, .btn-check:focus-visible + .btn-olive, .base-navbar .btn-check:focus-visible + button {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, .btn-check:checked + .btn-light-green, .btn-check:checked + .btn-olive, .base-navbar .btn-check:checked + button, :not(.btn-check) + .btn:active, :not(.btn-check) + .btn-light-green:active, :not(.btn-check) + .btn-olive:active, .base-navbar :not(.btn-check) + button:active, .btn:first-child:active, .btn-light-green:first-child:active, .btn-olive:first-child:active, .base-navbar button:first-child:active, .btn.active, .active.btn-light-green, .active.btn-olive, .base-navbar button.active, .btn.show, .show.btn-light-green, .show.btn-olive, .base-navbar button.show {
+.btn-check:checked + .btn, .btn-check:checked + .btn-purple, .btn-check:checked + .btn-light-green, .btn-check:checked + .btn-olive, .base-navbar .btn-check:checked + button, :not(.btn-check) + .btn:active, :not(.btn-check) + .btn-purple:active, :not(.btn-check) + .btn-light-green:active, :not(.btn-check) + .btn-olive:active, .base-navbar :not(.btn-check) + button:active, .btn:first-child:active, .btn-purple:first-child:active, .btn-light-green:first-child:active, .btn-olive:first-child:active, .base-navbar button:first-child:active, .btn.active, .active.btn-purple, .active.btn-light-green, .active.btn-olive, .base-navbar button.active, .btn.show, .show.btn-purple, .show.btn-light-green, .show.btn-olive, .base-navbar button.show {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.btn-check:checked + .btn:focus-visible, .btn-check:checked + .btn-light-green:focus-visible, .btn-check:checked + .btn-olive:focus-visible, .base-navbar .btn-check:checked + button:focus-visible, :not(.btn-check) + .btn:active:focus-visible, :not(.btn-check) + .btn-light-green:active:focus-visible, :not(.btn-check) + .btn-olive:active:focus-visible, .base-navbar :not(.btn-check) + button:active:focus-visible, .btn:first-child:active:focus-visible, .btn-light-green:first-child:active:focus-visible, .btn-olive:first-child:active:focus-visible, .base-navbar button:first-child:active:focus-visible, .btn.active:focus-visible, .active.btn-light-green:focus-visible, .active.btn-olive:focus-visible, .base-navbar button.active:focus-visible, .btn.show:focus-visible, .show.btn-light-green:focus-visible, .show.btn-olive:focus-visible, .base-navbar button.show:focus-visible {
+.btn-check:checked + .btn:focus-visible, .btn-check:checked + .btn-purple:focus-visible, .btn-check:checked + .btn-light-green:focus-visible, .btn-check:checked + .btn-olive:focus-visible, .base-navbar .btn-check:checked + button:focus-visible, :not(.btn-check) + .btn:active:focus-visible, :not(.btn-check) + .btn-purple:active:focus-visible, :not(.btn-check) + .btn-light-green:active:focus-visible, :not(.btn-check) + .btn-olive:active:focus-visible, .base-navbar :not(.btn-check) + button:active:focus-visible, .btn:first-child:active:focus-visible, .btn-purple:first-child:active:focus-visible, .btn-light-green:first-child:active:focus-visible, .btn-olive:first-child:active:focus-visible, .base-navbar button:first-child:active:focus-visible, .btn.active:focus-visible, .active.btn-purple:focus-visible, .active.btn-light-green:focus-visible, .active.btn-olive:focus-visible, .base-navbar button.active:focus-visible, .btn.show:focus-visible, .show.btn-purple:focus-visible, .show.btn-light-green:focus-visible, .show.btn-olive:focus-visible, .base-navbar button.show:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked:focus-visible + .btn, .btn-check:checked:focus-visible + .btn-light-green, .btn-check:checked:focus-visible + .btn-olive, .base-navbar .btn-check:checked:focus-visible + button {
+.btn-check:checked:focus-visible + .btn, .btn-check:checked:focus-visible + .btn-purple, .btn-check:checked:focus-visible + .btn-light-green, .btn-check:checked:focus-visible + .btn-olive, .base-navbar .btn-check:checked:focus-visible + button {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn:disabled, .btn-light-green:disabled, .btn-olive:disabled, .base-navbar button:disabled, .btn.disabled, .disabled.btn-light-green, .disabled.btn-olive, .base-navbar button.disabled, fieldset:disabled .btn, fieldset:disabled .btn-light-green, fieldset:disabled .btn-olive, fieldset:disabled .base-navbar button, .base-navbar fieldset:disabled button {
+.btn:disabled, .btn-purple:disabled, .btn-light-green:disabled, .btn-olive:disabled, .base-navbar button:disabled, .btn.disabled, .disabled.btn-purple, .disabled.btn-light-green, .disabled.btn-olive, .base-navbar button.disabled, fieldset:disabled .btn, fieldset:disabled .btn-purple, fieldset:disabled .btn-light-green, fieldset:disabled .btn-olive, fieldset:disabled .base-navbar button, .base-navbar fieldset:disabled button {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -3266,14 +3268,14 @@ textarea.form-control-lg {
   color: var(--bs-btn-hover-color);
 }
 
-.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .btn-light-green, .btn-group-lg > .btn-olive, .base-navbar .btn-group-lg > button {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .btn-purple, .btn-group-lg > .btn-light-green, .btn-group-lg > .btn-olive, .base-navbar .btn-group-lg > button {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .btn-light-green, .btn-group-sm > .btn-olive, .base-navbar .btn-group-sm > button {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .btn-purple, .btn-group-sm > .btn-light-green, .btn-group-sm > .btn-olive, .base-navbar .btn-group-sm > button {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -3640,56 +3642,68 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn, .btn-group > .btn-light-green, .btn-group > .btn-olive, .base-navbar .btn-group > button,
+.btn-group > .btn, .btn-group > .btn-purple, .btn-group > .btn-light-green, .btn-group > .btn-olive, .base-navbar .btn-group > button,
 .btn-group-vertical > .btn,
+.btn-group-vertical > .btn-purple,
 .btn-group-vertical > .btn-light-green,
 .btn-group-vertical > .btn-olive,
 .base-navbar .btn-group-vertical > button {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .btn-light-green, .btn-group > .btn-check:checked + .btn-olive, .base-navbar .btn-group > .btn-check:checked + button,
+.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .btn-purple, .btn-group > .btn-check:checked + .btn-light-green, .btn-group > .btn-check:checked + .btn-olive, .base-navbar .btn-group > .btn-check:checked + button,
 .btn-group > .btn-check:focus + .btn,
+.btn-group > .btn-check:focus + .btn-purple,
 .btn-group > .btn-check:focus + .btn-light-green,
 .btn-group > .btn-check:focus + .btn-olive,
 .base-navbar .btn-group > .btn-check:focus + button,
 .btn-group > .btn:hover,
+.btn-group > .btn-purple:hover,
 .btn-group > .btn-light-green:hover,
 .btn-group > .btn-olive:hover,
 .base-navbar .btn-group > button:hover,
 .btn-group > .btn:focus,
+.btn-group > .btn-purple:focus,
 .btn-group > .btn-light-green:focus,
 .btn-group > .btn-olive:focus,
 .base-navbar .btn-group > button:focus,
 .btn-group > .btn:active,
+.btn-group > .btn-purple:active,
 .btn-group > .btn-light-green:active,
 .btn-group > .btn-olive:active,
 .base-navbar .btn-group > button:active,
 .btn-group > .btn.active,
+.btn-group > .active.btn-purple,
 .btn-group > .active.btn-light-green,
 .btn-group > .active.btn-olive,
 .base-navbar .btn-group > button.active,
 .btn-group-vertical > .btn-check:checked + .btn,
+.btn-group-vertical > .btn-check:checked + .btn-purple,
 .btn-group-vertical > .btn-check:checked + .btn-light-green,
 .btn-group-vertical > .btn-check:checked + .btn-olive,
 .base-navbar .btn-group-vertical > .btn-check:checked + button,
 .btn-group-vertical > .btn-check:focus + .btn,
+.btn-group-vertical > .btn-check:focus + .btn-purple,
 .btn-group-vertical > .btn-check:focus + .btn-light-green,
 .btn-group-vertical > .btn-check:focus + .btn-olive,
 .base-navbar .btn-group-vertical > .btn-check:focus + button,
 .btn-group-vertical > .btn:hover,
+.btn-group-vertical > .btn-purple:hover,
 .btn-group-vertical > .btn-light-green:hover,
 .btn-group-vertical > .btn-olive:hover,
 .base-navbar .btn-group-vertical > button:hover,
 .btn-group-vertical > .btn:focus,
+.btn-group-vertical > .btn-purple:focus,
 .btn-group-vertical > .btn-light-green:focus,
 .btn-group-vertical > .btn-olive:focus,
 .base-navbar .btn-group-vertical > button:focus,
 .btn-group-vertical > .btn:active,
+.btn-group-vertical > .btn-purple:active,
 .btn-group-vertical > .btn-light-green:active,
 .btn-group-vertical > .btn-olive:active,
 .base-navbar .btn-group-vertical > button:active,
 .btn-group-vertical > .btn.active,
+.btn-group-vertical > .active.btn-purple,
 .btn-group-vertical > .active.btn-light-green,
 .btn-group-vertical > .active.btn-olive,
 .base-navbar .btn-group-vertical > button.active {
@@ -3708,28 +3722,32 @@ textarea.form-control-lg {
 .btn-group {
   border-radius: var(--bs-border-radius);
 }
-.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > :not(.btn-check:first-child) + .btn-light-green, .btn-group > :not(.btn-check:first-child) + .btn-olive, .base-navbar .btn-group > :not(.btn-check:first-child) + button,
+.btn-group > :not(.btn-check:first-child) + .btn, .btn-group > :not(.btn-check:first-child) + .btn-purple, .btn-group > :not(.btn-check:first-child) + .btn-light-green, .btn-group > :not(.btn-check:first-child) + .btn-olive, .base-navbar .btn-group > :not(.btn-check:first-child) + button,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: calc(var(--bs-border-width) * -1);
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-olive:not(:last-child):not(.dropdown-toggle), .base-navbar .btn-group > button:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-purple:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-olive:not(:last-child):not(.dropdown-toggle), .base-navbar .btn-group > button:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
+.btn-group > .dropdown-toggle-split.btn-purple:first-child,
 .btn-group > .dropdown-toggle-split.btn-light-green:first-child,
 .btn-group > .dropdown-toggle-split.btn-olive:first-child,
 .base-navbar .btn-group > button.dropdown-toggle-split:first-child,
 .btn-group > .btn-group:not(:last-child) > .btn,
+.btn-group > .btn-group:not(:last-child) > .btn-purple,
 .btn-group > .btn-group:not(:last-child) > .btn-light-green,
 .btn-group > .btn-group:not(:last-child) > .btn-olive,
 .base-navbar .btn-group > .btn-group:not(:last-child) > button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3), .btn-group > .btn-light-green:nth-child(n+3), .btn-group > .btn-olive:nth-child(n+3), .base-navbar .btn-group > button:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .btn-group > .btn-purple:nth-child(n+3), .btn-group > .btn-light-green:nth-child(n+3), .btn-group > .btn-olive:nth-child(n+3), .base-navbar .btn-group > button:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
+.btn-group > :not(.btn-check) + .btn-purple,
 .btn-group > :not(.btn-check) + .btn-light-green,
 .btn-group > :not(.btn-check) + .btn-olive,
 .base-navbar .btn-group > :not(.btn-check) + button,
 .btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn-group:not(:first-child) > .btn-purple,
 .btn-group > .btn-group:not(:first-child) > .btn-light-green,
 .btn-group > .btn-group:not(:first-child) > .btn-olive,
 .base-navbar .btn-group > .btn-group:not(:first-child) > button {
@@ -3748,12 +3766,12 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .btn-light-green + .dropdown-toggle-split, .btn-group-sm > .btn-olive + .dropdown-toggle-split, .base-navbar .btn-group-sm > button + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .btn-purple + .dropdown-toggle-split, .btn-group-sm > .btn-light-green + .dropdown-toggle-split, .btn-group-sm > .btn-olive + .dropdown-toggle-split, .base-navbar .btn-group-sm > button + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .btn-light-green + .dropdown-toggle-split, .btn-group-lg > .btn-olive + .dropdown-toggle-split, .base-navbar .btn-group-lg > button + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .btn-purple + .dropdown-toggle-split, .btn-group-lg > .btn-light-green + .dropdown-toggle-split, .btn-group-lg > .btn-olive + .dropdown-toggle-split, .base-navbar .btn-group-lg > button + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3763,24 +3781,26 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn, .btn-group-vertical > .btn-light-green, .btn-group-vertical > .btn-olive, .base-navbar .btn-group-vertical > button,
+.btn-group-vertical > .btn, .btn-group-vertical > .btn-purple, .btn-group-vertical > .btn-light-green, .btn-group-vertical > .btn-olive, .base-navbar .btn-group-vertical > button,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .btn-light-green:not(:first-child), .btn-group-vertical > .btn-olive:not(:first-child), .base-navbar .btn-group-vertical > button:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .btn-purple:not(:first-child), .btn-group-vertical > .btn-light-green:not(:first-child), .btn-group-vertical > .btn-olive:not(:first-child), .base-navbar .btn-group-vertical > button:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: calc(var(--bs-border-width) * -1);
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-olive:not(:last-child):not(.dropdown-toggle), .base-navbar .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-purple:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-light-green:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .btn-olive:not(:last-child):not(.dropdown-toggle), .base-navbar .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.btn-group-vertical > .btn-group:not(:last-child) > .btn-purple,
 .btn-group-vertical > .btn-group:not(:last-child) > .btn-light-green,
 .btn-group-vertical > .btn-group:not(:last-child) > .btn-olive,
 .base-navbar .btn-group-vertical > .btn-group:not(:last-child) > button {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .btn-light-green ~ .btn, .btn-group-vertical > .btn ~ .btn-light-green, .btn-group-vertical > .btn-light-green ~ .btn-light-green, .btn-group-vertical > .btn-olive ~ .btn, .base-navbar .btn-group-vertical > button ~ .btn, .btn-group-vertical > .btn-olive ~ .btn-light-green, .base-navbar .btn-group-vertical > button ~ .btn-light-green, .btn-group-vertical > .btn ~ .btn-olive, .base-navbar .btn-group-vertical > .btn ~ button, .btn-group-vertical > .btn-light-green ~ .btn-olive, .base-navbar .btn-group-vertical > .btn-light-green ~ button, .btn-group-vertical > .btn-olive ~ .btn-olive, .base-navbar .btn-group-vertical > button ~ .btn-olive, .base-navbar .btn-group-vertical > .btn-olive ~ button, .base-navbar .btn-group-vertical > button ~ button,
+.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .btn-purple ~ .btn, .btn-group-vertical > .btn ~ .btn-purple, .btn-group-vertical > .btn-purple ~ .btn-purple, .btn-group-vertical > .btn-light-green ~ .btn, .btn-group-vertical > .btn-light-green ~ .btn-purple, .btn-group-vertical > .btn ~ .btn-light-green, .btn-group-vertical > .btn-purple ~ .btn-light-green, .btn-group-vertical > .btn-light-green ~ .btn-light-green, .btn-group-vertical > .btn-olive ~ .btn, .base-navbar .btn-group-vertical > button ~ .btn, .btn-group-vertical > .btn-olive ~ .btn-purple, .base-navbar .btn-group-vertical > button ~ .btn-purple, .btn-group-vertical > .btn-olive ~ .btn-light-green, .base-navbar .btn-group-vertical > button ~ .btn-light-green, .btn-group-vertical > .btn ~ .btn-olive, .base-navbar .btn-group-vertical > .btn ~ button, .btn-group-vertical > .btn-purple ~ .btn-olive, .base-navbar .btn-group-vertical > .btn-purple ~ button, .btn-group-vertical > .btn-light-green ~ .btn-olive, .base-navbar .btn-group-vertical > .btn-light-green ~ button, .btn-group-vertical > .btn-olive ~ .btn-olive, .base-navbar .btn-group-vertical > button ~ .btn-olive, .base-navbar .btn-group-vertical > .btn-olive ~ button, .base-navbar .btn-group-vertical > button ~ button,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn-purple,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn-light-green,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn-olive,
 .base-navbar .btn-group-vertical > .btn-group:not(:first-child) > button {
@@ -4823,7 +4843,7 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge, .btn-light-green .badge, .btn-olive .badge, .base-navbar button .badge {
+.btn .badge, .btn-purple .badge, .btn-light-green .badge, .btn-olive .badge, .base-navbar button .badge {
   position: relative;
   top: -1px;
 }
@@ -6763,7 +6783,7 @@ textarea.form-control-lg {
   background-color: currentcolor;
   opacity: 0.5;
 }
-.placeholder.btn::before, .placeholder.btn-light-green::before, .placeholder.btn-olive::before, .base-navbar button.placeholder::before {
+.placeholder.btn::before, .placeholder.btn-purple::before, .placeholder.btn-light-green::before, .placeholder.btn-olive::before, .base-navbar button.placeholder::before {
   display: inline-block;
   content: "";
 }
@@ -11935,6 +11955,23 @@ textarea.form-control-lg {
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #0d462c;
+  --bs-btn-disabled-border-color: #051b11;
+}
+
+.btn-purple {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #6c5592;
+  --bs-btn-border-color: #051b11;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5c487c;
+  --bs-btn-hover-border-color: #04160e;
+  --bs-btn-focus-shadow-rgb: 43, 61, 53;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #564475;
+  --bs-btn-active-border-color: #04140d;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #6c5592;
   --bs-btn-disabled-border-color: #051b11;
 }
 

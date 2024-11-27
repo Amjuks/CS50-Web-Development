@@ -6,9 +6,63 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'storyapp/css/character.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block storyboard %}
-<h1>{{ character.name }}</h1>
+<h1 class="character-name">{{ character.name }}</h1>
 
+<form action="{% url 'storyapp:character' world_id=world.id name=character.name %}" class="element-view-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-group-avatar">
+        <label for="charImage" class="form-label">Avatar</label>
+        <input type="file" name="char-image" id="charImage" class="image-file-input">
+        <button class="image-preview-container" type="button" id="fileInputButton" class="image-input-btn">
+            {% if character.image %}
+                <img src="{{ character.image.url }}" alt="{{ character.name }} Avatar" class="image-preview">
+            {% else %}
+                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="charPreview" class="image-preview">
+            {% endif %}
+        </button>
+        <!-- <button type="button" id="fileInputButton" class="btn-olive image-input-btn">Change Avatar</button> -->
+    </div>
+
+    <div class="input-group-row">
+        <label class="form-label" for="charAge">Age</label>
+        <label class="form-label" for="charGender">Gender</label>
+        <input type="number" name="age" id="charAge" value="{{ character.age }}">
+        <input type="text" name="gender" id="charGender" value="{{ character.gender }}">
+    </div>
+
+    <div class="input-group-normal">
+        <label for="charBackstory" class="form-label">Backstory</label>
+        <textarea name="backstory" id="charBackstory">{{ character.backstory }}</textarea>
+    </div>
+
+    <div class="input-group-normal">
+        <label class="form-label">Traits</label>
+        <div class="traits">
+            {% for trait, value in character.traits.items %}
+            <div class="trait">
+                <label for="char{{trait}}">{{ trait|capfirst }}</label>
+                <input type="text" value="{{value}}" name="trait" data-trait="{{ trait }}">
+                <button type="button"><i class="fa fa-trash delete-trait"></i></button>
+            </div>
+            {% endfor %}
+        </div>
+        <input id="hiddenTraits" type="hidden" name="all-traits" value="">
+    </div>
+
+    <div class="input-group-trait">
+        <input class="form-input" type="text" name="newTrait" id="newTraitInput" placeholder="Another trait?">
+        <button class="btn-purple" type="button" id="newTraitBtn">Add</button>
+    </div>
+
+    <button type="submit" class="btn-olive">Update Character</button>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/character.js' %}"></script>
 {% endblock %}

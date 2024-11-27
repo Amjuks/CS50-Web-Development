@@ -1,0 +1,144 @@
+@import 'variables';
+
+.element-view-form {
+    display: flex;
+    flex-direction: column;
+
+    .input-group-normal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-group-avatar {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+
+        .image-preview {
+            &:hover {
+                filter: brightness(80%);
+                transition: all .3s;
+            }
+        }
+    }
+
+    .input-group-row {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 1rem;
+    }
+
+    .input-group-trait {
+        display: flex;
+        gap: 1rem;
+
+        input {
+            color: $color-purple;
+            max-width: 150px;
+        }
+    }
+
+    .input-group-normal,
+    .input-group-row,
+    .input-group-trait,
+    .input-group-avatar {
+        margin-bottom: 1rem;
+    
+        label {
+            font-size: 2rem;
+            color: $color-light-blue;
+        }
+    
+        input,
+        textarea {
+            width: 70%;
+            padding: .5rem 1rem;
+            color: white;
+            border-radius: 10px;
+            background-color: $color-light-green;
+            resize: none;
+            border: none;
+            outline: none;
+        }
+    }
+
+    .traits {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        gap: .5rem;
+
+        .trait {
+            display: grid;
+            grid-template-columns: 200px 500px 50px;
+            
+            &:hover {
+                button {
+                    &:has(.delete-trait) {
+                        opacity: 1;
+                        transition: all .3s;
+                    }
+                }
+            }
+
+            button {
+                border: none;
+                outline: none;
+                background-color: transparent;
+                color: red;
+                height: 2.5rem;
+                width: 2.5rem;
+                border-radius: 50%;
+                text-align: center;
+                margin-left: 1rem;
+
+                &:has(.delete-trait) {
+                    opacity: 0;
+                }
+
+                &:hover {
+                    background-color: rgba($color: #ffffff, $alpha: 0.2);
+                }
+            }
+
+            label {
+                color: $color-purple;
+                font-size: 1.5rem;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+
+    .create-btn-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-file-input {
+        display: none;
+    }
+
+    .image-input-btn {
+        margin: 1rem 0;
+    }
+
+    .image-preview-container {
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        border: 10px solid $color-purple;
+        padding: 0;
+
+        .image-preview {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+}
