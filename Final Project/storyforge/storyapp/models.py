@@ -55,7 +55,7 @@ class Scene(models.Model):
     location = models.ForeignKey(Location, related_name='scenes', on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
     plot = models.TextField(null=True, blank=True)
-    objectives = models.TextField(null=True, blank=True)
+    objectives = models.JSONField(null=True, blank=True)
     characters = models.ManyToManyField(Character, related_name='scenes', blank=True)
 
     def __str__(self):

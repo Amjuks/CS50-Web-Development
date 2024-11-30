@@ -6,9 +6,46 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'storyapp/css/location.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block storyboard %}
 <h1>{{ location.name }}</h1>
 
+<form action="{% url 'storyapp:location' world_id=world.id name=location.name %}" class="element-view-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="input-group-avatar">
+        <label for="locImage" class="form-label">Location Cover</label>
+        <input type="file" name="loc-image" id="locImage" class="image-file-input">
+        <button class="image-preview-container rect" type="button" id="fileInputButton" class="image-input-btn">
+            {% if location.image %}
+                <img src="{{ location.image.url }}" alt="{{ character.name }} Cover" class="image-preview" id="locCoverPreview">
+            {% else %}
+                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="locCoverPreview" class="image-preview">
+            {% endif %}
+        </button>
+    </div>
+
+    <div class="input-group-normal">
+        <label for="locDescription" class="form-label">Description</label>
+        <textarea name="description" id="locDescription">{{ location.description }}</textarea>
+    </div>
+    
+    <div class="input-group-normal">
+        <label for="locHistory" class="form-label">History</label>
+        <textarea name="history" id="locHistory">{{ location.history }}</textarea>
+    </div>
+    
+    <div class="input-group-normal">
+        <label for="locSignificance" class="form-label">Significance</label>
+        <textarea name="significance" id="locSignificance">{{ location.significance }}</textarea>
+    </div>
+
+    <button type="submit" class="btn-olive">Update Location</button>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/location.js' %}"></script>
 {% endblock %}

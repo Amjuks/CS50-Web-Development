@@ -100,8 +100,6 @@ class CharacterView(View):
         backstory = request.POST.get('backstory')
         image = request.FILES.get('char-image')
 
-        print(traits, age, gender, backstory, image, sep="\n")
-
         context = {}
         context['world'] = World.objects.get(id=world_id)
         context['character'] = Character.objects.get(world=context['world'], name=name)
@@ -121,12 +119,60 @@ class LocationView(View):
         context['location'] = Location.objects.get(world=context['world'], name=name)
         return render(request, 'storyapp/location.html', context=context)
     
+    def post(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+
+        description = request.POST.get('description')
+        history = request.POST.get('history')
+        significance = request.POST.get('significance')
+        image = request.FILES.get('loc-image')
+
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['location'] = Location.objects.get(world=context['world'], name=name)
+
+        context['location'].description = description
+        context['location'].history = history
+        context['location'].significance = significance
+        context['location'].image = image
+        context['location'].save()
+        
+        print(name, description, history, significance, image, sep='\n------\n', end='\n------\n')
+    
+        return redirect(reverse('storyapp:location', args=[world_id, name]))
+    
 class SceneView(View):
     def get(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
         context = {}
         context['world'] = World.objects.get(id=world_id)
         context['scene'] = Scene.objects.get(world=context['world'], title=name)
         return render(request, 'storyapp/scene.html', context=context)
+    
+    def post(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
+
+        description = request.POST.get('description')
+        plot = request.POST.get('plot')
+        location = request.POST.get('scene-location')
+        objectives = json.loads(request.POST.get("all-objectives"))
+        characters = request.POST.getlist('scene-characters', None)
+
+        print(f"{location = }")
+        location = Location.objects.get(world_id=world_id, id=location)
+        characters = Character.objects.filter(world_id=world_id, id__in=characters)
+        
+        print(name, description, plot, objectives, characters, location, sep='\n------\n', end='\n------\n')
+
+        context = {}
+        context['world'] = World.objects.get(id=world_id)
+        context['scene'] = Scene.objects.get(world=context['world'], title=name)
+
+        context['scene'].description = description
+        context['scene'].plot = plot
+        context['scene'].objectives = objectives
+        context['scene'].description = description
+        context['scene'].characters.set(characters)
+        context['scene'].save()
+        
+        return redirect(reverse('storyapp:scene', args=[world_id, name]))
     
 class CreateCharacterView(View):
     def get(self, request: HttpRequest, world_id: int) -> HttpResponse:

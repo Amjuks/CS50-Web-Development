@@ -5,10 +5,73 @@
 
 {% block styles %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'storyapp/css/scene.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'storyapp/css/scene.css' %}"> -->
+<link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block storyboard %}
 <h1>{{ scene.title }}</h1>
 
+<form action="{% url 'storyapp:scene' world_id=world.id name=scene.title %}" class="element-view-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-group-normal">
+        <label for="sceneDescription" class="form-label">Description</label>
+        <textarea name="description" id="sceneDescription">{{ scene.description }}</textarea>
+    </div>
+
+    <div class="input-group-normal">
+        <label for="scene-location" class="form-label">Location</label>
+        <select name="scene-location" class="form-select" id="scene-location">
+            {% for location in world.locations.all %}
+            <option value="{{ location.id }}"
+            {% if scene.location.id == location.id %}selected{% endif %}>
+            {{ location.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-group-normal">
+        <label for="scene-characters" class="form-label">Scene Characters</label>
+        <select name="scene-characters" class="form-select" id="scene-characters" multiple>
+            {% with scene.characters.all as all_characters %}
+                {% for character in world.characters.all %}
+                    <option value="{{ character.id }}"
+                    {% if character in all_characters %}selected{% endif %}>
+                    {{ character.name }}</option>
+                {% endfor %}
+            {% endwith %}
+        </select>
+    </div>
+
+    <div class="input-group-normal">
+        <label for="scenePlot" class="form-label">Plot</label>
+        <textarea name="plot" id="scenePlot">{{ scene.plot }}</textarea>
+    </div>
+
+    <div class="input-group-normal">
+        <label class="form-label">Objectives</label>
+        <div class="objectives">
+            {% for objective in scene.objectives %}
+            <div class="objective">
+                <input type="text" value="{{ objective }}" name="objective" data-objective="{{ objective }}">
+                <button type="button"><i class="fa fa-trash delete-objective"></i></button>
+            </div>
+            {% endfor %}
+        </div>
+        <input id="hiddenObjectives" type="hidden" name="all-objectives" value="">
+    </div>
+
+    <hr>
+    
+    <div class="input-group-trait">
+        <input class="form-input textarea" type="text" name="newObjective" id="newObjectiveInput" placeholder="Another objective?">
+        <button class="btn-purple" type="button" id="newObjectiveBtn">Add</button>
+    </div>
+
+    <button type="submit" class="btn-olive">Update Scene</button>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/scene.js' %}"></script>
 {% endblock %}

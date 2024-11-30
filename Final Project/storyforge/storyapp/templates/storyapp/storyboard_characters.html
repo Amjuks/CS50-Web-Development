@@ -20,7 +20,7 @@
             {% if character.image %}
                 <img src="{{ character.image.url }}" alt="{{ character.name }} Avatar">
             {% else %}
-                <img src="{% static 'storyapp/images/image_placeholder.png' %}">
+                <img src="{% static 'storyapp/images/user_placeholder.png' %}">
             {% endif %}
         </div>
         <h3 class="character-name">{{ character.name }}</h3>

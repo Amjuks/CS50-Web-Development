@@ -11969,6 +11969,18 @@ textarea.form-control-lg {
   margin-bottom: 1rem;
   text-decoration: none;
 }
+.locations .location-card .loc-cover {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+.locations .location-card .loc-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .locations .location-card .location-name {
   color: #b3dcda;
   text-align: center;

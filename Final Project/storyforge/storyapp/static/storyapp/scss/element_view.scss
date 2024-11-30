@@ -3,10 +3,15 @@
 .element-view-form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .input-group-normal {
         display: flex;
         flex-direction: column;
+
+        :has(textarea) {
+            width: 100%;
+        }
     }
 
     .input-group-avatar {
@@ -35,6 +40,10 @@
         input {
             color: $color-purple;
             max-width: 150px;
+
+            &.textarea {
+                max-width: 70%;
+            }
         }
     }
 
@@ -48,9 +57,32 @@
             font-size: 2rem;
             color: $color-light-blue;
         }
-    
+        
+        select {
+            overflow: hidden;
+            height: fit-content;
+            width: 200px !important;
+
+            option {
+                text-align: center;
+                margin-bottom: .3rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &:checked {
+                    padding: .3rem 1rem;
+                    border-radius: 20px;
+                    color: $color-light-green;
+                    background-color: $color-light-blue;
+                }
+            }
+        }
+
         input,
-        textarea {
+        textarea,
+        select {
             width: 70%;
             padding: .5rem 1rem;
             color: white;
@@ -62,15 +94,24 @@
         }
     }
 
-    .traits {
+    .traits,
+    .objectives {
         display: flex;
         flex-direction: column;
         width: 80%;
         gap: .5rem;
 
         .trait {
-            display: grid;
             grid-template-columns: 200px 500px 50px;
+        }
+
+        .objective {
+            grid-template-columns: 100% 50px;
+        }
+
+        .trait,
+        .objective {
+            display: grid;
             
             &:hover {
                 button {
@@ -126,19 +167,28 @@
     }
 
     .image-preview-container {
-        height: 300px;
-        width: 300px;
-        border-radius: 50%;
         overflow: hidden;
         margin-bottom: 1rem;
-        border: 10px solid $color-purple;
         padding: 0;
+
+        &.circle {
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            border: 10px solid $color-purple;
+        }
+
+        &.rect {
+            height: 300px;
+            width: 400px;
+            border-radius: 20px;
+            border: 5px solid $color-purple;
+        }
 
         .image-preview {
             height: 100%;
             width: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
     }
 }

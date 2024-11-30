@@ -17,14 +17,13 @@
     <div class="input-group-avatar">
         <label for="charImage" class="form-label">Avatar</label>
         <input type="file" name="char-image" id="charImage" class="image-file-input">
-        <button class="image-preview-container" type="button" id="fileInputButton" class="image-input-btn">
+        <button class="image-preview-container circle" type="button" id="fileInputButton" class="image-input-btn">
             {% if character.image %}
-                <img src="{{ character.image.url }}" alt="{{ character.name }} Avatar" class="image-preview">
+                <img src="{{ character.image.url }}" alt="{{ character.name }} Avatar" class="image-preview" id="charPreview">
             {% else %}
-                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="charPreview" class="image-preview">
+                <img src="{% static 'storyapp/images/user_placeholder.png' %}" alt="Image Placeholder" id="charPreview" class="image-preview">
             {% endif %}
         </button>
-        <!-- <button type="button" id="fileInputButton" class="btn-olive image-input-btn">Change Avatar</button> -->
     </div>
 
     <div class="input-group-row">
@@ -53,6 +52,8 @@
         <input id="hiddenTraits" type="hidden" name="all-traits" value="">
     </div>
 
+    <hr>
+    
     <div class="input-group-trait">
         <input class="form-input" type="text" name="newTrait" id="newTraitInput" placeholder="Another trait?">
         <button class="btn-purple" type="button" id="newTraitBtn">Add</button>

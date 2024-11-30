@@ -11958,10 +11958,14 @@ textarea.form-control-lg {
 .element-view-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .element-view-form .input-group-normal {
   display: flex;
   flex-direction: column;
+}
+.element-view-form .input-group-normal :has(textarea) {
+  width: 100%;
 }
 .element-view-form .input-group-avatar {
   display: flex;
@@ -11985,6 +11989,9 @@ textarea.form-control-lg {
   color: #6c5592;
   max-width: 150px;
 }
+.element-view-form .input-group-trait input.textarea {
+  max-width: 70%;
+}
 .element-view-form .input-group-normal,
 .element-view-form .input-group-row,
 .element-view-form .input-group-trait,
@@ -11998,14 +12005,48 @@ textarea.form-control-lg {
   font-size: 2rem;
   color: #b3dcda;
 }
+.element-view-form .input-group-normal select,
+.element-view-form .input-group-row select,
+.element-view-form .input-group-trait select,
+.element-view-form .input-group-avatar select {
+  overflow: hidden;
+  height: fit-content;
+  width: 200px !important;
+}
+.element-view-form .input-group-normal select option,
+.element-view-form .input-group-row select option,
+.element-view-form .input-group-trait select option,
+.element-view-form .input-group-avatar select option {
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+.element-view-form .input-group-normal select option:last-child,
+.element-view-form .input-group-row select option:last-child,
+.element-view-form .input-group-trait select option:last-child,
+.element-view-form .input-group-avatar select option:last-child {
+  margin-bottom: 0;
+}
+.element-view-form .input-group-normal select option:checked,
+.element-view-form .input-group-row select option:checked,
+.element-view-form .input-group-trait select option:checked,
+.element-view-form .input-group-avatar select option:checked {
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  color: #0d462c;
+  background-color: #b3dcda;
+}
 .element-view-form .input-group-normal input,
 .element-view-form .input-group-normal textarea,
+.element-view-form .input-group-normal select,
 .element-view-form .input-group-row input,
 .element-view-form .input-group-row textarea,
+.element-view-form .input-group-row select,
 .element-view-form .input-group-trait input,
 .element-view-form .input-group-trait textarea,
+.element-view-form .input-group-trait select,
 .element-view-form .input-group-avatar input,
-.element-view-form .input-group-avatar textarea {
+.element-view-form .input-group-avatar textarea,
+.element-view-form .input-group-avatar select {
   width: 70%;
   padding: 0.5rem 1rem;
   color: white;
@@ -12015,21 +12056,38 @@ textarea.form-control-lg {
   border: none;
   outline: none;
 }
-.element-view-form .traits {
+.element-view-form .traits,
+.element-view-form .objectives {
   display: flex;
   flex-direction: column;
   width: 80%;
   gap: 0.5rem;
 }
-.element-view-form .traits .trait {
-  display: grid;
+.element-view-form .traits .trait,
+.element-view-form .objectives .trait {
   grid-template-columns: 200px 500px 50px;
 }
-.element-view-form .traits .trait:hover button:has(.delete-trait) {
+.element-view-form .traits .objective,
+.element-view-form .objectives .objective {
+  grid-template-columns: 100% 50px;
+}
+.element-view-form .traits .trait,
+.element-view-form .traits .objective,
+.element-view-form .objectives .trait,
+.element-view-form .objectives .objective {
+  display: grid;
+}
+.element-view-form .traits .trait:hover button:has(.delete-trait),
+.element-view-form .traits .objective:hover button:has(.delete-trait),
+.element-view-form .objectives .trait:hover button:has(.delete-trait),
+.element-view-form .objectives .objective:hover button:has(.delete-trait) {
   opacity: 1;
   transition: all 0.3s;
 }
-.element-view-form .traits .trait button {
+.element-view-form .traits .trait button,
+.element-view-form .traits .objective button,
+.element-view-form .objectives .trait button,
+.element-view-form .objectives .objective button {
   border: none;
   outline: none;
   background-color: transparent;
@@ -12040,17 +12098,29 @@ textarea.form-control-lg {
   text-align: center;
   margin-left: 1rem;
 }
-.element-view-form .traits .trait button:has(.delete-trait) {
+.element-view-form .traits .trait button:has(.delete-trait),
+.element-view-form .traits .objective button:has(.delete-trait),
+.element-view-form .objectives .trait button:has(.delete-trait),
+.element-view-form .objectives .objective button:has(.delete-trait) {
   opacity: 0;
 }
-.element-view-form .traits .trait button:hover {
+.element-view-form .traits .trait button:hover,
+.element-view-form .traits .objective button:hover,
+.element-view-form .objectives .trait button:hover,
+.element-view-form .objectives .objective button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.element-view-form .traits .trait label {
+.element-view-form .traits .trait label,
+.element-view-form .traits .objective label,
+.element-view-form .objectives .trait label,
+.element-view-form .objectives .objective label {
   color: #6c5592;
   font-size: 1.5rem;
 }
-.element-view-form .traits .trait input {
+.element-view-form .traits .trait input,
+.element-view-form .traits .objective input,
+.element-view-form .objectives .trait input,
+.element-view-form .objectives .objective input {
   width: 100%;
 }
 .element-view-form .create-btn-container {
@@ -12064,19 +12134,26 @@ textarea.form-control-lg {
   margin: 1rem 0;
 }
 .element-view-form .image-preview-container {
+  overflow: hidden;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+.element-view-form .image-preview-container.circle {
   height: 300px;
   width: 300px;
   border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 1rem;
   border: 10px solid #6c5592;
-  padding: 0;
+}
+.element-view-form .image-preview-container.rect {
+  height: 300px;
+  width: 400px;
+  border-radius: 20px;
+  border: 5px solid #6c5592;
 }
 .element-view-form .image-preview-container .image-preview {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 /*# sourceMappingURL=element_view.css.map */

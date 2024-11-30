@@ -16,6 +16,13 @@
 <div class="locations">
     {% for location in world.locations.all %}
         <a href="{% url 'storyapp:location' world_id=world.id name=location.name %}" class="location-card">
+            <div class="loc-cover">
+                {% if location.image %}
+                    <img src="{{ location.image.url }}" alt="{{ location.name }} Avatar">
+                {% else %}
+                    <img src="{% static 'storyapp/images/image_placeholder.png' %}">
+                {% endif %}
+            </div>
             <h3 class="location-name">{{ location.name }}</h3>
             {% if location.description %}
             <p class="location-description">{{ location.description }}</p>
