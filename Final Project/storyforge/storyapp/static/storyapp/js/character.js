@@ -79,5 +79,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTraitInput(elements.hiddenTraits);
     addNewTrait(elements.newTraitInput, elements.newTraitBtn);
 
-    document.querySelectorAll('.delete-trait').forEach(deleteBtn => activateDelete(deleteBtn));
+    document.querySelectorAll('.trait .delete-trait').forEach(deleteBtn => activateDelete(deleteBtn));
 })

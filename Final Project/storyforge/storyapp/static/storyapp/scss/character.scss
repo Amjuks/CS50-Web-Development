@@ -7,3 +7,21 @@
 .character-info {
     color: $color-olive;
 }
+
+.all-relations {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+
+    .relation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 70%;
+        gap: 1rem;
+    }
+
+    input {
+        max-width: 30%;
+    }
+}

@@ -113,36 +113,7 @@
         .trait,
         .objective {
             display: grid;
-            
-            &:hover {
-                button {
-                    &:has(.delete-trait) {
-                        opacity: 1;
-                        transition: all .3s;
-                    }
-                }
-            }
-
-            button {
-                border: none;
-                outline: none;
-                background-color: transparent;
-                color: red;
-                height: 2.5rem;
-                width: 2.5rem;
-                border-radius: 50%;
-                text-align: center;
-                margin-left: 1rem;
-
-                &:has(.delete-trait) {
-                    opacity: 0;
-                }
-
-                &:hover {
-                    background-color: rgba($color: #ffffff, $alpha: 0.2);
-                }
-            }
-
+    
             label {
                 color: $color-purple;
                 font-size: 1.5rem;
@@ -150,6 +121,40 @@
 
             input {
                 width: 100%;
+            }
+        }
+    }
+
+    .trait,
+    .objective,
+    .relation {
+        
+        &:hover {
+            button {
+                &:has(.delete-trait) {
+                    opacity: 1;
+                    transition: all .3s;
+                }
+            }
+        }
+
+        button {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: red;
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 50%;
+            text-align: center;
+            margin-left: 1rem;
+
+            &:has(.delete-trait) {
+                opacity: 0;
+            }
+
+            &:hover {
+                background-color: rgba($color: #ffffff, $alpha: 0.2);
             }
         }
     }

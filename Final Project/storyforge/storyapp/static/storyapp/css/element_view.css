@@ -12078,39 +12078,6 @@ textarea.form-control-lg {
 .element-view-form .objectives .objective {
   display: grid;
 }
-.element-view-form .traits .trait:hover button:has(.delete-trait),
-.element-view-form .traits .objective:hover button:has(.delete-trait),
-.element-view-form .objectives .trait:hover button:has(.delete-trait),
-.element-view-form .objectives .objective:hover button:has(.delete-trait) {
-  opacity: 1;
-  transition: all 0.3s;
-}
-.element-view-form .traits .trait button,
-.element-view-form .traits .objective button,
-.element-view-form .objectives .trait button,
-.element-view-form .objectives .objective button {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: red;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
-  text-align: center;
-  margin-left: 1rem;
-}
-.element-view-form .traits .trait button:has(.delete-trait),
-.element-view-form .traits .objective button:has(.delete-trait),
-.element-view-form .objectives .trait button:has(.delete-trait),
-.element-view-form .objectives .objective button:has(.delete-trait) {
-  opacity: 0;
-}
-.element-view-form .traits .trait button:hover,
-.element-view-form .traits .objective button:hover,
-.element-view-form .objectives .trait button:hover,
-.element-view-form .objectives .objective button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
 .element-view-form .traits .trait label,
 .element-view-form .traits .objective label,
 .element-view-form .objectives .trait label,
@@ -12123,6 +12090,35 @@ textarea.form-control-lg {
 .element-view-form .objectives .trait input,
 .element-view-form .objectives .objective input {
   width: 100%;
+}
+.element-view-form .trait:hover button:has(.delete-trait),
+.element-view-form .objective:hover button:has(.delete-trait),
+.element-view-form .relation:hover button:has(.delete-trait) {
+  opacity: 1;
+  transition: all 0.3s;
+}
+.element-view-form .trait button,
+.element-view-form .objective button,
+.element-view-form .relation button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: red;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: 1rem;
+}
+.element-view-form .trait button:has(.delete-trait),
+.element-view-form .objective button:has(.delete-trait),
+.element-view-form .relation button:has(.delete-trait) {
+  opacity: 0;
+}
+.element-view-form .trait button:hover,
+.element-view-form .objective button:hover,
+.element-view-form .relation button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .element-view-form .create-btn-container {
   display: flex;

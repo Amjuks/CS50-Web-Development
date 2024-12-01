@@ -11963,4 +11963,20 @@ textarea.form-control-lg {
   color: #8c8237;
 }
 
+.all-relations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.all-relations .relation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 70%;
+  gap: 1rem;
+}
+.all-relations input {
+  max-width: 30%;
+}
+
 /*# sourceMappingURL=character.css.map */

@@ -39,7 +39,7 @@
     </div>
 
     <div class="input-group-normal">
-        <label class="form-label">Traits</label>
+        <label class="form-label" for="hiddenTraits">Traits</label>
         <div class="traits">
             {% for trait, value in character.traits.items %}
             <div class="trait">
@@ -59,6 +59,45 @@
         <button class="btn-purple" type="button" id="newTraitBtn">Add</button>
     </div>
 
+    <div class="input-group-normal">
+        <label for="charRelations">Relations</label>
+        <div class="all-relations">
+        {% for relation in character.relationships.all %}
+            <div class="relation">
+                <input type="text" name="relation-type" value="{{ relation.type }}">
+                <i class="fa-solid fa-right-long"></i>
+                <select name="relation-character" class="form-select">
+                    {% for char in world.characters.all %}
+                    <option value="{{ char.id }}"
+                        {% if relation.related_character.id == char.id %}selected{% endif %}>
+                        {{ char.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button type="button"><i class="fa-solid fa-trash delete-trait"></i></button>
+            </div>
+        {% endfor %}
+    </div>
+        <input type="hidden" name="char-relations" id="charRelations">
+    </div>
+
+    <div class="input-group-trait">
+        <input class="form-input" type="text" name="newRelation" id="newRelationInput" placeholder="Friend, Sibling, Etc.">
+        <select name="relation" class="form-select" id="relationSelect">
+            <option value="-1">
+                Relates to?
+            </option>
+            {% for char in world.characters.all %}
+                {% if char.id != character.id %}
+                <option value="{{ char.id }}">
+                    {{ char.name }}
+                </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <button class="btn-purple" type="button" id="newRelationBtn">Add</button>
+    </div>
+
     <button type="submit" class="btn-olive">Update Character</button>
 </form>
 
@@ -66,4 +105,5 @@
 
 {% block scripts %}
 <script type="module" src="{% static 'storyapp/js/character.js' %}"></script>
+<script type="module" src="{% static 'storyapp/js/character_relations.js' %}"></script>
 {% endblock %}

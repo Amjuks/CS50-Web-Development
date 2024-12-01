@@ -96,15 +96,17 @@ class CharacterView(View):
     
     def post(self, request: HttpRequest, world_id: int, name: str) -> HttpResponse:
 
+        world = World.objects.get(id=world_id)
+        character = Character.objects.get(world=world, name=name)
         traits = json.loads(request.POST.get("all-traits"))['traits']
         age = request.POST.get('age')
         gender = request.POST.get('gender')
         backstory = request.POST.get('backstory')
         image = request.FILES.get('char-image')
-
+        
         context = {}
-        context['world'] = World.objects.get(id=world_id)
-        context['character'] = Character.objects.get(world=context['world'], name=name)
+        context['world'] = world
+        context['character'] = character
         context['character'].age = age
         context['character'].gender = gender
         context['character'].backstory = backstory
@@ -112,6 +114,43 @@ class CharacterView(View):
         context['character'].image = image
         context['character'].save()
     
+        # Update Relations
+        relation_types = [rel_type.title() for rel_type in request.POST.getlist('relation-type')]
+        relation_related_ids = [int(i) for i in request.POST.getlist('relation-character')]
+
+        characters = Character.objects.in_bulk(relation_related_ids)
+        relation_related = [characters[int(id)] for id in relation_related_ids]
+
+        modified_relations = zip(relation_types, relation_related)
+
+        existing_relations = [
+            (relation.type, relation.related_character)
+            for relation in character.relationships.all()
+        ]
+
+        removed_relations = [
+            relation for relation in existing_relations
+            if relation not in modified_relations
+        ]
+
+        # Remove Relations
+        Relationship.objects.filter(
+            character=character,  # The main character
+            type__in=[relation[0] for relation in removed_relations],  # List of types
+            related_character__in=[relation[1] for relation in removed_relations]  # List of related characters
+        ).delete()
+    
+        # Add Relations
+        Relationship.objects.bulk_create([
+            Relationship(
+                character=character,
+                related_character=relation[1],
+                type=relation[0],
+            )
+            for relation in modified_relations
+            if relation not in existing_relations
+        ])
+
         return redirect(reverse('storyapp:character', args=[world_id, name]))
 
 class LocationView(View):
