@@ -13,16 +13,22 @@
 <a class="btn-olive create-story-element" href="{% url 'storyapp:create-scene' world_id=world.id %}">
     Add Scene <i class="fa-solid fa-plus"></i>
 </a>
+
 <div class="scenes">
     {% for scene in world.scenes.all %}
         <a href="{% url 'storyapp:scene' world_id=world.id name=scene.title %}" class="scene-card">
-            <h3 class="scene-title">{{ scene.title }}</h3>
-            <p class="scene-description">{{ scene.description }}</p>
-
-            <h4 class="characters-header">Characters</h4>
-            {% for character in scene.characters.all %}
-                <h5 class="character-name">{{ character.name }}</h5>
-            {% endfor %}
+            {% if scene.location.image %}
+            <img class="scene-location-image" src="{{ scene.location.image.url }}" alt="{{ scene.title }} Location Image">
+            {% endif %}
+            <div class="scene-body">
+                <h3 class="scene-title">{{ scene.title }}</h3>
+                <p class="scene-description">{{ scene.description }}</p>
+    
+                <h4 class="characters-header">Characters</h4>
+                {% for character in scene.characters.all %}
+                    <h5 class="character-name">{{ character.name }}</h5>
+                {% endfor %}
+            </div>
         </a>
     {% endfor %}
 </div>

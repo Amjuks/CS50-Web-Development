@@ -6,10 +6,28 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'storyapp/css/storyboard_characters.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/mermaid.css' %}">
 {% endblock %}
 
 {% block storyboard %}
 <h1 class="storyboard-subheader">Characters</h1>
+
+<sections class="relations">
+    <div class="toggle-container">
+        <button type="button" class="btn btn-purple" id="toggleRelations">Show Relations</button>
+    </div>
+    <div class="flowchart-design hide">
+        <pre class="mermaid">
+            graph TD
+            {% for relation in relations %}
+                {{ relation.character.id }}[{{ relation.character.name }}] -->  |{{ relation.type|capfirst }}| {{ relation.related_character.id }}[{{ relation.related_character.name }}]
+                {{ relation.character.id }}@{ shape: rounded}
+                {{ relation.related_character.id }}@{ shape: rounded}
+            {% endfor %}
+        </pre>
+    </div>
+</sections>
+
 <a class="btn-olive create-story-element" href="{% url 'storyapp:create-character' world_id=world.id %}">
     Add Character <i class="fa-solid fa-plus"></i>
 </a>
@@ -24,11 +42,19 @@
             {% endif %}
         </div>
         <h3 class="character-name">{{ character.name }}</h3>
-        {% if character.age or character.gender %}
+        {% if character.age and character.gender %}
         <h6 class="character-stats">{{ character.age }} - {{ character.gender }}</h6>
+        {% elif character.age %}
+        <h6 class="character-stats">{{ character.age }}</h6>
+        {% elif character.gender %}
+        <h6 class="character-stats">{{ character.gender }}</h6>
         {% endif %}
         <p class="character-backstory">{{ character.backstory }}</p>
     </a>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/storyboard_characters.js' %}"></script>
 {% endblock %}

@@ -5,12 +5,11 @@
 
 {% block styles %}
 {{ block.super }}
-<!-- <link rel="stylesheet" href="{% static 'storyapp/css/scene.css' %}"> -->
 <link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block storyboard %}
-<h1>{{ scene.title }}</h1>
+<h1 class="text-center">{{ scene.title }}</h1>
 
 <form action="{% url 'storyapp:scene' world_id=world.id name=scene.title %}" class="element-view-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}

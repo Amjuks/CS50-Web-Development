@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views import View
 
 from .helpers import get_user_world_stats
-from .models import World, User, Character, Location, Scene
+from .models import World, User, Character, Location, Scene, Relationship
 
 class IndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
@@ -60,6 +60,8 @@ class StoryboardCharactersView(View):
         context = {}
         try:
             context['world'] = World.objects.get(id=world_id)
+            context['relations'] = Relationship.objects.filter(character__world=context['world'])
+            
         except World.DoesNotExist:
             return redirect(reverse('storyapp:dashboard'))
 

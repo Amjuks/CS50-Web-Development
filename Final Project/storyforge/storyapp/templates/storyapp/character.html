@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block storyboard %}
-<h1 class="character-name">{{ character.name }}</h1>
+<h1 class="character-name text-center">{{ character.name }}</h1>
 
 <form action="{% url 'storyapp:character' world_id=world.id name=character.name %}" class="element-view-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -29,13 +29,13 @@
     <div class="input-group-row">
         <label class="form-label" for="charAge">Age</label>
         <label class="form-label" for="charGender">Gender</label>
-        <input type="number" name="age" id="charAge" value="{{ character.age }}">
-        <input type="text" name="gender" id="charGender" value="{{ character.gender }}">
+        <input type="number" name="age" id="charAge" value="{{ character.age }}" placeholder="e.g., 25">
+        <input type="text" name="gender" id="charGender" value="{{ character.gender }}" placeholder="Male, Female, Other...">
     </div>
 
     <div class="input-group-normal">
         <label for="charBackstory" class="form-label">Backstory</label>
-        <textarea name="backstory" id="charBackstory">{{ character.backstory }}</textarea>
+        <textarea name="backstory" id="charBackstory" placeholder="Describe the character's origin, personality, and quirks...">{{ character.backstory }}</textarea>
     </div>
 
     <div class="input-group-normal">

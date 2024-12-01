@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block storyboard %}
-<h1>{{ location.name }}</h1>
+<h1 class="text-center">{{ location.name }}</h1>
 
 <form action="{% url 'storyapp:location' world_id=world.id name=location.name %}" class="element-view-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}

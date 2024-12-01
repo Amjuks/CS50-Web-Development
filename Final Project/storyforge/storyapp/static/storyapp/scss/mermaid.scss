@@ -1,0 +1,23 @@
+@import 'variables';
+
+.flowchart-design {
+    display: flex;
+    justify-content: center;
+
+    .mermaid {
+        padding: 1rem;
+        border-radius: 20px;
+        background-color: rgba($color: $color-purple, $alpha: 0.9);
+
+        .node {
+            rect {
+                stroke: $color-dark-green !important;
+                fill: $color-light-blue !important;
+            }
+        }
+
+        .nodeLabel {
+            color: $color-dark-green !important;
+        }
+    }
+}

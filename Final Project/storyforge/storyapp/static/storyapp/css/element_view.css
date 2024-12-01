@@ -11971,6 +11971,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   width: 300px;
+  text-align: center;
 }
 .element-view-form .input-group-avatar .image-preview:hover {
   filter: brightness(80%);
