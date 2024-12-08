@@ -18,6 +18,25 @@ class CreateStoryView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         return render(request, 'storyapp/create_story.html')
     
+    def post(self, request: HttpRequest) -> HttpRequest:
+        print(request.POST)
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        public = request.POST.get('visibility_public') is not None
+        image = request.FILES.get('world_cover')
+
+        new_world = World.objects.create(
+            user=request.user,
+            name=name,
+            description=description,
+            public=public,
+            world_cover=image
+        )
+        # new_world.save()
+        new_world.save()
+
+        return redirect(reverse('storyapp:storyboard', args=[new_world.id]))
+    
 class DashboardView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {}
@@ -37,6 +56,7 @@ class StoryboardView(View):
     
     def post(self, request: HttpRequest, world_id: int) ->  HttpResponse:
         context = {'success': False}
+        print()
 
         try:
             name = request.POST.get('world_name')
@@ -46,7 +66,10 @@ class StoryboardView(View):
             world = World.objects.get(id=world_id)
             world.name = name
             world.description = description
-            world.world_cover = world_cover
+            world.public = request.POST.get('visibility_public') is not None
+
+            if world_cover:
+                world.world_cover = world_cover
             world.save()
 
         except Exception as e:

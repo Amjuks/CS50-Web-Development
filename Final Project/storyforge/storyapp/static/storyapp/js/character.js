@@ -1,4 +1,8 @@
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 import { setupImagePreview } from "./image_preview.js";
+import { toggleFlowchart } from "./flowchart.js";
+
+mermaid.initialize({ startOnLoad: true });
 
 const elements = {
     traitsContainer: null,
@@ -63,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('charImage');
     const fileInputButton = document.getElementById('fileInputButton');
     const charPreview = document.getElementById('charPreview');
-    
+    const toggleRelations = document.getElementById('toggleRelations');
+    const flowchart = document.querySelector('.flowchart-design');
+
     elements.traitsContainer = document.querySelector('.traits');
     elements.traitsList = document.querySelectorAll('.trait input[name="trait"]');
     elements.hiddenTraits = document.getElementById('hiddenTraits');
@@ -80,4 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addNewTrait(elements.newTraitInput, elements.newTraitBtn);
 
     document.querySelectorAll('.trait .delete-trait').forEach(deleteBtn => activateDelete(deleteBtn));
+
+    toggleFlowchart(toggleRelations, flowchart, "Relations");
 })

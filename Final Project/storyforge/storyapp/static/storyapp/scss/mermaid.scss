@@ -1,23 +1,45 @@
 @import 'variables';
 
-.flowchart-design {
-    display: flex;
-    justify-content: center;
+.flowchart-container {
+    .toggle-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
 
-    .mermaid {
-        padding: 1rem;
-        border-radius: 20px;
-        background-color: rgba($color: $color-purple, $alpha: 0.9);
+    .flowchart-design {
+        display: flex;
+        justify-content: center;
+        max-width: 800px;
+        height: auto;
+        overflow: hidden;
+        transition: all .5s;
 
-        .node {
-            rect {
-                stroke: $color-dark-green !important;
-                fill: $color-light-blue !important;
+        .mermaid {
+            padding: 1rem;
+            border-radius: 20px;
+            background-color: rgba($color: $color-purple, $alpha: 0.9);
+
+            .node {
+                rect {
+                    stroke: $color-dark-green !important;
+                    fill: $color-light-blue !important;
+                }
+            }
+    
+            .nodeLabel {
+                color: $color-dark-green !important;
             }
         }
 
-        .nodeLabel {
-            color: $color-dark-green !important;
+        &.hide {
+            opacity: 0;
+            height: 0;
+        }
+
+        &.show {
+            opacity: 1;
+            height: max-content;
         }
     }
 }

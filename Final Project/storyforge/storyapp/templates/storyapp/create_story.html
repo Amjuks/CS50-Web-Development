@@ -5,10 +5,50 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'storyapp/css/create_story.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block body %}
 <main class="create-story-body">
-    <h1>Create a story!</h1>
+    <h1 class="create-header">Weave Your New World</h1>
+    <p class="create-subheader">Unleash your imagination and craft a realm of wonders!</p>
+    <form action="{% url 'storyapp:create-story' %}" method="post" enctype="multipart/form-data" class="element-view-form">
+        {% csrf_token %}
+
+        <div class="input-group-normal">
+            <label for="name">Name Your Realm</label>
+            <input type="text" id="name" name="name" required placeholder="E.g., Kingdom of Everlight">
+        </div>
+
+        <div class="input-group-normal">
+            <label for="description">Tell Its Tale</label>
+            <textarea id="description" name="description" rows="5" placeholder="Describe the adventures, the lore, and the magic of your world..."></textarea>
+        </div>
+
+        <div class="input-group-normal">
+            <label for="world_cover">Set the Scene (Cover Image)</label>
+            <input type="file" id="world_cover" name="world_cover" accept="image/*">
+            <button class="image-preview-container rect" type="button" id="fileInputButton" class="image-input-btn">
+                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="worldCoverPreview" class="image-preview">
+            </button>
+        </div>
+
+
+        <div class="input-group-check">
+            <input class="form-check-input" type="checkbox" value="public" id="worldVisibility" name="visibility_public">
+            <label class="form-check-label" for="worldVisibility">
+              Public
+            </label>
+        </div>
+
+        <div class="input-group-normal">
+            <button class="btn-olive" type="submit">Bring It to Life!</button>
+        </div>
+    </form>
 </main>
+{% endblock %}
+
+
+{% block scripts %}
+<script type="module" src="{% static 'storyapp/js/create_story.js' %}"></script>
 {% endblock %}

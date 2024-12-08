@@ -4,30 +4,70 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'storyapp/css/storyboard_story.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/mermaid.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
 {% endblock %}
 
 {% block storyboard %}
-    <form id="storyboard-story-form" action="{% url 'storyapp:storyboard' world_id=world.id %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="worldName">Story Title</label>
-        <input type="text" name="world_name" id="worldName" value="{{ world.name }}">
 
-        <label for="worldDescription">Description</label>
-        <textarea name="world_description" id="worldDescription">{{ world.description }}</textarea>
+<h1 class="text-center">{{ world.name }}</h1>
 
-        <label for="worldCover">Cover</label>
-        <button type="button" id="fileInputButton" class="btn-light-green">Upload Image</button>
-        <input type="file" name="world_cover" id="worldCover">
-        <div class="world-cover-container" id="world_cover">
-            {% if world.world_cover %}
-                <img src="{{ world.world_cover.url }}" alt="Story Cover" id="worldCoverPreview">
-            {% else %}
-                <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="worldCoverPreview">
-            {% endif %}
-        </div>
+<section class="flowchart-container">
+    <div class="toggle-container">
+        <button type="button" class="btn btn-purple" id="toggleStoryboard">Show Storyboard</button>
+    </div>
+    <div class="flowchart-design hide">
+        <pre class="mermaid">
+            graph TD
+            {% for character in world.characters.all %}
+                W{{ world.id }}[{{ world.name }}] -->  C{{ character.id }}[{{ character.name }}]
+                C{{ character.id }}@{ shape: rounded }
+                W{{ world.id }}@{ shape: rounded }
+            {% endfor %}
 
-        <button class="btn-olive" type="submit">Update</button>
-    </form>
+            {% for location in world.locations.all %}
+                W{{ world.id }}[{{ world.name }}] -->  L{{ location.id }}[{{ location.name }}]
+                L{{ location.id }}@{ shape: rounded }
+                W{{ world.id }}@{ shape: rounded}
+
+                {% for scene in location.scenes.all %}
+                    L{{ location.id }}[{{ location.name }}] --> S{{ scene.id }}[{{ scene.title }}]
+                    L{{ location.id }}@{ shape: rounded }
+                    S{{ scene.id }}@{ shape: rounded }
+                {% endfor %}
+            {% endfor %}            
+        </pre>
+    </div>
+</section>
+
+<form class="element-view-form" id="storyboard-story-form" action="{% url 'storyapp:storyboard' world_id=world.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="worldName">Story Title</label>
+    <input type="text" name="world_name" id="worldName" value="{{ world.name }}">
+
+    <label for="worldDescription">Description</label>
+    <textarea name="world_description" id="worldDescription">{{ world.description }}</textarea>
+
+    <label for="worldCover">Cover</label>
+    <input type="file" id="worldCover" name="world_cover" accept="image/*">
+    <button class="image-preview-container rect" type="button" id="fileInputButton" class="image-input-btn">
+        {% if world.world_cover %}
+            <img src="{{ world.world_cover.url }}" alt="Story Cover" id="worldCoverPreview" class="image-preview">
+        {% else %}
+            <img src="{% static 'storyapp/images/image_placeholder.png' %}" alt="Image Placeholder" id="worldCoverPreview" class="image-preview">
+        {% endif %}
+    </button>
+
+    <div class="world-check-form">
+        <input class="form-check-input" type="checkbox" value="public" id="worldVisibility" name="visibility_public"
+        {% if world.public %}checked{% endif %}>
+        <label class="form-check-label" for="worldVisibility">
+          Public
+        </label>
+    </div>
+
+    <button class="btn-olive" type="submit">Update</button>
+</form>
 {% endblock %}
 
 {% block scripts %}

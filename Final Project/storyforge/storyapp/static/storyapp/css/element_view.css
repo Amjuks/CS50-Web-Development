@@ -11982,6 +11982,13 @@ textarea.form-control-lg {
   grid-template-columns: 50% 50%;
   gap: 1rem;
 }
+.element-view-form .input-group-check {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
 .element-view-form .input-group-trait {
   display: flex;
   gap: 1rem;
@@ -11996,20 +12003,23 @@ textarea.form-control-lg {
 .element-view-form .input-group-normal,
 .element-view-form .input-group-row,
 .element-view-form .input-group-trait,
-.element-view-form .input-group-avatar {
+.element-view-form .input-group-avatar,
+.element-view-form .input-group-check {
   margin-bottom: 1rem;
 }
 .element-view-form .input-group-normal label,
 .element-view-form .input-group-row label,
 .element-view-form .input-group-trait label,
-.element-view-form .input-group-avatar label {
+.element-view-form .input-group-avatar label,
+.element-view-form .input-group-check label {
   font-size: 2rem;
   color: #b3dcda;
 }
 .element-view-form .input-group-normal select,
 .element-view-form .input-group-row select,
 .element-view-form .input-group-trait select,
-.element-view-form .input-group-avatar select {
+.element-view-form .input-group-avatar select,
+.element-view-form .input-group-check select {
   overflow: hidden;
   height: fit-content;
   width: 200px !important;
@@ -12017,37 +12027,43 @@ textarea.form-control-lg {
 .element-view-form .input-group-normal select option,
 .element-view-form .input-group-row select option,
 .element-view-form .input-group-trait select option,
-.element-view-form .input-group-avatar select option {
+.element-view-form .input-group-avatar select option,
+.element-view-form .input-group-check select option {
   text-align: center;
   margin-bottom: 0.3rem;
 }
 .element-view-form .input-group-normal select option:last-child,
 .element-view-form .input-group-row select option:last-child,
 .element-view-form .input-group-trait select option:last-child,
-.element-view-form .input-group-avatar select option:last-child {
+.element-view-form .input-group-avatar select option:last-child,
+.element-view-form .input-group-check select option:last-child {
   margin-bottom: 0;
 }
 .element-view-form .input-group-normal select option:checked,
 .element-view-form .input-group-row select option:checked,
 .element-view-form .input-group-trait select option:checked,
-.element-view-form .input-group-avatar select option:checked {
+.element-view-form .input-group-avatar select option:checked,
+.element-view-form .input-group-check select option:checked {
   padding: 0.3rem 1rem;
   border-radius: 20px;
   color: #0d462c;
   background-color: #b3dcda;
 }
-.element-view-form .input-group-normal input,
+.element-view-form .input-group-normal input:not([type=checkbox]),
 .element-view-form .input-group-normal textarea,
 .element-view-form .input-group-normal select,
-.element-view-form .input-group-row input,
+.element-view-form .input-group-row input:not([type=checkbox]),
 .element-view-form .input-group-row textarea,
 .element-view-form .input-group-row select,
-.element-view-form .input-group-trait input,
+.element-view-form .input-group-trait input:not([type=checkbox]),
 .element-view-form .input-group-trait textarea,
 .element-view-form .input-group-trait select,
-.element-view-form .input-group-avatar input,
+.element-view-form .input-group-avatar input:not([type=checkbox]),
 .element-view-form .input-group-avatar textarea,
-.element-view-form .input-group-avatar select {
+.element-view-form .input-group-avatar select,
+.element-view-form .input-group-check input:not([type=checkbox]),
+.element-view-form .input-group-check textarea,
+.element-view-form .input-group-check select {
   width: 70%;
   padding: 0.5rem 1rem;
   color: white;

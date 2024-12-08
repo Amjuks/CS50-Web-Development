@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import 'variables';
 
 .index-body {
     min-height: 100vh;
@@ -13,6 +13,11 @@
 
     h1 {
         padding-bottom: 1rem;
+        color: $color-coral;
+    }
+
+    .hero-tagline {
+        color: $color-light-green;
     }
 }
 
@@ -55,6 +60,10 @@
                         background-color: $color-dark-green;
                     }
                 }
+            }
+
+            .section-description {
+                color: $color-light-green;
             }
         }
     }

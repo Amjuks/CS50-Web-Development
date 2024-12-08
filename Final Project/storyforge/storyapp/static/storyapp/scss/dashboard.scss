@@ -60,8 +60,10 @@ $profile-width: 250px;
         }
 
         .user-stories {
-            display: grid;
-            grid-template-columns: minmax(300px, 300px);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
 
             .story-info {
                 padding: 8px 10px;
@@ -69,6 +71,7 @@ $profile-width: 250px;
                 color: $color-dark-green;
                 text-decoration: none;
                 background-color: $color-light-blue;
+                width: 300px;
 
                 &:hover {
                     transition: filter .3s;
@@ -92,6 +95,7 @@ $profile-width: 250px;
                     }
 
                     .story-image {
+                        height: 200px;
                         width: 100%;
                         object-fit: cover;
                     }

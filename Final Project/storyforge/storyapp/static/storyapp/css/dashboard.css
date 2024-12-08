@@ -12003,8 +12003,10 @@ textarea.form-control-lg {
   color: #af378a;
 }
 .dashboard-body .dashboard-info .user-stories {
-  display: grid;
-  grid-template-columns: minmax(300px, 300px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 .dashboard-body .dashboard-info .user-stories .story-info {
   padding: 8px 10px;
@@ -12012,6 +12014,7 @@ textarea.form-control-lg {
   color: #051b11;
   text-decoration: none;
   background-color: #b3dcda;
+  width: 300px;
 }
 .dashboard-body .dashboard-info .user-stories .story-info:hover {
   transition: filter 0.3s;
@@ -12032,6 +12035,7 @@ textarea.form-control-lg {
   text-align: center;
 }
 .dashboard-body .dashboard-info .user-stories .story-info .story-image-container .story-image {
+  height: 200px;
   width: 100%;
   object-fit: cover;
 }

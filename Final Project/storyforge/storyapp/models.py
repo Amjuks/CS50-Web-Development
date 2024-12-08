@@ -10,6 +10,7 @@ class World(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)
     world_cover = models.ImageField(upload_to='world_cover_images/', null=True, blank=True)
+    public = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.name

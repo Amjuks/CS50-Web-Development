@@ -11955,24 +11955,6 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.relations .toggle-container {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-}
-.relations .flowchart-design {
-  overflow: hidden;
-  transition: all 0.5s;
-}
-.relations .flowchart-design.hide {
-  opacity: 0;
-  height: 0;
-}
-.relations .flowchart-design.show {
-  opacity: 1;
-  height: max-content;
-}
-
 .characters {
   display: flex;
   flex-direction: row;

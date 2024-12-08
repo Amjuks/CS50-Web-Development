@@ -11964,10 +11964,18 @@ textarea.form-control-lg {
 .storyboard-body #storyboard-story-form #worldCover {
   display: none;
 }
+.storyboard-body #storyboard-story-form .world-check-form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.storyboard-body #storyboard-story-form .world-check-form label {
+  font-size: 1.5rem;
+}
 .storyboard-body #storyboard-story-form label {
   font-size: 2rem;
 }
-.storyboard-body #storyboard-story-form input,
+.storyboard-body #storyboard-story-form input:not([type=checkbox]),
 .storyboard-body #storyboard-story-form textarea {
   padding: 0.5rem 1rem;
   border: none;

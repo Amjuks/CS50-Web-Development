@@ -7,6 +7,7 @@
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'storyapp/css/character.css' %}">
 <link rel="stylesheet" href="{% static 'storyapp/css/element_view.css' %}">
+<link rel="stylesheet" href="{% static 'storyapp/css/mermaid.css' %}">
 {% endblock %}
 
 {% block storyboard %}
@@ -58,6 +59,22 @@
         <input class="form-input" type="text" name="newTrait" id="newTraitInput" placeholder="Another trait?">
         <button class="btn-purple" type="button" id="newTraitBtn">Add</button>
     </div>
+
+    <section class="flowchart-container">
+        <div class="toggle-container">
+            <button type="button" class="btn btn-purple" id="toggleRelations">Show Relations</button>
+        </div>
+        <div class="flowchart-design hide">
+            <pre class="mermaid">
+                graph TD
+                {% for relation in character.relationships.all %}
+                    {{ relation.character.id }}[{{ relation.character.name }}] -->  |{{ relation.type|capfirst }}| {{ relation.related_character.id }}[{{ relation.related_character.name }}]
+                    {{ relation.character.id }}@{ shape: rounded}
+                    {{ relation.related_character.id }}@{ shape: rounded}
+                {% endfor %}
+            </pre>
+        </div>
+    </section>
 
     <div class="input-group-normal">
         <label for="charRelations">Relations</label>

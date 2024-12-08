@@ -12,7 +12,7 @@
 {% block storyboard %}
 <h1 class="storyboard-subheader">Characters</h1>
 
-<sections class="relations">
+<section class="flowchart-container">
     <div class="toggle-container">
         <button type="button" class="btn btn-purple" id="toggleRelations">Show Relations</button>
     </div>
@@ -26,7 +26,7 @@
             {% endfor %}
         </pre>
     </div>
-</sections>
+</section>
 
 <a class="btn-olive create-story-element" href="{% url 'storyapp:create-character' world_id=world.id %}">
     Add Character <i class="fa-solid fa-plus"></i>

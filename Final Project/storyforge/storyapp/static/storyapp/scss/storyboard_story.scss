@@ -13,11 +13,21 @@
             display: none;
         }
 
+        .world-check-form {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            label {
+                font-size: 1.5rem;
+            }
+        }
+
         label {
             font-size: 2rem;
         }
 
-        input,
+        input:not([type="checkbox"]),
         textarea {
             padding: .5rem 1rem;
             border: none;

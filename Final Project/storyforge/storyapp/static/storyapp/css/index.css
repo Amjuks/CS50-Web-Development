@@ -11968,6 +11968,10 @@ textarea.form-control-lg {
 }
 .index-header h1, .index-header .h1 {
   padding-bottom: 1rem;
+  color: #af378a;
+}
+.index-header .hero-tagline {
+  color: #0d462c;
 }
 
 .index-section {
@@ -12005,6 +12009,9 @@ textarea.form-control-lg {
   border-radius: 30px;
   border: none;
   background-color: #051b11;
+}
+.index-section.section-write .section-write-container .section-description {
+  color: #0d462c;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -11955,21 +11955,38 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.flowchart-design {
+.flowchart-container .toggle-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+.flowchart-container .flowchart-design {
   display: flex;
   justify-content: center;
+  max-width: 800px;
+  height: auto;
+  overflow: hidden;
+  transition: all 0.5s;
 }
-.flowchart-design .mermaid {
+.flowchart-container .flowchart-design .mermaid {
   padding: 1rem;
   border-radius: 20px;
   background-color: rgba(108, 85, 146, 0.9);
 }
-.flowchart-design .mermaid .node rect {
+.flowchart-container .flowchart-design .mermaid .node rect {
   stroke: #051b11 !important;
   fill: #b3dcda !important;
 }
-.flowchart-design .mermaid .nodeLabel {
+.flowchart-container .flowchart-design .mermaid .nodeLabel {
   color: #051b11 !important;
+}
+.flowchart-container .flowchart-design.hide {
+  opacity: 0;
+  height: 0;
+}
+.flowchart-container .flowchart-design.show {
+  opacity: 1;
+  height: max-content;
 }
 
 /*# sourceMappingURL=mermaid.css.map */

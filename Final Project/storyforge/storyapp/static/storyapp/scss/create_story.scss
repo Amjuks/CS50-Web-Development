@@ -1,0 +1,42 @@
+@import 'variables';
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    .create-subheader,
+    .create-header {
+        text-align: center;
+    }
+
+
+    .create-header {
+        color: $color-coral;
+    }
+
+    .create-subheader {
+        color: $color-olive;
+    }
+
+    .create-story-body {
+        width: 500px;
+
+        form {
+            text-align: center;
+
+            .input-group-normal {
+                align-items: center;
+            }
+
+            label {
+                margin-bottom: .5rem;
+            }
+        
+            input[type="file"] {
+                height: 0;
+                opacity: 0;
+            }
+        }
+    }
+}
