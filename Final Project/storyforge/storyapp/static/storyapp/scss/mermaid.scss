@@ -1,10 +1,24 @@
 @import 'variables';
 
 .flowchart-container {
+
+    @media screen and (max-width: $small-screen) {
+        width: 300px;
+    }
+    
     .toggle-container {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 1rem;
+
+        @media screen and (max-width: $small-screen) {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        @media screen and (min-width: $small-screen) {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 1rem;
+        }
     }
 
     .flowchart-design {

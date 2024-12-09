@@ -7,27 +7,135 @@
 
 {% block body %}
 <main class="index-body">
-    <section class="index-header">
-        <h1>Welcome to StoryForge</h1>
-        <p class="hero-tagline">Unleash your imagination and craft your own epic tales!</p>
-    </section>
-    <section class="index-section section-write">
-        <div class="section-write-container">
-            <h1 class="index-write-intro">
-               Once upon a time ... 
-            </h1>
+    <section class="welcome-section">
+        <div class="welcome-content">
+          <h1 class="welcome-title">Welcome to StoryForge</h1>
+          <p class="welcome-message">
+            Where imagination comes to life, and stories are born. Step into a world where every word you write shapes a new adventure. Let’s forge unforgettable tales together.
+          </p>
         </div>
-        <div class="section-write-container">
-            <h3 class="index-section-text">Write a New Story!</h3>
-            <div class="write-button-container">
-                <a href="{% url 'storyapp:create-story' %}" class="btn-olive">Start Writing</a>
-            </div>
-            <p class="section-description">
-                Start your adventure today! Click the button above to begin your storytelling 
-                journey. Choose from a variety of genres, characters, and settings to weave 
-                your narrative. Remember, every great story starts with a single word.
+      </section>
+      
+
+    <section class="index-section story-creation-section">
+        <!-- Fullscreen Background with Content -->
+        <div class="story-background">
+          <img src="https://img.freepik.com/free-photo/fantasy-landscape-floating-islands-illustration_23-2151844169.jpg" alt="Fantasy Landscape" class="story-background-image">
+          <div class="story-overlay"></div>
+        </div>
+      
+        <!-- Content Section -->
+        <div class="story-content">
+          <header class="story-header">
+            <h1 class="story-title">Start Your Story</h1>
+            <p class="story-intro">
+              Words hold the power to create worlds, shape destinies, and inspire change. Are you ready to write your masterpiece?
             </p>
+          </header>
+      
+          <!-- Quote Section -->
+          <div class="story-quote-section">
+            <blockquote class="story-quote">
+              “The best stories are yet to be written. Let yours be one of them.”
+            </blockquote>
+            <p class="quote-author">– Unknown</p>
+          </div>
+      
+          <!-- Call-to-Action -->
+          <div class="story-action">
+            <a href="{% url 'storyapp:create-story' %}" class="btn-purple">Start Writing</a>
+            <p class="cta-text">Take the first step toward your next adventure. The page is blank—waiting for your ideas.</p>
+          </div>
         </div>
-    </section>
+      </section>
+      
+
+    <section class="index-section character-creation-section">
+        <div class="character-header">
+          <h1 class="character-title">Breathe Life into Your Characters!</h1>
+          <p class="character-intro">
+            Every story is powered by unforgettable characters. Let’s bring yours to life!
+          </p>
+        </div>
+        <div class="character-content">
+          <!-- Right Column (Now Comes First) -->
+          <div class="character-right">
+            <div class="character-preview">
+              <div class="preview-container">
+                <!-- <h3 class="preview-title">Preview Your Character:</h3> -->
+                <div class="character-image-placeholder">
+                  <!-- Placeholder image -->
+                  <img src="https://img.freepik.com/free-photo/fairytale-scene-coming-out-book_23-2151778507.jpg" alt="Character Preview">
+                </div>
+                <p class="preview-description">
+                  Visualize your character’s look, style, and personality as you shape their destiny.
+                </p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Left Column -->
+          <div class="character-left">
+            <div class="character-feature">
+              <h2 class="feature-title">Imagine the Possibilities</h2>
+              <p class="feature-text">
+                Picture a daring hero with a mysterious past or a cunning villain who operates in shadows. 
+                Craft their personalities, struggles, and triumphs to weave them into your narrative.
+              </p>
+              <blockquote class="character-quote">
+                “Characters are the heart of any story. Build them to inspire, challenge, and move your readers.”
+              </blockquote>
+              <div class="character-action">
+                <a href="{% url 'storyapp:create-story' %}" class="btn-olive">Start Creating</a>
+                <p class="character-subtext">
+                  From heroes to antiheroes, the world is waiting to meet your creations!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <hr>
+        <!-- Footer -->
+        <div class="character-footer">
+          <p class="footer-text">
+            Who will your next creation be? A hero, a villain, or someone entirely unexpected? 
+            The possibilities are endless.
+          </p>
+        </div>
+      </section>
+
+    <section class="index-section scene-creation-section">
+        <div class="scene-header">
+          <h1 class="scene-title">Craft Worlds That Enchant and Inspire!</h1>
+        </div>
+        <div class="scene-content">
+          <div class="scene-left">
+            <p class="scene-description">
+              From serene meadows to chaotic battlefields, create the settings where stories unfold. 
+              Let your imagination breathe life into places that feel as real as your dreams.
+            </p>
+            <ul class="scene-prompts">
+              <li>Create dynamic atmospheres (mystical, futuristic, etc.)</li>
+              <li>Define the sights, sounds, and feelings of your world</li>
+              <li>Guide your story's pacing with perfect locations</li>
+            </ul>
+          </div>
+          <div class="scene-right">
+            <a href="{% url 'storyapp:create-story' %}" class="btn-purple">Start Building Your World!</a>
+            <p class="scene-subtext">Where will your story take place? The choice is yours!</p>
+            <div class="scene-placeholder">
+              <img src="https://cdn.pixabay.com/photo/2024/05/07/12/26/ai-generated-8745713_1280.png" alt="Scene example" />
+            </div>
+          </div>
+        </div>
+        <div class="scene-footer">
+          <p class="footer-text">
+            The world awaits your touch. Every scene brings your story to life.
+          </p>
+        </div>
+      </section>
+      
+    
 </main>
 {% endblock %}

@@ -11955,10 +11955,24 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.flowchart-container .toggle-container {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
+@media screen and (max-width: 600px) {
+  .flowchart-container {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .flowchart-container .toggle-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .flowchart-container .toggle-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }
 }
 .flowchart-container .flowchart-design {
   display: flex;

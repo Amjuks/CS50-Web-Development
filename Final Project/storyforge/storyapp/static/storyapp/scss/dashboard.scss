@@ -3,15 +3,28 @@
 $profile-width: 250px;
 
 .dashboard-body {
-    display: grid;
-    grid-template-columns: $profile-width 1fr;
-    gap: 2rem;
-    padding: 1rem 2rem;
+    @media screen and (max-height: $small-screen) {
+        display: grid;
+        grid-template-columns: $profile-width 1fr;
+        gap: 2rem;
+        padding: 1rem 2rem;
+    }
+
+    @media screen and (min-height: $small-screen) {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1rem;
+        align-items: center;
+    }
 
     .dashboard-profile {
         display: flex;
         flex-direction: column;
         width: 200px;
+
+        @media screen and (min-height: $small-screen) {
+            align-items: center;
+        }
 
         .dashboard-profile-image-container {
             display: block;
@@ -56,7 +69,9 @@ $profile-width: 250px;
         width: 100%;
 
         .header {
+            text-align: center;
             color: $color-coral;
+            margin-bottom: 1rem;
         }
 
         .user-stories {
@@ -64,6 +79,10 @@ $profile-width: 250px;
             flex-direction: row;
             flex-wrap: wrap;
             gap: 1rem;
+
+            @media screen and (min-height: $small-screen) {
+                justify-content: center;
+            }
 
             .story-info {
                 padding: 8px 10px;

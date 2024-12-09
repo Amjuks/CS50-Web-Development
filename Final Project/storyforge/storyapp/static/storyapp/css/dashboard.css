@@ -11955,16 +11955,31 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.dashboard-body {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 2rem;
-  padding: 1rem 2rem;
+@media screen and (max-height: 600px) {
+  .dashboard-body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    padding: 1rem 2rem;
+  }
+}
+@media screen and (min-height: 600px) {
+  .dashboard-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    align-items: center;
+  }
 }
 .dashboard-body .dashboard-profile {
   display: flex;
   flex-direction: column;
   width: 200px;
+}
+@media screen and (min-height: 600px) {
+  .dashboard-body .dashboard-profile {
+    align-items: center;
+  }
 }
 .dashboard-body .dashboard-profile .dashboard-profile-image-container {
   display: block;
@@ -12000,13 +12015,20 @@ textarea.form-control-lg {
   width: 100%;
 }
 .dashboard-body .dashboard-info .header {
+  text-align: center;
   color: #af378a;
+  margin-bottom: 1rem;
 }
 .dashboard-body .dashboard-info .user-stories {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+}
+@media screen and (min-height: 600px) {
+  .dashboard-body .dashboard-info .user-stories {
+    justify-content: center;
+  }
 }
 .dashboard-body .dashboard-info .user-stories .story-info {
   padding: 8px 10px;

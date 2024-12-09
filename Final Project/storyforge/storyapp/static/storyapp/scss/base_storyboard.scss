@@ -1,76 +1,154 @@
 @import 'variables.scss';
 
 .body {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-}
-
-.storyboard-sidebar {
-    padding: 1rem;
-    background-color: $color-light-blue;
-
-    .world-name {
-        font-family: garamond;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        &:hover {
-            transition: white-space .3s;
-            white-space: normal;
-        }
-    }
-
-    .sidebar-menu {
+    @media screen and (min-width: $small-screen) {
+        display: grid;
+        grid-template-columns: 250px 1fr;
         padding: 0;
-        margin: 0rem;
-        list-style: none;
+                
+        .storyboard-sidebar {
+            padding: 1rem;
+            background-color: $color-light-blue;
 
-        .menu-item {
-            a {
-                display: grid;
-                grid-template-columns: 30px 1fr;
-                gap: 1rem;
-                align-items: center;
+            .world-name {
+                font-family: garamond;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
 
-                color: $color-dark-green;
-                text-decoration: none;
-                padding: .5rem;
-                margin: .5rem 0;
-                border-radius: 10px;
-                transition: background-color .3s;
-
-                .fa-solid {
-                    text-align: center;
-                }
-    
                 &:hover {
-                    background-color: lighten($color: $color-light-blue, $amount: 5%);
+                    transition: white-space .3s;
+                    white-space: normal;
                 }
             }
 
-            &.active {
-                a {
-                    color: $color-coral;
-                    background-color: lighten($color: $color-light-blue, $amount: 5%);    
+            .sidebar-menu {
+                padding: 0;
+                margin: 0rem;
+                list-style: none;
+
+                .menu-item {
+                    a {
+                        display: grid;
+                        grid-template-columns: 30px 1fr;
+                        gap: 1rem;
+                        align-items: center;
+
+                        color: $color-dark-green;
+                        text-decoration: none;
+                        padding: .5rem;
+                        margin: .5rem 0;
+                        border-radius: 10px;
+                        transition: background-color .3s;
+
+                        .fa-solid {
+                            text-align: center;
+                        }
+            
+                        &:hover {
+                            background-color: lighten($color: $color-light-blue, $amount: 5%);
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            color: $color-coral;
+                            background-color: lighten($color: $color-light-blue, $amount: 5%);    
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: $small-screen) {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        .storyboard-sidebar {
+            padding: 0;
+            background-color: $color-light-blue;
+
+            .world-name {
+                display: none;
+            }
+
+            .sidebar-menu {
+                padding: 0;
+                margin: 0rem;
+                list-style: none;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+
+                .menu-item {
+                    a {
+                        display: flex;
+                        justify-content: center;
+
+                        color: $color-dark-green;
+                        text-decoration: none;
+                        padding: .5rem;
+                        margin: .5rem 0;
+                        border-radius: 10px;
+                        transition: background-color .3s;
+
+                        .fa-solid {
+                            text-align: center;
+                        }
+
+                        .item-text {
+                            display: none;
+                        }
+            
+                        &:hover {
+                            background-color: lighten($color: $color-light-blue, $amount: 5%);
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            color: $color-coral;
+                            background-color: lighten($color: $color-light-blue, $amount: 5%);    
+                        }
+                    }
                 }
             }
         }
     }
 }
+
 
 .storyboard-body {
     padding: 1rem;
     color: $color-coral;
     background-color: $color-dark-green;
 
-    .storyboard-subheader {
-        margin-bottom: 1rem;
-        text-align: center;
+    @media screen and (min-width: $small-screen) {
+        .storyboard-subheader {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    
+        .create-story-element {
+            margin-bottom: 1rem;
+        }
     }
 
-    .create-story-element {
-        margin-bottom: 1rem;
+    @media screen and (max-width: $small-screen) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .storyboard-subheader {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    
+        .create-story-element {
+            margin-bottom: 1rem;
+        }
     }
 }
 

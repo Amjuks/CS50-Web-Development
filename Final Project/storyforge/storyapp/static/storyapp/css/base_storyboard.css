@@ -11955,51 +11955,97 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #051b11;
 }
 
-.body {
-  display: grid;
-  grid-template-columns: 250px 1fr;
+@media screen and (min-width: 600px) {
+  .body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    padding: 0;
+  }
+  .body .storyboard-sidebar {
+    padding: 1rem;
+    background-color: #b3dcda;
+  }
+  .body .storyboard-sidebar .world-name {
+    font-family: garamond;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .body .storyboard-sidebar .world-name:hover {
+    transition: white-space 0.3s;
+    white-space: normal;
+  }
+  .body .storyboard-sidebar .sidebar-menu {
+    padding: 0;
+    margin: 0rem;
+    list-style: none;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 1rem;
+    align-items: center;
+    color: #051b11;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a .fa-solid {
+    text-align: center;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a:hover {
+    background-color: #c4e4e3;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item.active a {
+    color: #af378a;
+    background-color: #c4e4e3;
+  }
 }
-
-.storyboard-sidebar {
-  padding: 1rem;
-  background-color: #b3dcda;
-}
-.storyboard-sidebar .world-name {
-  font-family: garamond;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.storyboard-sidebar .world-name:hover {
-  transition: white-space 0.3s;
-  white-space: normal;
-}
-.storyboard-sidebar .sidebar-menu {
-  padding: 0;
-  margin: 0rem;
-  list-style: none;
-}
-.storyboard-sidebar .sidebar-menu .menu-item a {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 1rem;
-  align-items: center;
-  color: #051b11;
-  text-decoration: none;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 10px;
-  transition: background-color 0.3s;
-}
-.storyboard-sidebar .sidebar-menu .menu-item a .fa-solid {
-  text-align: center;
-}
-.storyboard-sidebar .sidebar-menu .menu-item a:hover {
-  background-color: #c4e4e3;
-}
-.storyboard-sidebar .sidebar-menu .menu-item.active a {
-  color: #af378a;
-  background-color: #c4e4e3;
+@media screen and (max-width: 600px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  .body .storyboard-sidebar {
+    padding: 0;
+    background-color: #b3dcda;
+  }
+  .body .storyboard-sidebar .world-name {
+    display: none;
+  }
+  .body .storyboard-sidebar .sidebar-menu {
+    padding: 0;
+    margin: 0rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a {
+    display: flex;
+    justify-content: center;
+    color: #051b11;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a .fa-solid {
+    text-align: center;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a .item-text {
+    display: none;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item a:hover {
+    background-color: #c4e4e3;
+  }
+  .body .storyboard-sidebar .sidebar-menu .menu-item.active a {
+    color: #af378a;
+    background-color: #c4e4e3;
+  }
 }
 
 .storyboard-body {
@@ -12007,12 +12053,28 @@ textarea.form-control-lg {
   color: #af378a;
   background-color: #051b11;
 }
-.storyboard-body .storyboard-subheader {
-  margin-bottom: 1rem;
-  text-align: center;
+@media screen and (min-width: 600px) {
+  .storyboard-body .storyboard-subheader {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .storyboard-body .create-story-element {
+    margin-bottom: 1rem;
+  }
 }
-.storyboard-body .create-story-element {
-  margin-bottom: 1rem;
+@media screen and (max-width: 600px) {
+  .storyboard-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .storyboard-body .storyboard-subheader {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .storyboard-body .create-story-element {
+    margin-bottom: 1rem;
+  }
 }
 
 .error-msg {

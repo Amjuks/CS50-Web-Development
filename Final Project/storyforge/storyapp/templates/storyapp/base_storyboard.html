@@ -15,25 +15,25 @@
             <li class="menu-item {% if current_page == '' %}active{% endif %}">
                 <a href="{% url 'storyapp:storyboard' world_id=world.id %}">
                     <i class="fa-solid fa-book"></i>
-                    Story
+                    <div class="item-text">Story</div>
                 </a>
             </li>
             <li class="menu-item {% if current_page == 'characters' %}active{% endif %}">
                 <a href="{% url 'storyapp:storyboard-characters' world_id=world.id %}">
                     <i class="fa-solid fa-users"></i>
-                    Characters
+                    <div class="item-text">Characters</div>
                 </a>
             </li>
             <li class="menu-item {% if current_page == 'locations' %}active{% endif %}">
                 <a href="{% url 'storyapp:storyboard-locations' world_id=world.id %}">
                     <i class="fa-solid fa-map-location-dot"></i>
-                    Locations
+                    <div class="item-text">Locations</div>
                 </a>
             </li>
             <li class="menu-item {% if current_page == 'scenes' %}active{% endif %}">
                 <a href="{% url 'storyapp:storyboard-scenes' world_id=world.id %}">
                     <i class="fa-solid fa-film"></i>
-                    Scenes
+                    <div class="item-text">Scenes</div>
                 </a>
             </li>
         {% endwith %}

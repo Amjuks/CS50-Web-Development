@@ -11960,16 +11960,26 @@ textarea.form-control-lg {
   flex-direction: column;
   width: 100%;
 }
+@media screen and (max-width: 600px) {
+  .element-view-form {
+    align-items: center;
+  }
+}
 .element-view-form .input-group-normal {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 .element-view-form .input-group-normal :has(textarea) {
   width: 100%;
 }
+.element-view-form .input-group-normal.scene-chars {
+  align-items: center;
+}
 .element-view-form .input-group-avatar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 300px;
   text-align: center;
 }
@@ -12006,6 +12016,44 @@ textarea.form-control-lg {
 .element-view-form .input-group-avatar,
 .element-view-form .input-group-check {
   margin-bottom: 1rem;
+}
+@media screen and (min-width: 600px) {
+  .element-view-form .input-group-normal input:not([type=checkbox]),
+  .element-view-form .input-group-normal textarea,
+  .element-view-form .input-group-normal select,
+  .element-view-form .input-group-row input:not([type=checkbox]),
+  .element-view-form .input-group-row textarea,
+  .element-view-form .input-group-row select,
+  .element-view-form .input-group-trait input:not([type=checkbox]),
+  .element-view-form .input-group-trait textarea,
+  .element-view-form .input-group-trait select,
+  .element-view-form .input-group-avatar input:not([type=checkbox]),
+  .element-view-form .input-group-avatar textarea,
+  .element-view-form .input-group-avatar select,
+  .element-view-form .input-group-check input:not([type=checkbox]),
+  .element-view-form .input-group-check textarea,
+  .element-view-form .input-group-check select {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .element-view-form .input-group-normal input:not([type=checkbox]),
+  .element-view-form .input-group-normal textarea,
+  .element-view-form .input-group-normal select,
+  .element-view-form .input-group-row input:not([type=checkbox]),
+  .element-view-form .input-group-row textarea,
+  .element-view-form .input-group-row select,
+  .element-view-form .input-group-trait input:not([type=checkbox]),
+  .element-view-form .input-group-trait textarea,
+  .element-view-form .input-group-trait select,
+  .element-view-form .input-group-avatar input:not([type=checkbox]),
+  .element-view-form .input-group-avatar textarea,
+  .element-view-form .input-group-avatar select,
+  .element-view-form .input-group-check input:not([type=checkbox]),
+  .element-view-form .input-group-check textarea,
+  .element-view-form .input-group-check select {
+    width: 100%;
+  }
 }
 .element-view-form .input-group-normal label,
 .element-view-form .input-group-row label,
@@ -12064,7 +12112,6 @@ textarea.form-control-lg {
 .element-view-form .input-group-check input:not([type=checkbox]),
 .element-view-form .input-group-check textarea,
 .element-view-form .input-group-check select {
-  width: 70%;
   padding: 0.5rem 1rem;
   color: white;
   border-radius: 10px;
@@ -12078,11 +12125,19 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   width: 80%;
-  gap: 0.5rem;
+  gap: 1rem;
 }
-.element-view-form .traits .trait,
-.element-view-form .objectives .trait {
-  grid-template-columns: 200px 500px 50px;
+@media screen and (min-width: 600px) {
+  .element-view-form .traits .trait,
+  .element-view-form .objectives .trait {
+    grid-template-columns: 200px 500px 50px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .element-view-form .traits .trait,
+  .element-view-form .objectives .trait {
+    grid-template-columns: 150px 150px 50px;
+  }
 }
 .element-view-form .traits .objective,
 .element-view-form .objectives .objective {
@@ -12099,7 +12154,22 @@ textarea.form-control-lg {
 .element-view-form .objectives .trait label,
 .element-view-form .objectives .objective label {
   color: #6c5592;
-  font-size: 1.5rem;
+}
+@media screen and (min-width: 600px) {
+  .element-view-form .traits .trait label,
+  .element-view-form .traits .objective label,
+  .element-view-form .objectives .trait label,
+  .element-view-form .objectives .objective label {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .element-view-form .traits .trait label,
+  .element-view-form .traits .objective label,
+  .element-view-form .objectives .trait label,
+  .element-view-form .objectives .objective label {
+    font-size: 1.5rem;
+  }
 }
 .element-view-form .traits .trait input,
 .element-view-form .traits .objective input,
@@ -12151,17 +12221,33 @@ textarea.form-control-lg {
   margin-bottom: 1rem;
   padding: 0;
 }
-.element-view-form .image-preview-container.circle {
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  border: 10px solid #6c5592;
+@media screen and (min-width: 600px) {
+  .element-view-form .image-preview-container.circle {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 10px solid #6c5592;
+  }
+  .element-view-form .image-preview-container.rect {
+    height: 300px;
+    width: 400px;
+    border-radius: 20px;
+    border: 5px solid #6c5592;
+  }
 }
-.element-view-form .image-preview-container.rect {
-  height: 300px;
-  width: 400px;
-  border-radius: 20px;
-  border: 5px solid #6c5592;
+@media screen and (max-width: 600px) {
+  .element-view-form .image-preview-container.circle {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 5px solid #6c5592;
+  }
+  .element-view-form .image-preview-container.rect {
+    height: 225px;
+    width: 300px;
+    border-radius: 20px;
+    border: 3px solid #6c5592;
+  }
 }
 .element-view-form .image-preview-container .image-preview {
   height: 100%;

@@ -11983,10 +11983,14 @@ body {
 .body {
   min-height: 100vh;
   background-color: #051b11;
+  padding-top: 1rem;
 }
 
 .base-navbar {
   background-color: black;
+}
+.base-navbar .main-navbar {
+  margin-left: 10rem;
 }
 .base-navbar a {
   color: #8c8237;

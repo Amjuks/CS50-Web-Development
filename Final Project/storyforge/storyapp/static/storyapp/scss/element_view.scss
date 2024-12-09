@@ -5,18 +5,28 @@
     flex-direction: column;
     width: 100%;
 
+    @media screen and (max-width: $small-screen) {
+        align-items: center;
+    }
+
     .input-group-normal {
         display: flex;
         flex-direction: column;
+        text-align: center;
 
         :has(textarea) {
             width: 100%;
+        }
+
+        &.scene-chars {
+            align-items: center;
         }
     }
 
     .input-group-avatar {
         display: flex;
         flex-direction: column;
+        align-items: center;
         width: 300px;
         text-align: center;
 
@@ -61,8 +71,25 @@
     .input-group-trait,
     .input-group-avatar,
     .input-group-check {
+
         margin-bottom: 1rem;
-    
+
+        @media screen and (min-width: $small-screen) {
+            input:not([type="checkbox"]),
+            textarea,
+            select {
+                width: 70%;
+            }
+        }
+
+        @media screen and (max-width: $small-screen) {
+            input:not([type="checkbox"]),
+            textarea,
+            select {
+                width: 100%;
+            }
+        }
+        
         label {
             font-size: 2rem;
             color: $color-light-blue;
@@ -93,7 +120,6 @@
         input:not([type="checkbox"]),
         textarea,
         select {
-            width: 70%;
             padding: .5rem 1rem;
             color: white;
             border-radius: 10px;
@@ -109,10 +135,16 @@
         display: flex;
         flex-direction: column;
         width: 80%;
-        gap: .5rem;
+        gap: 1rem;
 
         .trait {
-            grid-template-columns: 200px 500px 50px;
+            @media screen and (min-width: $small-screen) {
+                grid-template-columns: 200px 500px 50px;                
+            }
+
+            @media screen and (max-width: $small-screen) {
+                grid-template-columns: 150px 150px 50px;                
+            }
         }
 
         .objective {
@@ -122,10 +154,17 @@
         .trait,
         .objective {
             display: grid;
-    
+
             label {
                 color: $color-purple;
-                font-size: 1.5rem;
+
+                @media screen and (min-width: $small-screen) {
+                    font-size: 1.5rem;
+                }
+    
+                @media screen and (max-width: $small-screen) {
+                    font-size: 1.5rem;
+                }
             }
 
             input {
@@ -186,18 +225,36 @@
         margin-bottom: 1rem;
         padding: 0;
 
-        &.circle {
-            height: 300px;
-            width: 300px;
-            border-radius: 50%;
-            border: 10px solid $color-purple;
+        @media screen and (min-width: $small-screen) {
+            &.circle {
+                height: 300px;
+                width: 300px;
+                border-radius: 50%;
+                border: 10px solid $color-purple;
+            }
+    
+            &.rect {
+                height: 300px;
+                width: 400px;
+                border-radius: 20px;
+                border: 5px solid $color-purple;
+            }   
         }
 
-        &.rect {
-            height: 300px;
-            width: 400px;
-            border-radius: 20px;
-            border: 5px solid $color-purple;
+        @media screen and (max-width: $small-screen) {
+            &.circle {
+                height: 150px;
+                width: 150px;
+                border-radius: 50%;
+                border: 5px solid $color-purple;
+            }
+    
+            &.rect {
+                height: 225px;
+                width: 300px;
+                border-radius: 20px;
+                border: 3px solid $color-purple;
+            }   
         }
 
         .image-preview {
